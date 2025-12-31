@@ -158,7 +158,9 @@ This demonstrates **context-aware conversation handling**.
 
 **Ankush Poonia**  
 B.Tech Computer Science (AI)  
-IBM SkillBuild Winter Internship  
+IBM SkillBuild Winter Internship
+* **GitHub:** [@ankush-poonia007](https://github.com/ankush-poonia007/)
+* **LinkedIn:** [Ankush Poonia](https://www.linkedin.com/in/ankushpoonia007/)
 
 ---
 
