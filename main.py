@@ -119,6 +119,12 @@ memory = {
     "last_intent":None
 }
 
+# Function to handel Memory Reset
+def reset_memory():
+   memory["last_intent"] = None
+   memory["last_topic"] = None
+
+
 # ----- Function for Intent Detection -----
 def detect_intent( user_input ):
     user_input = user_input.lower()
@@ -134,22 +140,28 @@ def detect_intent( user_input ):
 
     FOLLOW_UP = [
         "tell me more", "give an example", "example",
-        "explain again", "elaborate", "explain more", "need more details"
+        "explain again", "elaborate", "explain more", "need more details",
+        "more about","some information","infomation","info"
     ]
 
     EXIT_LIST = ["bye", "exit", "quit", "stop", "end","stop texting","take care",
                  "continue later","see you tommorow"
     ]
 
+    RESET_MEMORY = ["reset memory","clear memory","clear all data","clear data","forget"]
 
     is_greeting_present = any(word in user_input for word in GREETING_LIST)
     is_ask_definition_present = any(word in user_input for word in ASK_DEFINITION)
     is_follow_up_present = any(word in user_input for word in FOLLOW_UP)
     is_exit_present = any(word in user_input for word in EXIT_LIST)
+    is_memory_reset = any(word in user_input for word in RESET_MEMORY)
 
     if is_exit_present:
         return "EXIT"
     
+    if is_memory_reset:
+       return "RESET"
+
     if is_greeting_present:
         return "GREETING"
     
@@ -212,7 +224,12 @@ def brain( user_question ):
       return "EXIT"
 
 
-    # Step 3 handel UNKNOWN early
+    # Step 2 RESET MEMORY ( v2 )
+    if intent == "RESET":
+       return "RESET"
+       
+
+    # Step 4 handel UNKNOWN early
     if intent == "UNKNOWN":
       return (
           "I can help with topics like AI, ML, DL, and Neural Networks\n"
@@ -220,7 +237,7 @@ def brain( user_question ):
           )
 
 
-    # Step 4 update memory safely( intent based )
+    # Step 5 update memory safely( intent based )
     if( intent == "ASK_DEFINITION"):
 
         if  topic is not None:
@@ -309,20 +326,31 @@ def start():
         # EXIT intent handling
         if response == "EXIT":
             print("Bot: Goodbye! Have a great day 😊")
+            reset_memory()
             break
+        
+        
 
+        if response == "RESET":
+            print("""Please Enter "Confirm" to Reset the Memory""")
+            user = input("You: ")
+            user = user.lower()
+            if user == "confirm":
+                reset_memory()
+                response = "Memory Reset Successfully!!"
+            else:
+                response = "Memory Reset Failed!!"
         print("Bot:", response)
 
 # Starting the Chatbox
 start()
 
-# Future Updates
+# ----- Future Updates -----
 
 # 1.Topic Switching Support
-# 2.Memory Reset Command
+# 2.Memory Reset Command ( Completed in v2 )
 # 3.Multi-Level Explanations
-# 4.Multi-Level Explanations
-# 5.Input Validation & Spell Tolerance
-# 6.Logging Conversation History
-# 7.Logging Conversation History
-# 8.Exit Detection ( Complete )
+# 4.Input Validation & Spell Tolerance
+# 5.Logging Conversation History
+# 6.Exit Detection ( Complete in version v2 )
+# 7.Clear Intent Classification
