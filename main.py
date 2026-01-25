@@ -3,8 +3,6 @@
 
 # AI CHATBOT USING AGENTIC AI AND BASIC NLP WHICH I LEARND THROUGHT THE INTERSHIP AT IBM SKILLBUILD
 
-# AI CHATBOT USING AGENTIC AI AND BASIC NLP WHICH I LEARND THROUGHT THE INTERSHIP AT IBM SKILLBUILD
-
 # AI Chatbot / Q&A Agent
 # IBM SKILLBUILD WINTER INTERNSHIP PROJECT
 # NAME : ANKUSH POONIA
@@ -121,7 +119,8 @@ memory = {
     "last_intent":None
 }
 
-def detect_intent(user_input):
+# ----- Function for Intent Detection -----
+def detect_intent( user_input ):
     user_input = user_input.lower()
 
     GREETING_LIST = [
@@ -135,9 +134,12 @@ def detect_intent(user_input):
 
     FOLLOW_UP = [
         "tell me more", "give an example", "example",
-        "explain again", "elaborate", "more", "need more details"
+        "explain again", "elaborate", "explain more", "need more details"
     ]
-    EXIT_LIST = ["bye", "exit", "quit", "stop", "end"]
+
+    EXIT_LIST = ["bye", "exit", "quit", "stop", "end","stop texting","take care",
+                 "continue later","see you tommorow"
+    ]
 
 
     is_greeting_present = any(word in user_input for word in GREETING_LIST)
@@ -147,18 +149,21 @@ def detect_intent(user_input):
 
     if is_exit_present:
         return "EXIT"
-
-
-
+    
     if is_greeting_present:
         return "GREETING"
+    
     elif is_ask_definition_present:
         return "ASK_DEFINITION"
+    
     elif is_follow_up_present:
         return "FOLLOW_UP"
+    
     else:
         return "UNKNOWN"
 
+
+# ----- Function for Topic Detection -----
 def detect_topic( user_question ):
     user_question = user_question.lower()
 
@@ -169,8 +174,7 @@ def detect_topic( user_question ):
 
 
 
-    # Chechiing for the presence of the rulled Keyword:
-
+    # Checking for the presence of the ruled Keyword:
     is_AI_present = any ( word in user_question for word in AI_list)
     is_ML_present = any ( word in user_question for word in ML_list)
     is_DL_present = any ( word in user_question for word in DL_list)
@@ -195,11 +199,11 @@ def detect_topic( user_question ):
       # no topic mentioned so we use memeory to find the topic
       return memory["last_topic"]
 
-# AI Agent Function Implementation
+# AI Agent Function Implementation ( BRAIN )
 def brain( user_question ):
     user_question = user_question.lower()
 
-    # Step 1 just detect intent an dtopic
+    # Step 1 just detect intent and topic
     intent = detect_intent(user_question)
     topic = detect_topic(user_question)
 
@@ -226,15 +230,15 @@ def brain( user_question ):
 
 
     elif intent == "FOLLOW_UP":
+      
       # FOLLOW_UP uses existing topic, does NOT overwrite it
       memory["last_intent"] = intent
 
 
     elif intent == "GREETING":
+      
       # Greeting does not change memory
       return "Hello! How can I assist you today?"
-
-
 
 
 
@@ -294,8 +298,8 @@ def brain( user_question ):
 
 def start():
     print("AI Chatbot Agent Started Successfully!")
-    print("Type your question below.")
-    print("Type 'bye' or 'exit' to stop the chatbot.\n")
+    print("You can exit the Chatbot when you want.\n")
+    print("Type your question below:\n")
 
     while True:
         user_question = input("You: ")
@@ -310,9 +314,7 @@ def start():
         print("Bot:", response)
 
 # Starting the Chatbox
-flow = int ( input ( "Enter 1 to Start the Chatbot\nEnter 0 to Stop the Chatbot"))
-if flow:
-  start()
+start()
 
 # Future Updates
 
@@ -323,4 +325,4 @@ if flow:
 # 5.Input Validation & Spell Tolerance
 # 6.Logging Conversation History
 # 7.Logging Conversation History
-# 8.
+# 8.Exit Detection ( Complete )
