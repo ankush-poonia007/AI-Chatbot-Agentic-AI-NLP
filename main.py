@@ -367,10 +367,10 @@ start()
 
 # ----- Future Updates -----
 
-# 1.Topic Switching Support ( Completed in v2 )
-# 2.Memory Reset Command ( Completed in v2 )
+# 1.Topic Switching Support                     ( Completed in v2 )
+# 2.Memory Reset Command                        ( Completed in v2 )
 # 3.Multi-Level Explanations
 # 4.Input Validation & Spell Tolerance
 # 5.Logging Conversation History
-# 6.Exit Detection ( Complete in version v2 )
+# 6.Exit Detection                              ( Completed in v2 )
 # 7.Clear Intent Classification
