@@ -123,7 +123,13 @@ memory = {
 def reset_memory():
    memory["last_intent"] = None
    memory["last_topic"] = None
+   return 
 
+# Funtion to Switch Topic in btw Conversation 
+def switch_topic( intent, topic ):
+    memory["last_intent"] = intent
+    memory["last_topic"] = topic
+    return 
 
 # ----- Function for Intent Detection -----
 def detect_intent( user_input ):
@@ -141,11 +147,11 @@ def detect_intent( user_input ):
     FOLLOW_UP = [
         "tell me more", "give an example", "example",
         "explain again", "elaborate", "explain more", "need more details",
-        "more about","some information","infomation","info"
+        "more about","some information","information","info"
     ]
 
     EXIT_LIST = ["bye", "exit", "quit", "stop", "end","stop texting","take care",
-                 "continue later","see you tommorow"
+                 "continue later","see you tomorrow"
     ]
 
     RESET_MEMORY = ["reset memory","clear memory","clear all data","clear data","forget"]
@@ -174,7 +180,9 @@ def detect_intent( user_input ):
     else:
         return "UNKNOWN"
 
-
+def resolve_topic():
+    return memory["last_topic"]
+    
 # ----- Function for Topic Detection -----
 def detect_topic( user_question ):
     user_question = user_question.lower()
@@ -209,7 +217,7 @@ def detect_topic( user_question ):
 
     else:
       # no topic mentioned so we use memeory to find the topic
-      return memory["last_topic"]
+      return resolve_topic()
 
 # AI Agent Function Implementation ( BRAIN )
 def brain( user_question ):
@@ -229,7 +237,7 @@ def brain( user_question ):
        return "RESET"
        
 
-    # Step 4 handel UNKNOWN early
+    # Step 4 handle UNKNOWN early
     if intent == "UNKNOWN":
       return (
           "I can help with topics like AI, ML, DL, and Neural Networks\n"
@@ -239,23 +247,35 @@ def brain( user_question ):
 
     # Step 5 update memory safely( intent based )
     if( intent == "ASK_DEFINITION"):
-
-        if  topic is not None:
-          memory["last_topic"] = topic
-
-        memory["last_intent"] = intent
+        if ( topic != None):
+            # Checks if the topic is changed or not 
+            if topic != memory["last_topic"]:
+                switch_topic(intent, topic)
+            else:
+            
+                # If the topic is same as previous one 
+                memory["last_intent"] = intent 
+        else:
+            memory["last_intent"] = intent
 
 
     elif intent == "FOLLOW_UP":
-      
-      # FOLLOW_UP uses existing topic, does NOT overwrite it
-      memory["last_intent"] = intent
+        if ( topic != None):
+            # Checks if the topic is changed or not 
+            if topic != memory["last_topic"]:
+               switch_topic(intent, topic)
 
+            else:
+            # FOLLOW_UP uses existing topic, does NOT overwrite it
+                memory["last_intent"] = intent
+        else:
+            memory["last_intent"] = intent
+        
 
     elif intent == "GREETING":
       
-      # Greeting does not change memory
-      return "Hello! How can I assist you today?"
+        # Greeting does not change memory
+        return "Hello! How can I assist you today?"
 
 
 
@@ -263,38 +283,38 @@ def brain( user_question ):
 
     if memory["last_intent"] == "ASK_DEFINITION" :
 
-          if memory["last_topic"] == "AI":
+        if memory["last_topic"] == "AI":
             return (
                 "Artificial Intelligence (AI) is the field of computer science "
                 "that focuses on creating systems capable of performing tasks "
                 "that normally require human intelligence."
             )
 
-          elif memory["last_topic"] == "ML":
+        elif memory["last_topic"] == "ML":
             return (
                 "Machine Learning (ML) is a subset of AI that allows systems "
                 "to learn from data and improve performance without being "
                 "explicitly programmed."
             )
 
-          elif memory["last_topic"] == "DL" :
+        elif memory["last_topic"] == "DL" :
             return (
                 "Deep Learning (DL) is a subset of Machine Learning that uses "
                 "multi-layer neural networks to learn complex patterns from data."
             )
 
-          elif memory["last_topic"]  == "NL" :
+        elif memory["last_topic"]  == "NL" :
             return (
                 "A Neural Networks is a model inspired by the human brain, made "
                 "of interconnected neurons that learn patterns from data."
             )
 
-          else :
+        else :
             return ( "Please specify a topic like AI, ML, DL, or Neural Networks.")
 
 
     elif memory["last_intent"] == "FOLLOW_UP":
-
+        
         if memory["last_topic"] == "AI":
             return "AI is widely used in areas like chatbots, recommendation systems, and self-driving cars."
 
@@ -347,7 +367,7 @@ start()
 
 # ----- Future Updates -----
 
-# 1.Topic Switching Support
+# 1.Topic Switching Support ( Completed in v2 )
 # 2.Memory Reset Command ( Completed in v2 )
 # 3.Multi-Level Explanations
 # 4.Input Validation & Spell Tolerance
