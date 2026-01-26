@@ -131,9 +131,15 @@ def switch_topic( intent, topic ):
     memory["last_topic"] = topic
     return 
 
+# If no topic is given 
+def resolve_topic():
+    
+    return memory["last_topic"]
+    
 # ----- Function for Intent Detection -----
 def detect_intent( user_input ):
-    user_input = user_input.lower()
+
+    # user_input = user_input.strip()
 
     GREETING_LIST = [
         "hello", "hi", "hey", "good morning", "morning",
@@ -156,36 +162,54 @@ def detect_intent( user_input ):
 
     RESET_MEMORY = ["reset memory","clear memory","clear all data","clear data","forget"]
 
-    is_greeting_present = any(word in user_input for word in GREETING_LIST)
-    is_ask_definition_present = any(word in user_input for word in ASK_DEFINITION)
-    is_follow_up_present = any(word in user_input for word in FOLLOW_UP)
-    is_exit_present = any(word in user_input for word in EXIT_LIST)
-    is_memory_reset = any(word in user_input for word in RESET_MEMORY)
 
-    if is_exit_present:
+    
+
+    if any(word in user_input for word in EXIT_LIST ):
         return "EXIT"
-    
-    if is_memory_reset:
-       return "RESET"
 
-    if is_greeting_present:
+    if any(word in user_input for word in RESET_MEMORY ):
+        return "RESET"
+
+    if any(word in user_input for word in GREETING_LIST ):
         return "GREETING"
-    
-    elif is_ask_definition_present:
-        return "ASK_DEFINITION"
-    
-    elif is_follow_up_present:
-        return "FOLLOW_UP"
-    
-    else:
-        return "UNKNOWN"
 
-def resolve_topic():
-    return memory["last_topic"]
+    if any(word in user_input for word in ASK_DEFINITION ):
+        return "ASK_DEFINITION"
+
+    if any(word in user_input for word in FOLLOW_UP ):
+        return "FOLLOW_UP"
+
+    return "UNKNOWN"
+
+
+    # is_greeting_present = any(word in user_input for word in GREETING_LIST)
+    # is_ask_definition_present = any(word in user_input for word in ASK_DEFINITION)
+    # is_follow_up_present = any(word in user_input for word in FOLLOW_UP)
+    # is_exit_present = any(word in user_input for word in EXIT_LIST)
+    # is_memory_reset = any(word in user_input for word in RESET_MEMORY)
+
+    # if is_exit_present:
+    #     return "EXIT"
     
+    # if is_memory_reset:
+    #    return "RESET"
+
+    # if is_greeting_present:
+    #     return "GREETING"
+    
+    # elif is_ask_definition_present:
+    #     return "ASK_DEFINITION"
+    
+    # elif is_follow_up_present:
+    #     return "FOLLOW_UP"
+    
+    # else:
+    #     return "UNKNOWN"
+
+
 # ----- Function for Topic Detection -----
 def detect_topic( user_question ):
-    user_question = user_question.lower()
 
     AI_list = ["artificial intelligence","ai"]
     ML_list = ["machine learning","ml"]
@@ -221,7 +245,7 @@ def detect_topic( user_question ):
 
 # AI Agent Function Implementation ( BRAIN )
 def brain( user_question ):
-    user_question = user_question.lower()
+    
 
     # Step 1 just detect intent and topic
     intent = detect_intent(user_question)
@@ -277,7 +301,8 @@ def brain( user_question ):
         # Greeting does not change memory
         return "Hello! How can I assist you today?"
 
-
+    if memory["last_topic"]==None:
+        return "Could you clarify what topic you want me to continue with?"
 
     # Step 5 generate responses using memory
 
@@ -309,8 +334,8 @@ def brain( user_question ):
                 "of interconnected neurons that learn patterns from data."
             )
 
-        else :
-            return ( "Please specify a topic like AI, ML, DL, or Neural Networks.")
+        # else :
+        #     return ( "Please specify a topic like AI, ML, DL, or Neural Networks.")
 
 
     elif memory["last_intent"] == "FOLLOW_UP":
@@ -339,7 +364,12 @@ def start():
     print("Type your question below:\n")
 
     while True:
-        user_question = input("You: ")
+        user_question = input("You: ").lower().strip()
+
+
+        if not user_question:
+            print("Entered Wrong input")
+            continue
 
         response = brain(user_question)
 
