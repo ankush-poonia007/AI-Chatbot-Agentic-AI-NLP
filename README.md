@@ -192,7 +192,7 @@ This workflow simulates **true agent-based intelligent behavior** with stateful 
 
 ### 📸 Example 2: Multi-Level Explanations & Topic Switching
 
-![Sample Interaction 2](screenshots/sample_interaction_2.png)
+![Sample Interaction 2](screenshots/sample_interacyion_2.png)
 
 **Demonstrates:**
 - **Detailed explanation mode** when explicitly requested
