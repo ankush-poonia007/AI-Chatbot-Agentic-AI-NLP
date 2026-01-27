@@ -1,118 +1,176 @@
-# Version 1.0 – Initial implementation
+# ============================================================
+# Project: AI Chatbot – Agentic AI (Rule-Based + Basic NLP)
+# Version: 2.0 (Completed)
+# Author: Ankush Poonia
+#
+# Internship Context:
+# Developed during the IBM SkillBuild Winter Internship
+# as a learning-focused agentic AI system.
+#
+# ============================================================
 
+# ============================================================
+# Project Overview
+# ============================================================
+# This project implements a rule-based AI Chatbot / Q&A Agent
+# that answers foundational questions related to:
+# - Artificial Intelligence (AI)
+# - Machine Learning (ML)
+# - Deep Learning (DL)
+# - Neural Networks (NL)
+#
+# The chatbot demonstrates agentic behavior by maintaining
+# conversation context, handling follow-ups, and adapting
+# explanation depth based on user intent.
+# ============================================================
 
-# AI CHATBOT USING AGENTIC AI AND BASIC NLP WHICH I LEARND THROUGHT THE INTERSHIP AT IBM SKILLBUILD
+# ===============================================================
+# Problem Statement
+# ===============================================================
+# Students and beginners often need quick, clear explanations
+# of AI-related concepts. Searching across multiple resources
+# can be time-consuming and confusing.
+#
+# This chatbot provides instant, structured answers using
+# a lightweight, explainable, and rule-based approach.
+# ===============================================================
 
-# AI Chatbot / Q&A Agent
-# IBM SKILLBUILD WINTER INTERNSHIP PROJECT
-# NAME : ANKUSH POONIA
+# ===============================================================
+# Project Objectives
+# ===============================================================
+# 1. Design and build a functional AI chatbot using Python
+# 2. Demonstrate agent-like behavior through context memory
+# 3. Handle follow-up questions naturally
+# 4. Implement multi-level explanation control
+# 5. Build a clean decision-making workflow without ML libraries
+# ===============================================================
 
-# + - + - + - + - Problem Statement - + - + - + - +
+# ===============================================================
+# Tools & Technologies Used
+# ===============================================================
+# - Python
+# - Google Colab (development environment)
+# - Rule-based logic
+# - Basic NLP techniques (text normalization & keyword matching)
+# ==============================================================
 
-# Students often need quick answers to basic AI-related questions.
-# This project builds an AI chatbot agent that provides instant, accurate responses using Python.
-
-# + - + - + - + - Objective - + - + - + - +
-
-# 1 Design and build a functional AI chatbot
-
-# 2 Demonstrate AI agent behavior
-
-# 3 Implement user interaction and automation
-
-# + - + - + - + - Tools & Technologies - + - + - + - +
-
-# 1 Python
-
-# 2 Google Colab
-
-# 3 Basic NLP / rule-based AI logic
-
-# + - + - + - + - AI CHATBOT ARCHITECTURE & FLOW - + - + - + - +
-
-# Updated AI Agent Workflow:
-
+# ==============================================================
+# AI Chatbot Architecture & Flow
+# ==============================================================
+# The chatbot follows an agentic decision workflow:
+#
 # 1. User enters a query
-# 2. Input is normalized using basic NLP
-# 3. Intent detection is performed
+# 2. Input is normalized (lowercasing, trimming)
+# 3. User intent is detected
 # 4. Topic is identified or retrieved from memory
-# 5. Context memory is updated
-# 6. Appropriate response is generated
-# 7. Response is displayed to the user
-# 8. Agent continues until exit command
+# 5. Explanation depth is resolved (BASIC / DETAILED)
+# 6. Conversation memory is updated
+# 7. Response is generated using intent + topic + memory
+# 8. The agent continues until the user exits
+# ============================================================
 
-# + - + - + - + - Decision Logic Design - + - + - + - +
+# ============================================================
+# Decision Logic Design
+# ============================================================
+# The chatbot uses rule-based decision logic rather than
+# machine learning models.
+#
+# This approach was chosen intentionally to:
+# - Keep the system transparent and explainable
+# - Focus on agent design and reasoning
+# - Avoid dependency on external libraries
+#
+# The chatbot always prioritizes:
+# EXIT > RESET > GREETING > ASK_DEFINITION > FOLLOW_UP > UNKNOWN
+# ===============================================================
 
-# The Chatbot uses rule-bases decision logic to determine responses.
-# It checks the user's input for specific keywords in a fixed order.
+# ===============================================================
+# Intent Detection Layer
+# ===============================================================
+# Intent detection identifies the purpose of the user input.
+#
+# Supported Intents:
+# - GREETING       : User greets the chatbot
+# - ASK_DEFINITION : User asks for a definition or explanation
+# - FOLLOW_UP      : User asks a continuation question
+# - UNKNOWN        : Intent cannot be clearly identified
+#
+# Intent detection is performed using keyword-based rules.
+# =============================================================
 
-# Decison Rules:
-# 1. If the input contains greeting words( hi, hello , how are you? etc....)
-#   -> Respond with a greeting message.
-# 2. If the input contains keywords related to Artificial Intelligence
-#   -> Respond with an AI definition
-# 3. If the inpur contains keyword related to Machine Learning
-#   -> Respond with an ML definition
-# 4. If the input contains keyword realated to Deep Learing or Neural Network
-#   -> Respond with a DL or NL definition
-# 5. If none of the above conditions match
-#   -> Respond with a fallback message indicating the limited knowledge
+# ============================================================
+# Conversation Memory (Agent State)
+# ============================================================
+# The chatbot maintains lightweight memory to enable
+# context-aware and agent-like conversations.
+#
+# Memory Fields:
+# - last_topic  : Current discussion topic (AI / ML / DL / NL)
+# - last_intent : Most recent user intent
+# - last_depth  : Explanation depth (BASIC / DETAILED)
+#
+# This memory allows the chatbot to:
+# - Handle follow-up questions
+# - Maintain topic continuity
+# - Apply default depth policies
+# ============================================================
 
+# ============================================================
+# Explanation Depth Policy (Version 2 Feature)
+# ============================================================
+# The chatbot supports multi-level explanations:
+#
+# - BASIC    : High-level, beginner-friendly explanation
+# - DETAILED : Structured and in-depth explanation
+#
+# Default Depth Policy:
+# - New topic           → BASIC
+# - Explicit depth word → Override depth
+# - No depth mentioned  → Reuse previous depth
+# ============================================================
 
+# ============================================================
+# Input Handling & Basic NLP
+# ============================================================
+# The chatbot uses lightweight NLP techniques to process input:
+#
+# - Accepts user text input
+# - Normalizes text (lowercase, whitespace removal)
+# - Matches keywords for intent, topic, and depth detection
+#
+# This keeps the system simple while still effective.
+# ============================================================
 
-# Updated Decision logic:
-# - First detect user intent
-# - Then identify topic ( is present )
-# - If intent if FOLLOW_UP, use memory to determine topic
-# - Generate response based on intent + Context
+# ============================================================
+# UNKNOWN Intent Handling
+# ============================================================
+# When the chatbot cannot confidently understand the input,
+# it uses rule-based fallback logic to:
+# - Ask for clarification
+# - Identify unsupported topics
+# - Handle vague or incomplete queries
+#
+# This ensures graceful failure instead of incorrect responses.
+# ============================================================
 
-# + - + - + - + - Intent Detection Layer - + - + - + - +
+# ============================================================
+# Version Notes
+# ============================================================
+# Version 2.0 (Completed):
+# - Context-aware conversation memory
+# - Topic switching support
+# - Memory reset functionality
+# - Multi-level explanation control
+# - Robust UNKNOWN intent handling
+#
+# Future Versions (Planned):
+# - Conversation history logging
+# - Improved spell tolerance
+# - NLP/ML-based intent classification
+# - Web or GUI interface
+#
+# ============================================================
 
-# Intent detection identifies the purpose of thew user's input.
-# The chatbot classifies input into predefined intent categories.
-
-# Support Intents:
-# 1. GREETING       ->  User greets the chatbot
-# 2. ASK_DEFINITION ->  user asks for explanation or definition
-# 3. FOLLOW_UP      ->  user asks a continuation question ( e.g., "tell me more")
-# 4. UNKONWN        ->  Intent cannot be identified
-
-# Intent is detected using simple rule-based pattern matching.
-
-# + - + - + - + - Intent Detection Layer - + - + - + - +
-
-# The chatbot maintains a simple memory to store conversation context.
-
-# Memory Stores :
-#  - last_topic : The most recent topic discussed ( AI / ML / NL / DL )
-# -  last_intent: The most recent user intent
-
-# Momory enables the chatbot to handel follow-up questions
-# and provide contect - aware responses.
-
-# + - + - + - + - Input Handing & Basic NLP - + - + - + - +
-
-# The Chatbot Processes the user input using basic Natural Language Processing ( NLP ) steps.
-
-# NLP Steps Used:
-# 1. Accept text input from the user
-# 2. Normalize the input from the user
-# 3. Detect important keywords related to AI topic
-# 4. Identifiy the user's intent based on keyword presence
-# 5.Forward the processed input ro the decision
-
-# + - + - + - + - AI Agent Workflow - + - + - + - +
-
-# The AI Chatbot operates as an intelligent agent using the following workflow:
-
-# 1. The user enters a query through the input interface
-# 2. The chatbot receives the input and applies basic NLP preprocessing
-# 3. The processed input is passed to the rule based decision logic
-# 4. The chatbot selects the most appropriate response
-# 5. The responses os displayed to the user
-# 6. The agent continues interaction unitl the user choose to exit
-
-# + - + - + - + - Conversation Memory - + - + - + - +
 
 memory = {
     "last_topic":None,
@@ -120,28 +178,99 @@ memory = {
     "last_depth":None
 }
 
-# Function to handel Memory Reset
+# ============================================================
+# Topic Resolution Utility
+# ============================================================
+# Returns the last known topic from memory.
+# Used when the user asks follow-up questions
+# without explicitly mentioning a topic.
+# ============================================================
+
+def resolve_topic():
+    
+    return memory["last_topic"]
+
+
+
+# ============================================================
+# Memory Reset Utility
+# ============================================================
+# Clears the entire conversation memory.
+# Used when the user explicitly requests a reset
+# or when the chatbot exits.
+# ============================================================
+
 def reset_memory():
    memory["last_intent"] = None
    memory["last_topic"] = None
    memory["last_depth"] = None
    return 
 
-# Funtion to Switch Topic in btw Conversation 
+# ============================================================
+# Topic Switching Utility
+# ============================================================
+# Switches the active topic during a conversation.
+# Automatically resets explanation depth to BASIC
+# to ensure safe and beginner-friendly responses
+# for new topics.
+# ============================================================
+
+
 def switch_topic( intent, topic ):
     memory["last_intent"] = intent
     memory["last_topic"] = topic
     memory["last_depth"] = "BASIC"
     return 
-
-# If no topic is given 
-def resolve_topic():
-    
-    return memory["last_topic"]
     
 
+# ============================================================
+# Explanation Depth Detection
+# ============================================================
+# Determines the level of explanation requested
+# by the user.
+#
+# Depth Levels:
+# - BASIC    : High-level, beginner-friendly explanation
+# - DETAILED : Structured, in-depth explanation
+#
+# If no depth keyword is detected, the chatbot
+# reuses the last known depth from memory.
+# ============================================================
 
-# ----- Funtion to handle UNKNOWN intent or  topic more efficiently 
+
+def quetion_level ( user_question ):
+
+    BASIC = [ "overview", "summary", "fundamental", "essence", "core" "concept", "high-level", "snapshot","plain language", "non-technical", "concise", "single paragraph", "jargon-free", "brief",
+             "basic"
+    ]
+
+    DETAILED = ["structure", "framework", "components", "process", "use-cases", "applications", "workflow", "departmental","in detail"
+    ]
+
+    if any ( word in user_question for word in BASIC ):
+        return "BASIC"
+            
+    elif any ( word in user_question for word in DETAILED ):
+        return "DETAILED"
+    
+
+
+
+
+# ============================================================
+# UNKNOWN Intent Handling
+# ============================================================
+# Handles cases where the chatbot cannot confidently
+# determine user intent or topic.
+#
+# Covers:
+# - Missing or unclear topics
+# - Unsupported domains
+# - Very short or vague queries
+#
+# Ensures graceful failure instead of incorrect responses.
+# ============================================================
+
 def handle_unknown(user_question):
     # Known topics keywords
     known_topic = [
@@ -181,7 +310,25 @@ def handle_unknown(user_question):
 
 
 
-# ----- Function for Intent Detection -----
+# ============================================================
+# Intent Detection Layer
+# ============================================================
+# Identifies the purpose of the user's input using
+# rule-based keyword matching.
+#
+# Supported Intents:
+# - GREETING
+# - ASK_DEFINITION
+# - FOLLOW_UP
+# - RESET
+# - EXIT
+# - UNKNOWN
+#
+# Intent Priority Order:
+# EXIT > RESET > GREETING > ASK_DEFINITION > FOLLOW_UP > UNKNOWN
+# ============================================================
+
+
 def detect_intent( user_input ):
 
     # user_input = user_input.strip()
@@ -226,56 +373,18 @@ def detect_intent( user_input ):
         return "FOLLOW_UP"
     
     return "UNKNOWN"
-
-
-    # is_greeting_present = any(word in user_input for word in GREETING_LIST)
-    # is_ask_definition_present = any(word in user_input for word in ASK_DEFINITION)
-    # is_follow_up_present = any(word in user_input for word in FOLLOW_UP)
-    # is_exit_present = any(word in user_input for word in EXIT_LIST)
-    # is_memory_reset = any(word in user_input for word in RESET_MEMORY)
-
-    # if is_exit_present:
-    #     return "EXIT"
-    
-    # if is_memory_reset:
-    #    return "RESET"
-
-    # if is_greeting_present:
-    #     return "GREETING"
-    
-    # elif is_ask_definition_present:
-    #     return "ASK_DEFINITION"
-    
-    # elif is_follow_up_present:
-    #     return "FOLLOW_UP"
-    
-    # else:
-    #     return "UNKNOWN"
-
-
-# ----- Funtion to understand the level of question -----
-#       level 0 : not mentioned 
-#       level 1 : BASIC
-#       level 2 : DETAILED 
-def quetion_level ( user_question ):
-
-    BASIC = [ "overview", "summary", "fundamental", "essence", "core" "concept", "high-level", "snapshot","plain language", "non-technical", "concise", "single paragraph", "jargon-free", "brief",
-             "basic"
-    ]
-
-    DETAILED = ["structure", "framework", "components", "process", "use-cases", "applications", "workflow", "departmental","in detail"
-    ]
-
-    if any ( word in user_question for word in BASIC ):
-        return "BASIC"
-            
-    elif any ( word in user_question for word in DETAILED ):
-        return "DETAILED"
-    
         
      
 
-# ----- Function for Topic Detection -----
+# ============================================================
+# Topic Detection Layer
+# ============================================================
+# Identifies the discussion topic using keyword matching.
+# If no topic is explicitly mentioned, the chatbot
+# falls back to the topic stored in memory.
+# ============================================================
+
+
 def detect_topic( user_question ):
 
     AI_list = ["artificial intelligence","ai"]
@@ -310,7 +419,23 @@ def detect_topic( user_question ):
       # no topic mentioned so we use memeory to find the topic
       return resolve_topic()
 
-# AI Agent Function Implementation ( BRAIN )
+
+
+# ============================================================
+# Central Agent Brain (Decision Engine)
+# ============================================================
+# Coordinates the complete agent workflow:
+# - Intent detection
+# - Topic detection
+# - Explanation depth resolution
+# - Memory updates
+# - Response generation
+#
+# This function simulates agent-like reasoning
+# by combining current input with stored context.
+# ============================================================
+
+
 def brain( user_question ):
     
 
@@ -370,7 +495,11 @@ def brain( user_question ):
         return "Could you clarify what topic you want me to continue with?"
 
 
-    # Check for Depth of the Question 
+    # Explanation Depth Policy:
+    # - New topic           → BASIC (default)
+    # - Explicit depth word → Override memory
+    # - No depth mentioned  → Reuse last depth from memory
+
     depth = quetion_level( user_question )
 
     if depth == None:
@@ -407,8 +536,6 @@ def brain( user_question ):
                 return ("""Machine Learning is a specific area of AI focused on creating systems that improve their own accuracy over time by analyzing data. Instead of following rigid, pre-written instructions, the system develops its own logic based on the patterns it identifies in the information provided.""")
                 
             
-            # else:
-            #     return "Computers that learn from data to get better on their own."
 
 
 
@@ -422,8 +549,6 @@ def brain( user_question ):
             else:
                 return ("""Deep Learning is a specialized type of Machine Learning that utilizes multi-layered neural networks to process data. By stacking these layers, the system can identify and interpret increasingly complex patterns and abstract features without human intervention.""")
             
-            # else:
-            #     return "Advanced computer learning using many layers of data processing."
 
 
 
@@ -435,13 +560,6 @@ def brain( user_question ):
                 )
             else:
                 return ("""A Neural Network is a computational model designed after the biological structure of the human brain, consisting of interconnected nodes. These digital neurons work together to recognize underlying relationships and patterns within a set of information through a learning process.""")
-            
-            
-            # else:
-            #     return "Computer models that work like the human brain to find patterns."
-
-        # else :
-        #     return ( "Please specify a topic like AI, ML, DL, or Neural Networks.")
 
 
     elif memory["last_intent"] == "FOLLOW_UP":
@@ -503,13 +621,21 @@ def brain( user_question ):
             else:
                 return "Used for translating languages and identifying faces."
 
-        # else:
-        #     return "Could you clarify what topic you want me to continue with?"
-
-    # fallback safely
+    # Fallback Safely
     return "I'm here to help. Try asking about AI, ML, DL, or Neural Networks."
 
-def start():
+
+# ============================================================
+# Chatbot Execution Loop
+# ============================================================
+# Starts the interactive chatbot session.
+# Handles:
+# - User input validation
+# - Exit flow
+# - Memory reset confirmation
+# ============================================================
+
+def main():
     print("AI Chatbot Agent Started Successfully!")
     print("You can exit the Chatbot when you want.\n")
     print("Type your question below:\n")
@@ -544,14 +670,22 @@ def start():
         print("Bot:", response)
 
 # Starting the Chatbox
-start()
+main()
 
-# ----- Future Updates -----
 
-# 1.Topic Switching Support                     ( Completed in v2 )
-# 2.Memory Reset Command                        ( Completed in v2 )
-# 3.Multi-Level Explanations                    ( Completed in v2 )
-# 4.Input Validation & Spell Tolerance          ( Completed in v2 )
-# 5.Exit Detection                              ( Completed in v2 )
-# 6.Clear Intent Classification                 ( Completed in v2 )
-# 7.UNKNOWN handle more efficient               ( Completed in v2 )
+# ============================================================
+# Version Notes
+# ============================================================
+# Version 2.0 (Completed):
+# - Context-aware conversation memory
+# - Topic switching support
+# - Memory reset functionality
+# - Multi-level explanation control
+# - Robust UNKNOWN intent handling
+#
+# Version 3.0 (Planned):
+# - Conversation history logging
+# - Improved spell tolerance
+# - NLP/ML-based intent classification
+# - Web or GUI interface
+# ============================================================
