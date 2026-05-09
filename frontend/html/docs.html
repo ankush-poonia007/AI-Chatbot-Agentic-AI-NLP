@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NeuraChat Documentation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#001f26",
+                        "primary-fixed": "#eaddff",
+                        "surface-container-high": "#272a2c",
+                        "tertiary-fixed-dim": "#c2c6db",
+                        "inverse-surface": "#e0e3e5",
+                        "on-primary-fixed": "#25005a",
+                        "on-tertiary": "#2b3040",
+                        "error-container": "#93000a",
+                        "secondary-fixed": "#acedff",
+                        "tertiary": "#c2c6db",
+                        "on-surface": "#e0e3e5",
+                        "surface-bright": "#363a3b",
+                        "on-secondary-fixed-variant": "#004e5c",
+                        "secondary": "#4cd7f6",
+                        "on-tertiary-container": "#e1e5fb",
+                        "on-background": "#e0e3e5",
+                        "secondary-fixed-dim": "#4cd7f6",
+                        "on-tertiary-fixed": "#161b2b",
+                        "tertiary-fixed": "#dee1f7",
+                        "surface-container-lowest": "#0b0f10",
+                        "primary": "#d2bbff",
+                        "inverse-primary": "#732ee4",
+                        "background": "#101415",
+                        "secondary-container": "#03b5d3",
+                        "surface": "#101415",
+                        "on-tertiary-fixed-variant": "#414658",
+                        "surface-variant": "#323537",
+                        "inverse-on-surface": "#2d3133",
+                        "surface-container-highest": "#323537",
+                        "primary-container": "#7c3aed",
+                        "tertiary-container": "#616679",
+                        "surface-container": "#1d2022",
+                        "surface-dim": "#101415",
+                        "on-error": "#690005",
+                        "surface-tint": "#d2bbff",
+                        "outline": "#958da1",
+                        "on-secondary": "#003640",
+                        "error": "#ffb4ab",
+                        "on-error-container": "#ffdad6",
+                        "on-primary": "#3f008e",
+                        "on-primary-fixed-variant": "#5a00c6",
+                        "on-primary-container": "#ede0ff",
+                        "surface-container-low": "#191c1e",
+                        "on-surface-variant": "#ccc3d8",
+                        "on-secondary-container": "#00424e",
+                        "outline-variant": "#4a4455",
+                        "primary-fixed-dim": "#d2bbff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "2.5rem",
+                        "xl": "4rem",
+                        "base": "4px",
+                        "md": "1.5rem",
+                        "sm": "1rem",
+                        "container-max": "1280px",
+                        "xs": "0.5rem",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Space Grotesk"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Space Grotesk"],
+                        "display-lg": ["Space Grotesk"],
+                        "caption": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Space Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(29, 32, 34, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .code-block {
+            background: rgba(11, 15, 16, 0.8);
+            border-left: 4px solid #d2bbff;
+        }
+        .bloom-active {
+            box-shadow: 0 0 20px rgba(76, 215, 246, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen selection:bg-primary/30">
+<!-- TopNavBar -->
+<header class="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] z-50 rounded-xl border border-white/10 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl shadow-[0_0_20px_rgba(76,215,246,0.1)]">
+<nav class="flex justify-between items-center px-6 py-3 max-w-7xl mx-auto">
+<div class="flex items-center gap-8">
+<span class="font-headline-lg text-headline-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">NeuraChat</span>
+<div class="hidden md:flex gap-6">
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:scale-105 transition-transform duration-200" href="#">Home</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:scale-105 transition-transform duration-200" href="#">Chat</a>
+<a class="text-secondary border-b-2 border-secondary pb-1 hover:scale-105 transition-transform duration-200" href="#">Docs</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:scale-105 transition-transform duration-200" href="#">Contact</a>
+</div>
+</div>
+<!-- Search Bar Integration -->
+<div class="hidden lg:flex flex-1 max-w-md mx-8">
+<div class="w-full relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-secondary">search</span>
+<input class="w-full bg-surface-container-high/50 border border-white/5 rounded-full py-2 pl-10 pr-4 text-on-surface focus:outline-none focus:ring-1 focus:ring-secondary/50 backdrop-blur-sm" placeholder="Search documentation..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">settings</button>
+<div class="flex items-center gap-2 pl-4 border-l border-white/10">
+<img alt="User profile avatar" class="w-8 h-8 rounded-full border border-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBN-2bcyDvfkcGiQSnfBhHAWBE5GF_KzDVuW4zkG4iszrUFKLMxWyxRl3pkF5XtQEktYLXB-QRzmJZDC4jsF9B65Cu9h_aH0CwKKBH8IECrO_oYL_WkXefmrpyEzsXA0NZK2b6IGtft8HFG0WOdgG7buhRLbgRESP_mL56vZdeaDJ50GFyvvjW4KznjiMxpp7zubzNDW2CEF59jA6f9djcQr2mS2nrTy_BTyCNtkZ0pgB-EH-y1HByQ3gnRi7XC7S1O1ZdAyBJSD1Pw"/>
+<span class="hidden sm:inline font-label-md text-label-md text-on-surface">Profile</span>
+</div>
+</div>
+</nav>
+</header>
+<div class="max-w-7xl mx-auto pt-28 px-4 flex gap-8">
+<!-- Sidebar Navigation -->
+<aside class="hidden lg:block w-64 fixed h-[calc(100vh-8rem)] overflow-y-auto pr-4 custom-scrollbar">
+<div class="space-y-8">
+<div>
+<h3 class="font-label-md text-label-md text-secondary uppercase tracking-widest mb-4">Foundation</h3>
+<ul class="space-y-2">
+<li><a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary font-medium" href="#"><span class="material-symbols-outlined text-[20px]">rocket_launch</span> Getting Started</a></li>
+<li><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-white/5 transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">architecture</span> Architecture</a></li>
+<li><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-white/5 transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">security</span> Security</a></li>
+</ul>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-secondary uppercase tracking-widest mb-4">API Reference</h3>
+<ul class="space-y-2">
+<li><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-white/5 transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">terminal</span> Authentication</a></li>
+<li><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-white/5 transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">chat_bubble</span> Messages</a></li>
+<li><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-white/5 transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">neurology</span> Neural Models</a></li>
+<li><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-white/5 transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">database</span> Storage</a></li>
+</ul>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-secondary uppercase tracking-widest mb-4">Resources</h3>
+<ul class="space-y-2">
+<li><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-white/5 transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">quiz</span> FAQ</a></li>
+<li><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-white/5 transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">history_edu</span> Changelog</a></li>
+</ul>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 lg:ml-72 pb-20">
+<!-- Hero Breadcrumb -->
+<nav class="flex gap-2 text-caption font-caption text-on-surface-variant mb-6">
+<span>Docs</span>
+<span>/</span>
+<span class="text-secondary">Getting Started</span>
+</nav>
+<!-- Getting Started Content -->
+<article class="space-y-12">
+<section>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-4">Getting Started</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                        Welcome to the NeuraChat ecosystem. Our platform provides high-performance neural interfaces designed for seamless AI integration. This guide will help you initialize your first connection and understand the core communication protocols.
+                    </p>
+</section>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="glass-panel p-6 rounded-xl border-l-4 border-l-primary group hover:bloom-active transition-all">
+<div class="flex items-center gap-4 mb-3">
+<span class="material-symbols-outlined text-primary text-headline-md">key</span>
+<h3 class="font-headline-md text-headline-md">Quick Auth</h3>
+</div>
+<p class="text-on-surface-variant mb-4">Get your API keys and initialize your first environment in less than 2 minutes.</p>
+<a class="text-primary font-label-md flex items-center gap-1 group-hover:gap-2 transition-all" href="#">View Setup <span class="material-symbols-outlined">arrow_forward</span></a>
+</div>
+<div class="glass-panel p-6 rounded-xl border-l-4 border-l-secondary group hover:bloom-active transition-all">
+<div class="flex items-center gap-4 mb-3">
+<span class="material-symbols-outlined text-secondary text-headline-md">sdk</span>
+</div>
+<h3 class="font-headline-md text-headline-md">SDKs</h3>
+<p class="text-on-surface-variant mb-4">Native libraries for Python, TypeScript, and Rust to accelerate your development workflow.</p>
+<a class="text-secondary font-label-md flex items-center gap-1 group-hover:gap-2 transition-all" href="#">Explore SDKs <span class="material-symbols-outlined">arrow_forward</span></a>
+</div>
+</div>
+<section class="space-y-6">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Installation</h2>
+<p class="text-on-surface-variant">Install the NeuraChat core package using your preferred package manager. We recommend using our optimized CLI for the best experience.</p>
+<div class="code-block p-6 rounded-xl relative group">
+<div class="absolute right-4 top-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-secondary">content_copy</button>
+</div>
+<pre class="font-mono text-[14px] leading-relaxed"><span class="text-secondary">npm</span> install <span class="text-primary">@neurachat/core</span>
+<span class="text-on-tertiary-fixed-variant"># or using yarn</span>
+<span class="text-secondary">yarn</span> add <span class="text-primary">@neurachat/core</span></pre>
+</div>
+</section>
+<section class="space-y-6">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Your First Connection</h2>
+<p class="text-on-surface-variant">Initialize the NeuraClient with your encrypted workspace token to begin processing neural requests.</p>
+<div class="code-block p-6 rounded-xl relative group overflow-x-auto">
+<div class="absolute right-4 top-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-secondary">content_copy</button>
+</div>
+<pre class="font-mono text-[14px] leading-relaxed"><span class="text-primary">import</span> { NeuraClient } <span class="text-primary">from</span> <span class="text-secondary">'@neurachat/core'</span>;
+
+<span class="text-on-tertiary-fixed-variant">// Initialize client with futuristic backdrop</span>
+<span class="text-primary">const</span> client = <span class="text-primary">new</span> <span class="text-secondary">NeuraClient</span>({
+  apiKey: process.env.NEURA_KEY,
+  environment: <span class="text-secondary">'production'</span>,
+  latencyMode: <span class="text-secondary">'ultra-low'</span>
+});
+
+<span class="text-primary">async function</span> <span class="text-secondary">startNeuralLink</span>() {
+  <span class="text-primary">const</span> response = <span class="text-primary">await</span> client.<span class="text-secondary">generate</span>({
+    prompt: <span class="text-secondary">"Analyze system diagnostics"</span>,
+    temperature: <span class="text-cyan-400">0.7</span>
+  });
+  
+  console.<span class="text-secondary">log</span>(response.data);
+}</pre>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="space-y-8 pt-12 border-t border-white/5">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Frequently Asked Questions</h2>
+<div class="space-y-4">
+<div class="glass-panel rounded-xl overflow-hidden">
+<button class="w-full px-6 py-4 flex justify-between items-center text-left hover:bg-white/5 transition-colors group">
+<span class="font-headline-md text-body-lg text-on-surface">How is NeuraChat's latency so low?</span>
+<span class="material-symbols-outlined text-secondary transition-transform group-hover:rotate-180">expand_more</span>
+</button>
+<div class="px-6 pb-4 text-on-surface-variant">
+                                Our proprietary edge-mesh architecture routes requests through the nearest neural processing unit (NPU), reducing round-trip time to under 15ms in major metropolitan areas.
+                            </div>
+</div>
+<div class="glass-panel rounded-xl overflow-hidden">
+<button class="w-full px-6 py-4 flex justify-between items-center text-left hover:bg-white/5 transition-colors group">
+<span class="font-headline-md text-body-lg text-on-surface">Is my data used for model training?</span>
+<span class="material-symbols-outlined text-secondary transition-transform group-hover:rotate-180">expand_more</span>
+</button>
+<div class="px-6 pb-4 text-on-surface-variant hidden">
+                                No. Enterprise accounts feature a strict data-isolation policy. Your inputs and generated outputs are exclusively yours and are never used to train global or shared models.
+                            </div>
+</div>
+<div class="glass-panel rounded-xl overflow-hidden">
+<button class="w-full px-6 py-4 flex justify-between items-center text-left hover:bg-white/5 transition-colors group">
+<span class="font-headline-md text-body-lg text-on-surface">What are the token limits?</span>
+<span class="material-symbols-outlined text-secondary transition-transform group-hover:rotate-180">expand_more</span>
+</button>
+<div class="px-6 pb-4 text-on-surface-variant hidden">
+                                Basic plans start at 128k context windows, while Enterprise plans can support up to 1M+ tokens for massive document analysis.
+                            </div>
+</div>
+</div>
+</section>
+</article>
+</main>
+</div>
+<!-- Footer -->
+<footer class="mt-20 border-t border-white/5 bg-surface-container-lowest dark:bg-surface-container-lowest bg-gradient-to-t from-surface to-transparent">
+<div class="flex flex-col md:flex-row justify-between items-center px-8 py-8 max-w-7xl mx-auto gap-4">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md text-primary">NeuraChat AI</span>
+<span class="font-caption text-caption text-on-surface-variant">© 2024 NeuraChat AI. All rights reserved.</span>
+</div>
+<div class="flex gap-6">
+<a class="font-caption text-caption text-on-surface-variant hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100" href="#">Terms</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100" href="#">Privacy</a>
+<a class="font-caption text-caption text-primary font-bold hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100" href="#">Documentation</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100" href="#">Contact</a>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors">hub</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors">smart_toy</span>
+</div>
+</div>
+</footer>
+<!-- Background Decorative Elements -->
+<div class="fixed top-0 left-0 w-full h-full -z-10 overflow-hidden pointer-events-none">
+<div class="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[100px]"></div>
+</div>
+</body></html>
+

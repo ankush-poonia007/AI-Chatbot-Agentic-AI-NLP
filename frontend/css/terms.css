@@ -1,0 +1,23 @@
+.glass-panel {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+.bloom-primary {
+    box-shadow: 0 0 20px rgba(210, 187, 255, 0.2);
+}
+.bloom-secondary {
+    box-shadow: 0 0 20px rgba(76, 215, 246, 0.2);
+}
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #101415;
+}
+::-webkit-scrollbar-thumb {
+    background: #323537;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #4a4455;
+}

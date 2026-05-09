@@ -1,0 +1,20 @@
+body {
+  background: radial-gradient(circle at 50% 50%, #1e1b4b 0%, #101415 100%);
+  overflow-x: hidden;
+}
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.bloom-violet {
+  box-shadow: 0 0 40px rgba(124, 58, 237, 0.15);
+}
+.electric-gradient {
+  background: linear-gradient(135deg, #7c3aed 0%, #4cd7f6 100%);
+}
+.cyan-glow:focus {
+  box-shadow: 0 0 15px rgba(76, 215, 246, 0.3);
+  border-color: #4cd7f6;
+}

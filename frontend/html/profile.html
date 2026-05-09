@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NeuraChat - User Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed": "#001f26",
+                    "primary-fixed": "#eaddff",
+                    "surface-container-high": "#272a2c",
+                    "tertiary-fixed-dim": "#c2c6db",
+                    "inverse-surface": "#e0e3e5",
+                    "on-primary-fixed": "#25005a",
+                    "on-tertiary": "#2b3040",
+                    "error-container": "#93000a",
+                    "secondary-fixed": "#acedff",
+                    "tertiary": "#c2c6db",
+                    "on-surface": "#e0e3e5",
+                    "surface-bright": "#363a3b",
+                    "on-secondary-fixed-variant": "#004e5c",
+                    "secondary": "#4cd7f6",
+                    "on-tertiary-container": "#e1e5fb",
+                    "on-background": "#e0e3e5",
+                    "secondary-fixed-dim": "#4cd7f6",
+                    "on-tertiary-fixed": "#161b2b",
+                    "tertiary-fixed": "#dee1f7",
+                    "surface-container-lowest": "#0b0f10",
+                    "primary": "#d2bbff",
+                    "inverse-primary": "#732ee4",
+                    "background": "#101415",
+                    "secondary-container": "#03b5d3",
+                    "surface": "#101415",
+                    "on-tertiary-fixed-variant": "#414658",
+                    "surface-variant": "#323537",
+                    "inverse-on-surface": "#2d3133",
+                    "surface-container-highest": "#323537",
+                    "primary-container": "#7c3aed",
+                    "tertiary-container": "#616679",
+                    "surface-container": "#1d2022",
+                    "surface-dim": "#101415",
+                    "on-error": "#690005",
+                    "surface-tint": "#d2bbff",
+                    "outline": "#958da1",
+                    "on-secondary": "#003640",
+                    "error": "#ffb4ab",
+                    "on-error-container": "#ffdad6",
+                    "on-primary": "#3f008e",
+                    "on-primary-fixed-variant": "#5a00c6",
+                    "on-primary-container": "#ede0ff",
+                    "surface-container-low": "#191c1e",
+                    "on-surface-variant": "#ccc3d8",
+                    "on-secondary-container": "#00424e",
+                    "outline-variant": "#4a4455",
+                    "primary-fixed-dim": "#d2bbff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "2.5rem",
+                    "xl": "4rem",
+                    "base": "4px",
+                    "md": "1.5rem",
+                    "sm": "1rem",
+                    "container-max": "1280px",
+                    "xs": "0.5rem",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Space Grotesk"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Space Grotesk"],
+                    "display-lg": ["Space Grotesk"],
+                    "caption": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Space Grotesk"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(29, 32, 34, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .neon-border-primary {
+            box-shadow: 0 0 15px rgba(210, 187, 255, 0.15);
+        }
+        .neon-border-secondary {
+            box-shadow: 0 0 15px rgba(76, 215, 246, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] z-50 rounded-xl border border-white/10 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl shadow-[0_0_20px_rgba(76,215,246,0.1)]">
+<nav class="flex justify-between items-center px-6 py-3 max-w-7xl mx-auto">
+<div class="font-headline-lg text-headline-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
+                NeuraChat
+            </div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-headline-md text-headline-md text-on-surface-variant hover:text-primary transition-colors hover:scale-105 transition-transform duration-200" href="#">Home</a>
+<a class="font-headline-md text-headline-md text-on-surface-variant hover:text-primary transition-colors hover:scale-105 transition-transform duration-200" href="#">Chat</a>
+<a class="font-headline-md text-headline-md text-on-surface-variant hover:text-primary transition-colors hover:scale-105 transition-transform duration-200" href="#">Docs</a>
+<a class="font-headline-md text-headline-md text-secondary border-b-2 border-secondary pb-1 hover:scale-105 transition-transform duration-200" href="#">Profile</a>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="settings">settings</span>
+<div class="w-10 h-10 rounded-full border-2 border-primary/30 overflow-hidden cursor-pointer hover:scale-110 transition-transform active:scale-95">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="A highly detailed close-up portrait of a professional male software developer in a futuristic, dimly lit workspace. Soft purple and cyan ambient lighting catches the edges of his face and glasses. The background is a soft blur of glowing digital screens and neural network patterns, maintaining a high-end tech-savvy aesthetic consistent with the NeuraChat brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4IvCLyZR0WRama6wL2Fc8p7baOs_0ED0ARTLZNPScMclSBFZq4xWs782QMb0qDBVNoNo_5bWZ1DHYg495grdtF9Hia1RH5FilHn82MhDCPbUaJZ-wOaEujRoTUpxjuIDAhT9bHyLzTYxS_dioJqqJMWy8dox_zbdzAzwJdu4v20_4pQZLjQA4-3oanl1Gy76PwfnaVqegALXovNe8tztKvtHHt09SWZAh_PkxXy7nvxG6hRuikST80LjxqDNlJ6PR4HHP16rZHXil"/>
+</div>
+</div>
+</nav>
+</header>
+<main class="pt-32 pb-24 px-4 md:px-8 max-w-7xl mx-auto">
+<!-- Hero Profile Section -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+<!-- Left Column: Avatar & Quick Info -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<div class="glass-card rounded-3xl p-8 flex flex-col items-center text-center relative overflow-hidden group">
+<!-- Glow effect -->
+<div class="absolute -top-24 -right-24 w-48 h-48 bg-primary/20 blur-[60px] rounded-full"></div>
+<div class="relative w-32 h-32 mb-6 group cursor-pointer">
+<div class="absolute inset-0 rounded-full border-2 border-primary animate-pulse opacity-50"></div>
+<img alt="Avatar" class="w-full h-full object-cover rounded-full border-4 border-surface-container shadow-xl" data-alt="A high-resolution, centered portrait of a tech professional with short hair and modern glasses. The lighting is sophisticated, with violet rim lighting and a deep dark background. The image is crisp and professional, fitting perfectly into a futuristic dashboard interface. The skin texture is realistic, and the overall mood is intelligent and focused." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2cyFkE_JY8MTiMKY2PHwL_ZMlHtIP2x45oIUrL9XyhM4hKxrsVLRIw9ZMfQx1tffSvyA2FhIpgIeIznZcBNKdwYwNHovdWRa6knk53Tt9WZ0Kdfat06Of9-cQqfOvSNhyVR1FX1z0REjUS8CCHRtOwwyIu3M-8Fd5raEGWkAuYNfcVOs4VkeY7nenJAWyFWAoYKSzK4NCUxK3kXLswaAuBtJIZhzim-awyA08HkkJDGjeCg7cKk_XU29ec6Z8kuRsvOR6J2YcjFYi"/>
+<div class="absolute inset-0 flex items-center justify-center bg-background/60 rounded-full opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="photo_camera">photo_camera</span>
+<span class="absolute bottom-2 text-[10px] font-label-md uppercase tracking-widest text-primary">Change Photo</span>
+</div>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-1">Alex Thorne</h2>
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-label-md mb-4">
+<span class="material-symbols-outlined text-sm" data-icon="verified" data-weight="fill">verified</span>
+                        PRO MEMBER
+                    </div>
+<p class="font-body-md text-on-surface-variant mb-6">Senior AI Architect focusing on neural networks and generative interfaces.</p>
+<div class="w-full h-px bg-white/5 mb-6"></div>
+<div class="flex items-center justify-between w-full mb-4">
+<span class="font-label-md text-on-surface-variant">Theme Mode</span>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="light_mode">light_mode</span>
+<button class="relative w-14 h-7 rounded-full bg-surface-container-highest border border-white/10 p-1 flex items-center">
+<div class="w-5 h-5 rounded-full bg-gradient-to-r from-primary to-secondary shadow-lg translate-x-7"></div>
+</button>
+<span class="material-symbols-outlined text-primary" data-icon="dark_mode">dark_mode</span>
+</div>
+</div>
+</div>
+<!-- Stats Cards -->
+<div class="grid grid-cols-2 gap-4">
+<div class="glass-card rounded-2xl p-6 flex flex-col gap-2">
+<span class="material-symbols-outlined text-secondary" data-icon="chat_bubble">chat_bubble</span>
+<div class="text-secondary font-display-lg text-headline-lg">1,248</div>
+<div class="text-caption text-on-surface-variant uppercase tracking-widest">Messages Sent</div>
+</div>
+<div class="glass-card rounded-2xl p-6 flex flex-col gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="token">token</span>
+<div class="text-primary font-display-lg text-headline-lg">84%</div>
+<div class="text-caption text-on-surface-variant uppercase tracking-widest">AI Credits</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Form Fields -->
+<div class="lg:col-span-8 flex flex-col gap-8">
+<!-- Profile Settings -->
+<div class="glass-card rounded-3xl p-8 lg:p-10">
+<div class="flex items-center gap-3 mb-10">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="person_edit">person_edit</span>
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Account Settings</h3>
+</div>
+<form class="space-y-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-on-surface-variant px-1">Display Name</label>
+<input class="bg-surface-container-low border border-white/5 rounded-xl px-4 py-3 focus:ring-2 focus:ring-secondary/50 focus:border-secondary outline-none transition-all text-on-surface" type="text" value="Alex Thorne"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-on-surface-variant px-1">Email Address</label>
+<input class="bg-surface-container-low border border-white/5 rounded-xl px-4 py-3 focus:ring-2 focus:ring-secondary/50 focus:border-secondary outline-none transition-all text-on-surface" type="email" value="alex.thorne@neura.ai"/>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-on-surface-variant px-1">Professional Bio</label>
+<textarea class="bg-surface-container-low border border-white/5 rounded-xl px-4 py-3 focus:ring-2 focus:ring-secondary/50 focus:border-secondary outline-none transition-all text-on-surface resize-none" rows="4">I design experiences where human intuition meets artificial intelligence. Passionate about LLMs and real-time inference systems.</textarea>
+</div>
+<div class="flex justify-end pt-4">
+<button class="bg-gradient-to-r from-primary-container to-inverse-primary text-on-primary-container font-label-md px-8 py-3 rounded-xl hover:scale-105 active:scale-95 transition-all shadow-lg neon-border-primary">
+                                Save Profile Changes
+                            </button>
+</div>
+</form>
+</div>
+<!-- Security Section -->
+<div class="glass-card rounded-3xl p-8 lg:p-10">
+<div class="flex items-center justify-between mb-8">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-3xl" data-icon="lock">lock</span>
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Security</h3>
+</div>
+<span class="text-caption text-secondary flex items-center gap-1 font-semibold uppercase tracking-widest">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                            Encrypted Session
+                        </span>
+</div>
+<div class="bg-surface-container-low/50 border border-white/5 rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex flex-col gap-1">
+<div class="font-headline-md text-headline-md text-on-surface">Password</div>
+<div class="font-body-md text-on-surface-variant">Last changed 3 months ago</div>
+</div>
+<button class="bg-surface-variant text-on-surface font-label-md px-6 py-3 rounded-xl border border-white/10 hover:bg-surface-container-highest transition-colors active:scale-95">
+                            Update Password
+                        </button>
+</div>
+<div class="mt-8 flex items-start gap-4 p-4 rounded-xl bg-secondary/5 border border-secondary/10">
+<span class="material-symbols-outlined text-secondary" data-icon="info">info</span>
+<p class="font-caption text-on-surface-variant">Two-factor authentication is currently <span class="text-secondary font-bold">Enabled</span>. Your account is protected by your primary biometric device.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest w-full py-8 border-t border-white/5 relative">
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent pointer-events-none"></div>
+<div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto gap-4 relative z-10">
+<div class="font-headline-md text-headline-md text-primary font-bold">
+                NeuraChat
+            </div>
+<div class="flex gap-6">
+<a class="font-caption text-caption text-on-surface-variant hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100" href="#">Terms</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100" href="#">Privacy</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100" href="#">Documentation</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100" href="#">Contact</a>
+</div>
+<div class="font-caption text-caption text-on-surface-variant opacity-60">
+                © 2024 NeuraChat AI. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>
+
