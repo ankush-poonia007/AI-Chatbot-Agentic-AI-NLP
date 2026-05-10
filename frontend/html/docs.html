@@ -18,10 +18,10 @@
 <div class="flex items-center gap-8">
 <span class="font-headline-lg text-headline-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">NeuraChat</span>
 <div class="hidden md:flex gap-6">
-<a class="text-on-surface-variant hover:text-primary transition-colors hover:scale-105 transition-transform duration-200" href="#">Home</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors hover:scale-105 transition-transform duration-200" href="#">Chat</a>
-<a class="text-secondary border-b-2 border-secondary pb-1 hover:scale-105 transition-transform duration-200" href="#">Docs</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors hover:scale-105 transition-transform duration-200" href="#">Contact</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:scale-105 transition-transform duration-200" href="/">Home</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:scale-105 transition-transform duration-200" href="/chat.html">Chat</a>
+<a class="text-secondary border-b-2 border-secondary pb-1 hover:scale-105 transition-transform duration-200" href="/docs.html">Docs</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:scale-105 transition-transform duration-200" href="/contact.html">Contact</a>
 </div>
 </div>
 <!-- Search Bar Integration -->
@@ -187,10 +187,10 @@
 <span class="font-caption text-caption text-on-surface-variant">© 2024 NeuraChat AI. All rights reserved.</span>
 </div>
 <div class="flex gap-6">
-<a class="font-caption text-caption text-on-surface-variant hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100" href="#">Terms</a>
-<a class="font-caption text-caption text-on-surface-variant hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100" href="#">Privacy</a>
-<a class="font-caption text-caption text-primary font-bold hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100" href="#">Documentation</a>
-<a class="font-caption text-caption text-on-surface-variant hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100" href="#">Contact</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100" href="/terms.html">Terms</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100" href="/terms.html">Privacy</a>
+<a class="font-caption text-caption text-primary font-bold hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100" href="/docs.html">Documentation</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100" href="/contact.html">Contact</a>
 </div>
 <div class="flex gap-4">
 <span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors">hub</span>
@@ -203,5 +203,35 @@
 <div class="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px]"></div>
 <div class="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[100px]"></div>
 </div>
+
+<script>
+    // Copy code
+    document.querySelectorAll('.code-block').forEach(block => {
+        const btn = block.querySelector('button');
+        const pre = block.querySelector('pre');
+        if(btn && pre) {
+            btn.addEventListener('click', () => {
+                navigator.clipboard.writeText(pre.innerText);
+                const originalText = btn.innerText;
+                btn.innerText = 'check';
+                setTimeout(() => btn.innerText = originalText, 2000);
+            });
+        }
+    });
+
+    // FAQ toggles
+    const faqs = document.querySelectorAll('.glass-panel.rounded-xl.overflow-hidden');
+    faqs.forEach(panel => {
+        const btn = panel.querySelector('button');
+        const answer = panel.querySelector('div.px-6.pb-4');
+        if(btn && answer) {
+            const icon = btn.querySelector('.material-symbols-outlined.text-secondary');
+            btn.addEventListener('click', () => {
+                answer.classList.toggle('hidden');
+                if(icon) icon.classList.toggle('rotate-180');
+            });
+        }
+    });
+</script>
 </body></html>
 

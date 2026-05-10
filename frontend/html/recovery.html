@@ -40,38 +40,13 @@
 <div class="w-full max-w-md z-10">
 <div class="glass-card bloom-violet rounded-2xl p-8 flex flex-col gap-8 transition-all duration-300">
 <!-- Tabs -->
-<div class="flex bg-surface-container-low rounded-lg p-1 border border-white/5">
-<button id="tabLogin" type="button" class="flex-1 py-2 font-label-md text-label-md rounded-md bg-secondary/10 text-secondary border border-secondary/20 transition-all">Login</button>
-<button id="tabSignup" type="button" class="flex-1 py-2 font-label-md text-label-md rounded-md text-on-surface-variant hover:text-primary transition-all">Signup</button>
-</div>
+
 <!-- Header -->
 <div class="text-center">
-<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Welcome Back</h1>
-<p class="font-body-md text-body-md text-on-surface-variant">Access your neural workspace</p>
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Reset Password</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Enter your email to receive a reset link.</p>
 </div>
 <!-- Social Logins -->
-<div class="grid grid-cols-2 gap-4">
-<button class="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all active:scale-95">
-<svg class="w-5 h-5" viewbox="0 0 24 24">
-<path d="M12 5.04c1.94 0 3.51.68 4.79 1.97l3.58-3.58C18.16 1.28 15.3 0 12 0 7.31 0 3.25 2.69 1.19 6.6l4.12 3.19C6.29 7.03 8.93 5.04 12 5.04z" fill="#EA4335"></path>
-<path d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47c-.29 1.48-1.14 2.73-2.4 3.58l3.89 3c2.28-2.1 3.53-5.2 3.53-8.82z" fill="#4285F4"></path>
-<path d="M5.31 14.21c-.24-.73-.38-1.52-.38-2.21 0-.69.14-1.48.38-2.21L1.19 6.6C.43 8.12 0 9.8 0 12c0 2.2.43 3.88 1.19 5.4l4.12-3.19z" fill="#FBBC05"></path>
-<path d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.89-3c-1.11.75-2.53 1.19-4.04 1.19-3.07 0-5.71-1.99-6.69-4.77l-4.12 3.19C3.25 21.31 7.31 24 12 24z" fill="#34A853"></path>
-</svg>
-<span class="font-label-md text-label-md text-on-surface">Google</span>
-</button>
-<button class="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all active:scale-95">
-<svg class="w-5 h-5 fill-on-surface" viewbox="0 0 24 24">
-<path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"></path>
-</svg>
-<span class="font-label-md text-label-md text-on-surface">GitHub</span>
-</button>
-</div>
-<div class="flex items-center gap-4">
-<div class="flex-grow h-[1px] bg-white/10"></div>
-<span class="font-caption text-caption text-on-surface-variant uppercase tracking-widest">or continue with</span>
-<div class="flex-grow h-[1px] bg-white/10"></div>
-</div>
 <!-- Login Form -->
 <form id="authForm" class="flex flex-col gap-5">
 <div class="flex flex-col gap-1.5">
@@ -81,37 +56,7 @@
 <input class="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-12 pr-4 text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:ring-0 cyan-glow transition-all" placeholder="name@neura.ai" type="email"/>
 </div>
 </div>
-<div class="flex flex-col gap-1.5">
-<div class="flex justify-between items-center ml-1">
-<label class="font-label-md text-label-md text-on-surface">Password</label>
-<a class="font-caption text-caption text-secondary hover:underline" href="/recovery.html">Forgot password?</a>
-</div>
-<div class="relative group">
-<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-secondary transition-colors">lock</span>
-<input class="w-full bg-white/5 border border-error/50 rounded-xl py-3 pl-12 pr-4 text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:ring-0 cyan-glow transition-all" placeholder="••••••••" type="password"/>
-<button class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface" type="button">visibility</button>
-</div>
-<!-- Error State Example -->
-<span class="text-error font-caption text-caption flex items-center gap-1 ml-1">
-<span class="material-symbols-outlined text-[14px]">error</span>
-              Incorrect password. Please try again.
-            </span>
-</div>
-<div class="flex items-center gap-2 ml-1">
-<input class="w-4 h-4 rounded border-white/20 bg-white/5 text-primary-container focus:ring-primary-container/50" id="remember" type="checkbox"/>
-<label class="font-label-md text-label-md text-on-surface-variant cursor-pointer" for="remember">Remember me for 30 days</label>
-</div>
-<button class="electric-gradient text-white font-label-md text-label-md py-4 rounded-xl shadow-lg hover:brightness-110 hover:scale-[1.02] transition-all active:scale-95 mt-2" type="submit">
-            <span id="submitBtnText">Sign In to NeuraChat</span>
-          </button>
-</form>
-<p class="text-center font-caption text-caption text-on-surface-variant">
-          By continuing, you agree to NeuraChat's 
-          <a class="text-secondary hover:underline" href="/terms.html">Terms of Service</a> and 
-          <a class="text-secondary hover:underline" href="/terms.html">Privacy Policy</a>.
-        </p>
-</div>
-</div>
+
 </main>
 <footer class="w-full py-8 border-t border-white/5 bg-surface-container-lowest dark:bg-surface-container-lowest bg-gradient-to-t from-surface to-transparent mt-auto">
 <div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto gap-4">
@@ -138,7 +83,7 @@
         tabLogin.addEventListener('click', () => {
             tabLogin.className = "flex-1 py-2 font-label-md text-label-md rounded-md bg-secondary/10 text-secondary border border-secondary/20 transition-all";
             tabSignup.className = "flex-1 py-2 font-label-md text-label-md rounded-md text-on-surface-variant hover:text-primary transition-all";
-            if(submitBtnText) submitBtnText.innerText = "Sign In to NeuraChat";
+            if(submitBtnText) submitBtnText.innerText = "Send Reset Link";
             const nameField = document.getElementById('nameField');
             if(nameField) nameField.style.display = 'none';
         });
