@@ -121,7 +121,7 @@ def handle_unknown(user_question):
 # ============================================================
 
 
-def brain( user_question ):
+def brain( user_question , history = [] ):
     
 
     # Step 1 just detect intent and topic
@@ -197,7 +197,7 @@ def brain( user_question ):
 
     # Step 6 Generate response using agent
     
-    response = ask_agent( memory["last_intent"], memory["last_topic"], memory["last_depth"] )
+    response = ask_agent( memory["last_intent"], memory["last_topic"], memory["last_depth"] , history)
     if response:
         return response
     
