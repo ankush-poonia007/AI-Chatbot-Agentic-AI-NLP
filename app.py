@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify
 from flask import send_from_directory
 from flask_cors import CORS
 from flask import session
-
+import os
 
 # Core Engine Imports
 from backend.chat import create_chat_room, get_user_chats, get_messages, save_message, delete_chat, rename_chat
@@ -170,5 +170,6 @@ def rename_chat_route( chat_id ):
 
 
 if __name__ == "__main__":
-    app.run( debug = True )
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
 
