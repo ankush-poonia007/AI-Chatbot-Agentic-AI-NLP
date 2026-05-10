@@ -13,7 +13,7 @@
 [![TailwindCSS](https://img.shields.io/badge/Tailwind-CSS-38BDF8?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 [![License](https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge)](LICENSE)
 
-**[🌐 Live Demo](#)** &nbsp;•&nbsp; **[📂 Repository](https://github.com/ankush-poonia007/AI-Chatbot-Agentic-AI-NLP)** &nbsp;•&nbsp; **[🐛 Report Bug](https://github.com/ankush-poonia007/AI-Chatbot-Agentic-AI-NLP/issues)**
+**[🌐 Live Demo](https://ai-chatbot-agentic-ai-nlp.onrender.com)** &nbsp;•&nbsp; **[📂 Repository](https://github.com/ankush-poonia007/AI-Chatbot-Agentic-AI-NLP)** &nbsp;•&nbsp; **[🐛 Report Bug](https://github.com/ankush-poonia007/AI-Chatbot-Agentic-AI-NLP/issues)**
 
 </div>
 
@@ -44,10 +44,15 @@ NeuraChat AI is a **third-generation agentic chatbot** built from scratch with a
 It goes beyond a simple API wrapper — it **reasons** about user intent and topic before a single token is sent to the LLM. A custom NLP routing layer detects intent (greeting, definition, follow-up, reset, exit) and topic (AI, ML, DL, Neural Networks), then builds a structured, context-enriched prompt for Gemini 2.5 Flash. The result is sharper, more relevant responses with genuine conversational memory.
 
 Users can register, log in, manage multiple independent chat sessions, view persistent history, update their profile, and are subject to a plan-based message limit system — all backed by a production-quality relational schema.
-
-> 📸 *Add your app screenshot here*
-
 ---
+> ## 📸 Screenshots
+
+- **Home Page**
+![Homepage](screenshots/home.png)
+- **Chat**
+![Chat](screenshots/chat.png)
+---
+
 
 ## 💡 Why I Built This
 
