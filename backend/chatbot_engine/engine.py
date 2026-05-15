@@ -197,7 +197,7 @@ def brain( user_question , history = [] ):
 
     # Step 6 Generate response using agent
     
-    response = ask_agent( memory["last_intent"], memory["last_topic"], memory["last_depth"] , history)
+    response = ask_agent(user_question , memory["last_intent"], memory["last_topic"], memory["last_depth"], history)
     if response:
         return response
     

@@ -98,7 +98,7 @@ def delete_chat ( chat_id ):
 
     try:
         db.execute(
-            "UPDATE chat_rooms SET is_deleted = 1 WEHERE chat_id = ? ",
+            "UPDATE chat_rooms SET is_deleted = 1 WHERE chat_id = ? ",
             ( chat_id, )
         )
         db.commit()

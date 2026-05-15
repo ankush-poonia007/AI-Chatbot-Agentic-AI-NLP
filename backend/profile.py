@@ -1,17 +1,44 @@
 from backend.database import get_db
+from backend.membership import PLANS
 
 def get_profile(user_id):
     db = get_db()
 
     try:
-        profile = db.execute(
-            "SELECT * FROM profiles WHERE user_id = ?", (user_id,)
+        row = db.execute(
+            """
+            SELECT p.user_id, p.display_name, p.bio, p.avatar_url,
+                   u.username, u.plan, u.message_count
+            FROM profiles p
+            JOIN users u ON u.user_id = p.user_id
+            WHERE p.user_id = ?
+            """,
+            (user_id,),
         ).fetchone()
 
-        if not profile:
+        if not row:
             return {"success": False, "error": "Profile not found"}
 
-        return {"success": True, "profile": dict(profile)}
+        r = dict(row)
+        plan = r.get("plan") or "basic"
+        raw_limit = PLANS.get(plan, PLANS["basic"])
+        message_limit = None if raw_limit == float("inf") else int(raw_limit)
+
+        profile = {
+            "user_id": r["user_id"],
+            "display_name": r["display_name"],
+            "bio": r["bio"],
+            "avatar_url": r["avatar_url"],
+        }
+
+        return {
+            "success": True,
+            "profile": profile,
+            "username": r["username"],
+            "plan": plan,
+            "message_count": int(r["message_count"] or 0),
+            "message_limit": message_limit,
+        }
 
     finally:
         db.close()

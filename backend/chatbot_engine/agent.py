@@ -8,7 +8,7 @@ client = genai.Client( api_key = os.getenv("GEMINI_API_KEY") )
 
 
 
-def ask_agent( intent , topic , depth , history =[] ):
+def ask_agent( message , intent , topic , depth , history =[] ):
     
     system_prompt = f"""You are an AI tutor that explains AI/ML concepts clearly.
     The user wants a {depth} level explanation.
@@ -30,13 +30,14 @@ def ask_agent( intent , topic , depth , history =[] ):
         {
             "role": "user",
             "parts": [
-                { "text": system_prompt }
+                { "text": message }
             ]
         }
     )
 
     response = client.models.generate_content(
         model = "gemini-2.5-flash",
+        config = { "system_instruction": system_prompt },
         contents = contents
     )
 

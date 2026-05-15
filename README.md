@@ -4,7 +4,7 @@
 ![NeuraChat Banner](https://via.placeholder.com/1200x300/0f0f1a/a78bfa?text=NeuraChat+AI+—+Agentic+AI+Chatbot)
 
 # 🤖 NeuraChat AI
-### *An intelligent, context-aware chatbot with agentic reasoning, persistent memory, and a full glassmorphism web interface.*
+### *An intelligent, context-aware chatbot with agentic reasoning, persistent memory, and a production-grade full-stack web interface.*
 
 [![Python](https://img.shields.io/badge/Python-3.14-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![Flask](https://img.shields.io/badge/Flask-3.x-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com)
@@ -27,6 +27,7 @@
 - [The Process](#-the-process)
 - [Project Structure](#-project-structure)
 - [Features](#-features)
+- [Frontend](#-frontend)
 - [Tech Stack & Skills](#-tech-stack--skills-demonstrated)
 - [Timeline](#-timeline)
 - [Current Status](#-current-status)
@@ -39,7 +40,7 @@
 
 ## 🧠 Overview
 
-NeuraChat AI is a **third-generation agentic chatbot** built from scratch with a modular Python backend, a normalized SQLite database, and a full 7-page glassmorphism web frontend.
+NeuraChat AI is a **third-generation agentic chatbot** built from scratch with a modular Python backend, a normalized SQLite database, and a multi-page web frontend with a shared design system, dark/light themes, and a dedicated chat workspace.
 
 It goes beyond a simple API wrapper — it **reasons** about user intent and topic before a single token is sent to the LLM. A custom NLP routing layer detects intent (greeting, definition, follow-up, reset, exit) and topic (AI, ML, DL, Neural Networks), then builds a structured, context-enriched prompt for Gemini 2.5 Flash. The result is sharper, more relevant responses with genuine conversational memory.
 
@@ -112,7 +113,8 @@ Complete rebuild around a Flask API backend:
 - Built secure auth with hashed passwords (scrypt via Werkzeug) and Flask sessions
 - Implemented multi-session chat with persistent history and Gemini context injection
 - Added profile management and a plan-based membership system
-- Connected a full 7-page glassmorphism frontend served directly through Flask
+- Connected a multi-page frontend served directly through Flask (no separate build step)
+- Rebuilt core pages (home, chat, login, register) with a modular JS/CSS architecture, GSAP animations, markdown rendering, and Render deployment
 
 ---
 
@@ -141,16 +143,56 @@ AI-Chatbot-Agentic-AI-NLP/
 │
 ├── database/
 │   ├── schema.sql               # Normalized schema: 5 tables, 2 indexes, 1 trigger
-│   └── neurachat.db             # Auto-generated on first run
+│   └── neurachat.db             # Auto-generated on first run (gitignored)
 │
 ├── frontend/
-│   ├── html/                    # index, chat, login, profile, docs, contact, terms, recovery
-│   ├── css/                     # Glassmorphism design system + animations
-│   └── js/
-│       └── script.js            # Fetch calls, loading indicator, error handling, UI logic
+│   ├── html/
+│   │   ├── index.html           # Landing — hero, features, pricing, FAQ
+│   │   ├── chat.html            # Chat workspace (auth-protected)
+│   │   ├── login.html           # Sign in
+│   │   ├── register.html        # Sign up
+│   │   ├── profile.html         # User profile
+│   │   ├── docs.html            # In-app documentation
+│   │   ├── contact.html         # Contact form
+│   │   ├── terms.html           # Terms of service
+│   │   └── recovery.html        # Password recovery (UI placeholder)
+│   │
+│   ├── css/
+│   │   ├── main.css             # Design tokens, base styles, shared utilities
+│   │   ├── animations.css       # Keyframes and motion utilities
+│   │   ├── chat.css             # Chat layout, sidebar, message bubbles
+│   │   ├── index.css            # Legacy page-specific styles
+│   │   ├── login.css
+│   │   ├── profile.css
+│   │   ├── docs.css
+│   │   ├── contact.css
+│   │   └── terms.css
+│   │
+│   ├── js/
+│   │   ├── nav.js               # Shared navbar (injected on marketing pages)
+│   │   ├── theme.js             # Dark/light toggle + localStorage
+│   │   ├── cursor.js            # Custom cursor glow
+│   │   ├── animations.js        # GSAP page load, ScrollTrigger, particles
+│   │   ├── toast.js             # Global toast notifications
+│   │   ├── protect.js           # Auth guard — redirects unauthenticated users
+│   │   ├── preloader.js         # Page preloader fade-in
+│   │   ├── chat.js              # Chat UI — sessions, messages, markdown, limits
+│   │   ├── auth.js              # Login + register forms and API calls
+│   │   ├── tailwind-config.js   # Tailwind config for legacy pages
+│   │   └── script.js            # Legacy contact-page logic
+│   │
+│   └── static/
+│       └── assets/
+│           ├── favicon.png
+│           └── og-image.png     # Open Graph preview image
 │
-├── app.py                       # Flask app — all API routes + static file serving
+├── docs/
+│   └── PROJECT_FLOW.md          # Architecture and API flow notes
+│
+├── screenshots/                 # README screenshots
+├── app.py                       # Flask app — API routes + static/HTML serving
 ├── main.py                      # Terminal version (V1/V2 legacy)
+├── render.yaml                  # Render.com deployment config
 ├── .env                         # API keys (gitignored)
 ├── requirements.txt
 └── README.md
@@ -160,24 +202,90 @@ AI-Chatbot-Agentic-AI-NLP/
 
 ## ✨ Features
 
-| Feature |
-|---|
-| Custom NLP intent & topic detection |
-| Gemini 2.5 Flash integration |
-| User registration & login (hashed passwords) |
-| Flask session management |
-| Multi-session chat (create, rename, soft delete) |
-| Persistent chat history via SQLite |
-| Full conversation history passed to Gemini |
-| Profile management (name, bio, avatar) |
-| Membership plan system (basic / pro) |
-| Message limit enforcement |
-| Loading indicator while AI responds |
-| Error handling (network, limit, fallback) |
-| 7-page glassmorphism web UI |
-| Flask serving frontend (no CORS issues) |
-| Auto-trigger updating chat timestamps |
-| Performance indexes on frequent queries |
+### AI & Backend
+| Feature | Description |
+|---|---|
+| Custom NLP routing | Intent + topic detection before every LLM call |
+| Gemini 2.5 Flash | Structured prompts with full conversation history |
+| User auth | Registration, login, scrypt-hashed passwords, Flask sessions |
+| Multi-session chat | Create, rename, and soft-delete independent chat rooms |
+| Persistent history | All messages stored in SQLite with roles and timestamps |
+| Profile API | Display name, bio, and avatar URL |
+| Membership tiers | Basic (50 msgs) vs Pro (unlimited) with server-side enforcement |
+| Relational schema | 5 tables, foreign keys, indexes, and an auto-update trigger |
+
+### Frontend & UX
+| Feature | Description |
+|---|---|
+| Landing page | Hero, feature grid, pricing, FAQ, and CTA sections |
+| Chat workspace | Sidebar session list, collapsible layout, mobile drawer |
+| Markdown replies | `marked.js` rendering with `DOMPurify` sanitization |
+| Dark / light theme | Toggle with `localStorage` persistence across pages |
+| GSAP animations | Page load, scroll reveals, message transitions |
+| Toast notifications | Global success/error feedback |
+| Auth guard | Protected chat route redirects unauthenticated users |
+| Register flow | Dedicated sign-up page with client-side validation |
+| Shared navbar | Injected via `nav.js` on marketing pages |
+| Particle background | Canvas-based ambient effect on core pages |
+| Lucide icons | Consistent icon set across rebuilt pages |
+| SEO & sharing | Meta tags, favicon, and Open Graph image |
+| Responsive chat UI | Mobile sidebar, touch-friendly controls |
+| Flask-served static | HTML, CSS, JS, and assets from one server (no CORS setup) |
+| Live deployment | Hosted on [Render](https://render.com) via `render.yaml` |
+
+---
+
+## 🎨 Frontend
+
+The frontend is **CDN-based** — no Node.js, no bundler. Tailwind, GSAP, Lucide, and markdown libraries load from CDNs; Flask serves HTML, CSS, and JS directly.
+
+### Pages
+
+| Page | Route | Auth | Notes |
+|---|---|---|---|
+| Home | `/` | Public | Landing, pricing, FAQ — uses `nav.js` + `animations.js` |
+| Chat | `/chat` | Required | Full chat app — `protect.js` + `chat.js` |
+| Login | `/login.html` | Public | Session login via `auth.js` |
+| Register | `/register.html` | Public | Account creation via `auth.js` |
+| Profile | `/profile.html` | Required | Legacy layout (pending rebuild) |
+| Docs | `/docs.html` | Public | In-app documentation |
+| Contact | `/contact.html` | Public | Contact form |
+| Terms | `/terms.html` | Public | Terms of service |
+| Recovery | `/recovery.html` | Public | Password recovery UI placeholder |
+
+### Shared modules
+
+| Module | Role |
+|---|---|
+| `main.css` | CSS variables for dark/light themes, typography, surfaces |
+| `animations.css` | Reusable motion classes and keyframes |
+| `nav.js` | Injects the top navbar on marketing pages |
+| `theme.js` | Theme toggle synced to `localStorage` |
+| `toast.js` | `showToast(message, type)` for global feedback |
+| `cursor.js` | Accent-colored cursor glow on pointer devices |
+| `preloader.js` | Fade-in on initial page load |
+| `animations.js` | GSAP hero animations, ScrollTrigger, particle canvas |
+| `protect.js` | Redirects to login if no Flask session on protected pages |
+| `chat.js` | Session sidebar, send/receive, markdown, plan limits |
+| `auth.js` | Login/register forms, validation, API integration |
+
+### Design system
+
+- **Accent:** cyan/teal (`#22d3ee` dark / `#0891b2` light)
+- **Fonts:** Syne (headings), DM Sans (body), JetBrains Mono (code)
+- **Themes:** `data-theme="dark"` (default) and `data-theme="light"` on `<html>`
+- **Layout:** Rounded cards, full-width sections, minimal gradient use — inspired by modern AI product UIs
+
+### Serving (Flask)
+
+```
+/              → frontend/html/index.html
+/chat          → frontend/html/chat.html
+/*.html        → frontend/html/<page>.html
+/css/*         → frontend/css/
+/js/*          → frontend/js/
+/static/*      → frontend/static/
+```
 
 ---
 
@@ -188,6 +296,7 @@ AI-Chatbot-Agentic-AI-NLP/
 |---|---|
 | Python 3.14 | Core language |
 | Flask | REST API + static file serving |
+| Flask-CORS | Cross-origin support for API routes |
 | SQLite | Relational database |
 | Werkzeug | Password hashing (scrypt) |
 | google-genai | Gemini 2.5 Flash SDK |
@@ -196,18 +305,25 @@ AI-Chatbot-Agentic-AI-NLP/
 ### Frontend
 | Technology | Purpose |
 |---|---|
-| HTML5 / CSS3 | Semantic structure |
-| Tailwind CSS | Utility-first styling |
-| Vanilla JavaScript | Fetch API, DOM, session handling |
+| HTML5 / CSS3 | Semantic markup and custom properties (`main.css` design system) |
+| Tailwind CSS (CDN) | Utility-first layout — no npm build step |
+| Vanilla JavaScript | Modular scripts per concern (`chat.js`, `auth.js`, `nav.js`, …) |
+| GSAP + ScrollTrigger | Page animations and scroll-driven reveals |
+| marked.js + DOMPurify | Safe markdown rendering in chat bubbles |
+| Lucide Icons | SVG icon set via CDN |
+| Syne / DM Sans / JetBrains Mono | Display, body, and code typography |
+| Flask static routes | `/css/`, `/js/`, `/static/` served from `app.py` |
 
 ### Skills Demonstrated
 - Modular backend architecture
 - Custom NLP routing layer design
 - Relational DB schema design (normalization, triggers, indexes)
 - REST API design with session-based authentication
-- Full-stack integration
+- Full-stack integration (Flask serves API + frontend from one app)
+- Modular vanilla JS frontend (no framework, no build pipeline)
 - Prompt engineering with structured context injection
-- Secure credential handling
+- Secure credential handling and sanitized markdown output
+- Cloud deployment (Render)
 
 ---
 
@@ -224,18 +340,25 @@ AI-Chatbot-Agentic-AI-NLP/
 
 ## 📊 Current Status
 
-**V3 is complete and functional.** All core features are shipped and working end-to-end.
+**V3 is complete and deployed.** Backend, database, agentic engine, and core user flows work end-to-end. The app is live on Render.
+
+| Area | Status |
+|---|---|
+| Backend API & NLP engine | ✅ Complete |
+| Auth, chat, profile, membership | ✅ Complete |
+| Core frontend (home, chat, login, register) | ✅ Rebuilt with new design system |
+| Secondary pages (profile, docs, contact, terms, recovery) | 🔄 Legacy UI — scheduled for design-system alignment |
+| Production deployment | ✅ [Live on Render](https://ai-chatbot-agentic-ai-nlp.onrender.com) |
 
 ### Known Issues (being polished)
-- Minor UI edge cases in chat interface
-- Frontend form validation improvements pending
+- Secondary pages still use the older glassmorphism layout and relative asset paths
+- Minor chat UI edge cases on very small viewports
 
 ### Roadmap — V4
+- [ ] Align profile, docs, contact, and terms with the new design system
 - [ ] RAG with ChromaDB or FAISS
 - [ ] Real-time streaming responses (SSE)
-- [ ] Deployment (Railway / Render)
 - [ ] Admin dashboard
-- [ ] Mobile responsiveness improvements
 - [ ] OAuth login (Google)
 
 ---
@@ -313,7 +436,7 @@ http://127.0.0.1:5000
 |---|---|---|---|
 | POST | `/api/register` | ❌ | Register new user |
 | POST | `/api/login` | ❌ | Login |
-| POST | `/api/logout` | ✅ | Logout |
+| POST | `/logout` | ✅ | Logout |
 | GET | `/api/profile` | ✅ | Get profile |
 | POST | `/api/profile/update` | ✅ | Update profile |
 | POST | `/api/chats/new` | ✅ | Create chat session |

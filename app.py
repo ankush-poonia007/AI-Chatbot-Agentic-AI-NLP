@@ -14,7 +14,7 @@ from backend.profile import get_profile, update_profile
 from backend.membership import check_limit, increment_message_count
 
 
-app = Flask ( __name__ )
+app = Flask(__name__, static_folder='frontend/static', static_url_path='/static')
 
 # Database Initilization
 init_db()
@@ -28,6 +28,11 @@ CORS(app)
 @app.route( '/' )       
 def home():
     return send_from_directory('frontend/html', 'index.html')
+
+
+@app.route('/chat')
+def chat_page():
+    return send_from_directory('frontend/html', 'chat.html')
 
 
 @app.route('/api/profile', methods = ['GET'])
@@ -136,7 +141,7 @@ def chat():
     # Save messages and increment count
     if chat_id:
         save_message(chat_id, "user", user_input)
-        save_message(chat_id, "model", response)
+        save_message(chat_id, "assistant", response)
     
     if 'user_id' in session:
         increment_message_count(session['user_id'])

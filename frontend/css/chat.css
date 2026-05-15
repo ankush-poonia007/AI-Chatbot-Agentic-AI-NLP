@@ -1,45 +1,245 @@
-.material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-}
-.glass-panel {
-    backdrop-filter: blur(12px);
-    background-color: rgba(29, 32, 34, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-.user-bubble {
-    border-bottom-right-radius: 2px;
-}
-.bot-bubble {
-    border-bottom-left-radius: 2px;
-}
-.bloom-primary {
-    box-shadow: 0 0 20px rgba(210, 187, 255, 0.2);
-}
-.bloom-secondary {
-    box-shadow: 0 0 20px rgba(76, 215, 246, 0.2);
+/* NeuraChat — chat.html layout & chat-specific visuals */
+
+.chat-app {
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
 }
 
-.typing-indicator {
+.chat-sidebar {
+  width: 260px;
+  min-width: 260px;
+  transition: transform 0.3s ease, min-width 0.3s ease, width 0.3s ease, opacity 0.25s ease,
+    padding 0.2s ease, border-color 0.2s ease;
+}
+
+@media (max-width: 1023px) {
+  .chat-sidebar {
+    transform: translateX(-100%);
+    will-change: transform;
+    transition: transform 0.3s ease;
+  }
+
+  .chat-sidebar.is-mobile-open {
+    transform: translateX(0);
+  }
+}
+
+@media (min-width: 1024px) {
+  .chat-sidebar.is-desktop-collapsed {
+    width: 0;
+    min-width: 0;
+    opacity: 0;
+    pointer-events: none;
+    overflow: hidden;
+    padding: 0;
+    border-color: transparent;
+  }
+}
+
+.chat-sidebar-expand {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+@media (min-width: 1024px) {
+  .chat-sidebar-expand {
     display: flex;
     align-items: center;
-    gap: 4px;
-    height: 24px;
+    justify-content: center;
+  }
+
+  .chat-sidebar-expand.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
 }
-.typing-indicator span {
-    width: 6px;
-    height: 6px;
-    background-color: currentColor;
-    border-radius: 50%;
-    animation: typingBounce 1.4s infinite ease-in-out both;
-    opacity: 0.7;
+
+.chat-history-item {
+  position: relative;
+  border-left: 3px solid transparent;
+  transition: background-color 0.2s ease, border-color 0.25s ease;
 }
-.typing-indicator span:nth-child(1) {
-    animation-delay: -0.32s;
+
+.chat-history-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  background: var(--accent);
+  opacity: 0.35;
+  transition: width 0.2s ease;
+  border-radius: 0 4px 4px 0;
+  pointer-events: none;
 }
-.typing-indicator span:nth-child(2) {
-    animation-delay: -0.16s;
+
+.chat-history-item:hover::before {
+  width: 3px;
 }
-@keyframes typingBounce {
-    0%, 80%, 100% { transform: scale(0); opacity: 0.3; }
-    40% { transform: scale(1); opacity: 1; }
+
+.chat-history-item.is-active {
+  background: var(--bg-hover);
+  border-left-color: var(--accent);
+}
+
+.chat-history-item.is-active::before {
+  width: 0;
+}
+
+/* User bubble: teal pill, top-left flat (toward thread center), white text */
+.chat-msg-user {
+  border-top-left-radius: 4px;
+  border-top-right-radius: var(--radius-xl);
+  border-bottom-left-radius: var(--radius-xl);
+  border-bottom-right-radius: var(--radius-xl);
+}
+
+.chat-msg-ai {
+  border-top-left-radius: 4px;
+  border-top-right-radius: var(--radius-xl);
+  border-bottom-left-radius: var(--radius-xl);
+  border-bottom-right-radius: var(--radius-xl);
+}
+
+.chat-msg-user .chat-msg-time {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.chat-msg-user:hover .chat-msg-time {
+  opacity: 1;
+}
+
+.typing-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: var(--accent);
+  animation: chatTypingBounce 1.2s ease-in-out infinite both;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes chatTypingBounce {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+  30% {
+    transform: translateY(-6px);
+    opacity: 1;
+  }
+}
+
+.chat-markdown {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+.chat-markdown p {
+  margin: 0 0 0.75em;
+}
+
+.chat-markdown p:last-child {
+  margin-bottom: 0;
+}
+
+.chat-markdown a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.chat-markdown ul,
+.chat-markdown ol {
+  margin: 0.5em 0 0.75em;
+  padding-left: 1.25em;
+}
+
+.chat-markdown code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  padding: 0.15em 0.4em;
+  border-radius: 6px;
+  background: var(--bg-surface-2);
+  color: var(--text-primary);
+}
+
+.chat-markdown pre {
+  margin: 0.75em 0;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  background: var(--bg-surface-2);
+  border: 1px solid var(--border);
+  overflow-x: auto;
+}
+
+.chat-markdown pre code {
+  padding: 0;
+  background: none;
+  font-size: 0.85rem;
+}
+
+.chat-markdown h1,
+.chat-markdown h2,
+.chat-markdown h3 {
+  font-family: var(--font-display);
+  color: var(--text-primary);
+  margin: 1em 0 0.5em;
+  font-weight: 700;
+}
+
+.chat-markdown h1 {
+  font-size: 1.25rem;
+}
+
+.chat-markdown h2 {
+  font-size: 1.1rem;
+}
+
+.chat-markdown h3 {
+  font-size: 1rem;
+}
+
+.chat-input {
+  resize: none;
+  min-height: 44px;
+  max-height: 120px;
+  field-sizing: content;
+}
+
+@supports not (field-sizing: content) {
+  .chat-input {
+    field-sizing: initial;
+  }
+}
+
+#sidebar-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.empty-state-logo {
+  width: 4rem;
+  height: 4rem;
+  box-shadow: 0 0 40px var(--accent-glow-strong);
+}
+
+.chat-limit-panel {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-accent);
+  background: var(--bg-surface-2);
 }

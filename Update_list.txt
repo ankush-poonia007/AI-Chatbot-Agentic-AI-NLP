@@ -1,0 +1,708 @@
+Here's the complete landing page structure with everything that should be there:
+
+---
+
+**NEURACHAT — LANDING PAGE COMPLETE STRUCTURE**
+
+**1. Navbar**
+- Logo + "NeuraChat" name
+- Links: Features, Docs, Pricing, Contact
+- Login + Get Started buttons
+- Dark/Light toggle
+
+**2. Hero Section**
+- Tagline — one punchy line
+- Sub-tagline — one sentence explaining what it does
+- Two buttons — "Start Chatting" (primary) + "View Docs" (secondary)
+- Mock chat UI visual or animated typing effect
+
+**3. Features Section**
+- 3-4 cards, each with icon + title + one line description
+- Agentic AI, Chat History, Fast Responses, Secure Auth
+
+**4. How It Works**
+- 3 steps: Create Account → Start Chat → Get Answers
+- Simple numbered visual
+
+**5. Pricing / Plans**
+- Free vs Pro tier comparison
+- What each includes
+- CTA button on each card
+
+**6. Tech Stack / Built With**
+- Small logos or badges — Flask, Gemini, SQLite, Tailwind
+- Good for portfolio credibility
+
+**7. Testimonials**
+- 2-3 placeholder cards for now
+- Real ones later
+
+**8. FAQ Teaser**
+- 3 common questions with short answers
+- "See full docs" link pointing to docs.html
+
+**9. Final CTA Banner**
+- "Start chatting for free today" + button
+
+**10. Footer**
+- Logo + tagline
+- Links: Docs, Contact, Terms, Privacy, GitHub
+- "Built by Ankush" credit (portfolio signal)
+
+---
+
+
+
+Good question. Let me break it down section by section since different sections need different visuals:
+
+---
+
+**Hero Section**
+- No stock image — looks generic
+- Instead: a **mock chat window** showing a sample conversation with NeuraChat
+- Could be static (just HTML/CSS styled to look like the chat UI) or animated typing effect
+- Feels real, shows the product immediately
+
+---
+
+**Features Section (cards)**
+- 4 cards, each with:
+  - A clean **icon** (not emoji — use something like Lucide icons or Heroicons, both free)
+  - Bold short title
+  - One line description
+- No images needed here — icons + color accent is cleaner
+
+---
+
+**How It Works**
+- 3 numbered steps with icons
+- Optional: small **screenshot or mockup** of the chat interface for step 2
+- No stock photos
+
+---
+
+**Pricing Cards**
+- Two cards (Free vs Pro)
+- Simple checklist layout
+- No images — clean card with accent color on the recommended plan
+
+---
+
+**Tech Stack**
+- Small **technology logos** — Flask, Google Gemini, SQLite, Tailwind, Python
+- All freely available as SVG logos
+
+---
+
+**Testimonials**
+- User avatar — use **generated avatars** (e.g. DiceBear, totally free) not real photos
+- Name + one line quote
+
+---
+
+**Final CTA Banner**
+- No image — strong typography + accent background is enough
+
+---
+
+**Key principle for all of it:**
+No random stock photos. Everything either shows the actual product or uses icons/illustrations. That's what makes it look like a real product, not a template.
+
+---
+
+Here's the complete content breakdown for every page:
+
+---
+
+**1. INDEX.HTML — Landing Page**
+
+Already covered above. Full structure confirmed.
+
+---
+
+**2. CHAT.HTML — Chat Application**
+
+**Sidebar:**
+- NeuraChat logo + name
+- New Chat button
+- Chat history list (grouped: Today, Yesterday, Last 7 days)
+- Each history item: chat title + delete option
+- Profile avatar + username at bottom
+- Collapse sidebar option
+
+**Main Chat Area:**
+- Top bar: current chat title + model name being used
+- Empty state (no messages yet): welcome message + 3-4 suggested prompts
+- Message thread: user messages right, AI messages left
+- Each AI message: copy button, markdown rendered properly
+- Bottom input area: text input + send button + character indicator
+- Typing indicator when AI is responding
+
+**Membership indicator:**
+- Message count used vs limit (for free tier)
+- Upgrade prompt when limit approached
+
+---
+
+**3. LOGIN.HTML — Authentication**
+
+- NeuraChat logo
+- "Welcome back" heading
+- Email + password fields
+- Show/hide password toggle
+- Login button
+- Forgot password link → recovery.html
+- "Don't have an account?" → register page
+- Error messages inline (wrong password, user not found)
+
+---
+
+**4. REGISTER.HTML — Sign Up**
+*(assuming this exists or needs to be created)*
+
+- NeuraChat logo
+- Full name, email, password, confirm password fields
+- Password strength indicator
+- Register button
+- "Already have an account?" → login.html
+- Terms agreement checkbox → links to terms.html
+
+---
+
+**5. RECOVERY.HTML — Password Recovery**
+
+- NeuraChat logo
+- "Forgot your password?" heading
+- Email field
+- Submit button → triggers recovery email
+- Success state: "Check your inbox" message
+- Back to login link
+- Two steps if OTP based: enter email → enter OTP + new password
+
+---
+
+**6. PROFILE.HTML — User Profile**
+
+**Profile Info Section:**
+- Avatar (with change option)
+- Display name
+- Email (read only)
+- Member since date
+- Edit and save buttons
+
+**Membership Section:**
+- Current plan (Free/Pro)
+- Messages used this month vs limit
+- Upgrade button
+
+**Security Section:**
+- Change password option
+- Active sessions (optional)
+
+**Danger Zone:**
+- Delete account option (with confirmation)
+
+**Preferences:**
+- Default theme (dark/light)
+- Language (optional)
+
+---
+
+**7. DOCS.HTML — Documentation**
+
+**Top navigation:** search bar, link back to main site
+
+**Sidebar navigation (all sections built out):**
+
+Foundation:
+- Getting Started — how to use NeuraChat, first chat walkthrough
+- Architecture — how the system works (frontend → Flask → Gemini API)
+- Security — how data is stored, auth method (scrypt), no plain text passwords
+
+API Reference:
+- Authentication — register/login endpoints, session handling
+- Messages — how messages are sent/received, history handling
+- Neural Models — which Gemini model is used, what it can do
+- Storage — SQLite structure, what gets saved, chat retention policy
+
+Resources:
+- FAQ — common questions expanded
+- Changelog — V1 → V2 → V3 history, what changed each version
+
+---
+
+**8. CONTACT.HTML — Contact Page**
+
+- Short intro: "Have a question or feedback?"
+- Contact form:
+  - Full name
+  - Email
+  - Subject (dropdown: General, Bug Report, Feature Request, Partnership)
+  - Message textarea
+  - Submit button
+- Success state: "Message sent, we'll get back to you"
+- Alternative contact: support email displayed
+- Social links: GitHub, LinkedIn
+
+---
+
+**9. TERMS.HTML — Terms and Privacy**
+
+Two sections on one page, tab or anchor based:
+
+**Terms of Service:**
+- What the service is
+- Acceptable use
+- Account responsibility
+- Free vs paid tier limitations
+- Right to terminate account
+
+**Privacy Policy:**
+- What data is collected (name, email, chat messages)
+- How it is stored (SQLite, local to server)
+- No third party data selling
+- How to request data deletion
+- Cookie usage
+
+---
+
+**SHARED ACROSS ALL PAGES:**
+- Consistent top navbar (all pages except chat)
+- Dark/light toggle
+- Footer with links
+- Error and loading states handled on every interactive element
+
+---
+
+This is the complete logical content map for the entire website. Everything here is implementable with your current backend. Does anything need to be added, removed, or changed?
+
+
+
+
+Good additions. Let me break down what each of these means practically:
+
+---
+
+**Background Motion**
+
+Subtle, not distracting. Professional options:
+
+- **Floating particles** — very faint teal dots slowly drifting, fits the "neural network" theme perfectly
+- **Gradient shift** — slow moving gradient in the background, barely noticeable but adds life
+- **Grid with glow** — subtle dot/line grid with a teal glow pulse, very modern dev tool feel
+
+Recommendation: **floating particles + faint grid** for dark mode. Clean gradient shift for light mode.
+
+---
+
+**Cursor Animation**
+
+Professional means subtle:
+- Small teal glow that follows the cursor with slight lag
+- Cursor grows slightly when hovering over buttons/links
+- Nothing flashy — just enough to feel premium
+
+---
+
+**Page Transitions**
+
+- Fade in on page load (every page)
+- Smooth slide or fade when navigating between pages
+- Section scroll animations — elements fade/slide up as you scroll into them on index.html
+
+---
+
+**Component Animations**
+
+- Buttons: subtle scale + glow on hover
+- Cards: slight lift on hover (shadow increase)
+- Sidebar items: smooth highlight slide
+- Chat messages: fade in as they appear
+- Modal/dropdowns: smooth open/close
+- Theme toggle: smooth color transition across entire page
+
+---
+
+**File structure this implies:**
+
+- `styles/main.css` — base styles, CSS variables, theme colors
+- `styles/animations.css` — all keyframes and transition classes
+- `js/theme.js` — dark/light toggle
+- `js/cursor.js` — cursor glow effect
+- `js/animations.js` — scroll animations, page transitions, particle background
+
+---
+
+**One important rule for all of this:**
+
+Every animation must have a `prefers-reduced-motion` fallback. Some users have motion sensitivity settings on their OS — ignoring this looks unprofessional.
+
+---
+
+This is all doable cleanly in Vanilla JS + CSS without any animation library. Though one lightweight lib worth considering:
+
+**GSAP free tier** — handles scroll animations and transitions far more smoothly than pure CSS. Used by professional studios. Free for non-commercial/portfolio use.
+
+Worth adding or want to keep it pure CSS/JS?
+
+
+Good call. Here's how GSAP fits into the project:
+
+---
+
+**What GSAP handles (better than pure CSS):**
+
+- Page transition animations
+- Scroll-triggered animations (sections fading in as you scroll)
+- Staggered animations (cards appearing one after another)
+- Smooth cursor follow effect
+- Timeline-based sequences (hero section load animation)
+
+---
+
+**What we still use CSS for:**
+
+- Hover states (buttons, cards, sidebar items)
+- Theme transition (dark/light color swap)
+- Simple transforms (scale, shadow on hover)
+- Particle background (pure CSS or lightweight canvas)
+
+---
+
+**GSAP additions to the file structure:**
+
+- Loaded via CDN — no install needed
+- Two plugins needed (both free):
+  - **GSAP core** — base animations
+  - **ScrollTrigger** — scroll-based animations
+
+So `js/animations.js` becomes the file where all GSAP logic lives.
+
+---
+
+**Updated complete file structure:**
+
+```
+/static
+  /css
+    main.css        — base styles, CSS variables, themes
+    animations.css  — hover states, transitions, keyframes
+  /js
+    nav.js          — shared navbar logic
+    theme.js        — dark/light toggle
+    cursor.js       — cursor glow effect
+    animations.js   — GSAP animations, ScrollTrigger, page transitions
+    chat.js         — chat functionality
+    auth.js         — login/register logic
+    profile.js      — profile page logic
+    contact.js      — EmailJS contact form
+    docs.js         — docs sidebar navigation
+  /assets
+    /icons          — Lucide/Heroicon SVGs
+    /logos          — tech stack logos
+```
+
+---
+
+**Updated full stack for the rebuild:**
+
+- Vanilla JS
+- Tailwind CDN
+- GSAP + ScrollTrigger CDN
+- marked.js CDN
+- EmailJS CDN
+- DiceBear (avatar generation)
+- Lucide Icons CDN
+
+All CDN — no build step, no npm, no bundler. Plugs straight into Flask.
+
+---
+
+Does this feel complete now? Once you confirm, I'll prepare the master Cursor context document so you're ready to start building.
+
+
+
+=========================================================================================================
+                                          Page 1 index.html Update
+=========================================================================================================
+
+Here is what was implemented for PAGE 1: index.html — Landing Page per NEURACHAT_CURSOR_MASTER_DOC.md.
+
+Delivered
+frontend/html/index.html — Full landing: meta/OG, #nav-root for injected nav, particle canvas, hero (copy + mock chat + typing dots), features (4 Lucide cards), how-it-works (01–03 + arrows), pricing (Free / Pro + Upgrade to Pro → toast), tech badges (Simple Icons), testimonials (DiceBear), FAQ accordion, CTA strip, footer (GitHub + LinkedIn placeholder, © 2026).
+frontend/css/main.css — Design tokens (:root + [data-theme="light"]), Syne / DM Sans / JetBrains Mono imports, layout utilities, custom cursor helpers, .mock-chat-glow, .tech-logo filters.
+frontend/css/animations.css — Card/button hovers, glow-pulse, typing dots, FAQ panel, reduced motion.
+frontend/js/nav.js — Logo + Features / Docs / Pricing / Contact, theme toggle, Login, Get Started, scroll frosted bar, mobile overlay.
+frontend/js/theme.js — localStorage + data-theme, sun/moon icons via syncIcons.
+frontend/js/cursor.js — Desktop-only follow cursor with hover scale (no touch).
+frontend/js/preloader.js — Session once per tab session, teal pulse, GSAP fade-out.
+frontend/js/animations.js — GSAP + ScrollTrigger (hero stagger, mock slide-in, sections, pricing from left/right), canvas particles with line network.
+frontend/js/toast.js — Bottom-right toasts for Pro CTA.
+frontend/static/assets/favicon.svg, og-image.png (minimal 1×1 placeholder).
+app.py — Flask(__name__, static_folder='frontend/static', static_url_path='/static') so /static/assets/... works and does not clash with the catch‑all route.
+Run
+From the project root: python app.py → open http://127.0.0.1:5000/.
+
+Small follow-ups you may want
+Replace the footer LinkedIn href with your real profile URL (it currently points at https://www.linkedin.com/).
+Swap og-image.png for a real 1200×630 marketing image when you have one.
+Other pages still use the older /css/index.css stack; only the home route was migrated to this spec so far.
+
+=========================================================================================================
+                                          Page 2 chat.html Update
+=========================================================================================================
+Here’s what was completed to align **chat.html** + **chat.js** + **chat.css** with the master spec.
+
+### Empty state
+- **64px-style logo** block: `h-16 w-16` (4rem), `mock-chat-glow`, inner accent dot + ring, `empty-state-logo` shadow.
+- **Suggested prompts**: GSAP stagger runs when you land on the empty state again (`emptySuggestAnimated` reset on `newChat`, empty `loadMessages`, and after delete).
+
+### Main header
+- **Gemini 2.5 Flash** pill visible on all breakpoints (compact on small screens).
+- **Title**: `lg:cursor-text` + tooltip explaining double-click rename when a chat is open.
+
+### Messages
+- **User bubbles**: spec **white** text on teal (`text-white shadow-sm`).
+- **Corners**: CSS updated so the **user** bubble is **top-left flat** (toward the thread); AI bubble stays **top-left flat** as before.
+- **History**: `assistant` and legacy **`model`** rows both render as AI.
+
+### Membership & limits
+- **≤5 messages left**: warning copy with correct singular/plural.
+- **At limit**: `#limit-reached-block` with **“Limit reached”** copy + **Upgrade to Pro**; **`#composer-row`** hidden; membership bar still shows **full** usage bar.
+- **`fetchProfile`**: sets `state.limitReached` when `message_count >= message_limit` (finite plans).
+- **Pro**: hides membership + limit panel and restores composer.
+
+### Mobile / motion
+- Sidebar **0.3s** slide kept in CSS; **GSAP opacity** nudge on open; **clearProps** on close / desktop resize so opacity doesn’t stick.
+- **`window.resize`**: desktop clears mobile open state and GSAP leftovers.
+
+### Composer
+- **`maxlength="8000"`** on the textarea.
+- Placeholder **`Message NeuraChat...`** (ASCII, matches spec wording).
+
+### Buttons
+- **`btn-upgrade-limit`** wired like **`btn-upgrade-chat`** (toast for now).
+
+Files touched: `frontend/html/chat.html`, `frontend/js/chat.js`, `frontend/css/chat.css`.
+
+
+=========================================================================================================
+                                          Page 3  Update
+=========================================================================================================
+
+
+
+Good question to ask mid-build. Let me walk through everything — what was built, why each decision was made, and how it works under the hood.
+
+---
+
+## 1. DESIGN SYSTEM — main.css + animations.css
+
+**What changed:**
+Two new CSS files replaced whatever styling existed before.
+
+**Why:**
+The old project had inconsistent styling because each page had its own CSS or inline styles. There was no single source of truth. Any change to a color or font required editing every file separately — which is exactly why the navbar looked different on every page.
+
+**How it works:**
+`main.css` defines CSS variables at the `:root` level:
+```css
+:root {
+  --bg-primary: #0f1117;
+  --accent: #22d3ee;
+}
+```
+Every page reads from these variables. Change one variable, every page updates instantly. This is how theme switching works — `[data-theme="light"]` overrides the same variable names with light values. The browser applies whichever set is active on the `<html>` tag.
+
+`animations.css` keeps all keyframes and hover transitions in one place so animations are consistent everywhere.
+
+---
+
+## 2. nav.js — Shared Navbar
+
+**What changed:**
+One JavaScript file that builds and injects the navbar HTML into any page that has `<div id="nav-root"></div>`.
+
+**Why:**
+Before, the navbar was copy-pasted into each HTML file separately. The moment you changed one thing — a link, the logo, button text — you had to update every single page manually. That's where the size and position inconsistency came from.
+
+**How it works:**
+Each page has an empty div:
+```html
+<div id="nav-root"></div>
+```
+When the page loads, `nav.js` runs and does:
+```javascript
+document.getElementById('nav-root').innerHTML = navHTML
+```
+Now there is exactly one navbar definition. Every page that loads `nav.js` gets the identical navbar automatically. Change it once, it changes everywhere.
+
+The scroll behavior works by listening to `window.scroll` — after 50px it adds a `.scrolled` class which applies the frosted glass background via CSS.
+
+---
+
+## 3. theme.js — Dark/Light Toggle
+
+**What changed:**
+A dedicated JS file handles theme switching and persistence.
+
+**Why:**
+Without this, theme preference resets every time you navigate to a new page. Users would have to toggle every single page.
+
+**How it works:**
+On page load, `theme.js` reads `localStorage`:
+```javascript
+const saved = localStorage.getItem('neurachat-theme') || 'dark'
+document.documentElement.setAttribute('data-theme', saved)
+```
+When toggled, it flips the `data-theme` attribute on `<html>` and saves the new value to `localStorage`. Since CSS variables are defined under `[data-theme="light"]`, the browser instantly re-renders every color on the page. The `transition` property on all elements makes this smooth instead of an instant flash.
+
+---
+
+## 4. cursor.js — Custom Cursor
+
+**What changed:**
+Two invisible div elements follow your mouse cursor — a small inner dot and a larger outer ring.
+
+**Why:**
+Adds a premium feel that signals the site was intentionally designed. Subtle enough to not distract, noticeable enough to feel different from a generic site.
+
+**How it works:**
+Two divs are positioned `fixed` with `pointer-events: none` so they don't interfere with clicks. JavaScript tracks `mousemove` events and updates their positions. The outer ring uses a lerp (linear interpolation) technique — it moves toward the cursor position slightly slower than the cursor itself, creating the lag/follow effect. On hover over buttons and links, the inner dot scales to zero and the outer ring expands — detected via `mouseenter` on all interactive elements. Disabled entirely on touch devices via `navigator.maxTouchPoints` check.
+
+---
+
+## 5. preloader.js — Page Preloader
+
+**What changed:**
+A full-screen overlay with the NeuraChat logo shows briefly on first visit, then fades out.
+
+**Why:**
+Two reasons — it masks the brief moment where fonts and assets are still loading (prevents layout flash), and it creates a polished first impression.
+
+**How it works:**
+On first load, a full-screen div covers the page. GSAP animates its opacity from 1 to 0 after 1.2 seconds, then sets `display: none`. A `sessionStorage` flag is set so it only shows once per browser tab session — not on every page navigation. Auth pages skip it entirely by setting the flag immediately in their HTML.
+
+---
+
+## 6. toast.js — Notification System
+
+**What changed:**
+A global notification system usable from any page with one line.
+
+**Why:**
+Before, error/success feedback was either missing or handled inconsistently — some pages used alerts, some had inline divs, some had nothing. Every interactive element needs feedback.
+
+**How it works:**
+`Toast.show('Message', 'success')` creates a div, appends it to the body bottom-right, animates it in via GSAP, waits 3 seconds, then animates it out and removes it from the DOM. Multiple toasts stack vertically. Four types — success (teal), error (red), info (blue), warning (amber) — each with their own color via CSS class.
+
+---
+
+## 7. animations.js — GSAP Animations + Particles
+
+**What changed:**
+All page animations centralized in one file using GSAP and ScrollTrigger.
+
+**Why:**
+CSS animations alone can't handle scroll-triggered sequencing or complex timelines cleanly. GSAP gives precise control over timing, easing, and sequencing.
+
+**How it works:**
+
+**Page load stagger:** Elements with class `.reveal` start invisible (`opacity: 0, y: 30`). GSAP animates them to `opacity: 1, y: 0` with 0.1s between each element. This is why the hero text, buttons, and mock chat appear sequentially instead of all at once.
+
+**ScrollTrigger:** Watches the viewport. When a section enters 80% of the screen, it triggers that section's animation. This is why feature cards and pricing cards animate in as you scroll down index.html.
+
+**Particles:** A `<canvas>` element sits behind everything with `z-index: 0`. JavaScript draws 60 small teal dots, moves them slowly every frame using `requestAnimationFrame`, and draws lines between any two dots within 120px of each other. When the browser tab is hidden (`visibilitychange` event), the animation pauses to save CPU.
+
+---
+
+## 8. protect.js — Auth Guard
+
+**What changed:**
+A small JS file that runs before anything else on protected pages.
+
+**Why:**
+Without this, anyone can type `/chat` or `/profile` directly in the browser and access the page even without being logged in. The backend might block the API calls but the page itself still loads.
+
+**How it works:**
+It calls `GET /api/auth/status` immediately. If the response is not authenticated, it redirects to `/login.html` before the rest of the page renders. Placed as the first script in `<body>` so it runs before any UI is painted.
+
+---
+
+## 9. index.html — Landing Page
+
+**What changed:**
+Complete rebuild of the marketing homepage.
+
+**Why:**
+The old index was either broken or not portfolio-ready. A proper landing page is the first thing a recruiter or visitor sees.
+
+**How it works:**
+Ten sections each with their own semantic purpose — hero converts visitors, features explains the product, pricing sets expectations, testimonials build trust, FAQ reduces friction, CTA drives signups. Each section is a self-contained `<section>` tag with anchor IDs so the navbar links scroll directly to them.
+
+---
+
+## 10. chat.html + chat.js + chat.css
+
+**What changed:**
+Complete rebuild of the chat application interface.
+
+**Why:**
+The old chat had broken history, no empty state, inconsistent styling, and broken membership enforcement.
+
+**How it works:**
+
+**Sidebar:** Fetches `GET /api/chats` on load and groups results by date. Each item is clickable — calls `GET /api/chats/<id>/messages` and renders that conversation. New chat calls `POST /api/chats/new`, gets back a `chat_id`, sets it as `state.currentChatId`.
+
+**State management:** A `state` object holds `currentChatId`, `isLoading`, and `limitReached`. All functions read from and write to this object so the UI stays in sync.
+
+**Sending messages:** Input value is read, appended to the UI immediately (user bubble), then sent to `POST /api/chat` with `chat_id`. While waiting, a typing indicator shows. When response arrives, it's rendered through `marked.parse()` wrapped in `DOMPurify.sanitize()` — this converts markdown to HTML safely without XSS risk.
+
+**Membership:** On load, fetches profile to get `message_count` and `message_limit`. Renders a progress bar. At 5 remaining shows warning. At limit, hides the composer entirely and shows the upgrade block. Pro plan hides the entire membership UI.
+
+---
+
+## 11. login.html + register.html + auth.js
+
+**What changed:**
+Complete rebuild of auth pages with proper validation, error handling, and backend wiring.
+
+**Why:**
+Old login had hardcoded `localhost` URLs which broke on deployment. No client-side validation meant bad requests were hitting the backend unnecessarily.
+
+**How it works:**
+
+**Validation:** `auth.js` validates email format with regex and password length before any fetch call. If invalid, shakes the card (GSAP `x` oscillation) and shows inline error messages. No network request is made for obviously wrong input.
+
+**Fetch:** Uses `credentials: 'same-origin'` — critical for Flask sessions. Without this, the browser doesn't send the session cookie with the request, so Flask can't identify the user even after login.
+
+**Error mapping:** API error codes are mapped to human-readable messages:
+- `USER_NOT_FOUND` → "No account found with this email"
+- `WRONG_PASSWORD` → "Incorrect password"
+
+**Password strength:** Four levels calculated by checking length, uppercase, numbers, and special characters. Updates a colored bar in real time on `input` event.
+
+**Remember me:** Stores email in `localStorage` on successful login if checked. On page load, pre-fills the email field if a stored value exists.
+
+---
+
+## 12. Bug Fix — Chat Engine
+
+**What changed:**
+Three bugs fixed in `engine.py` and `agent.py`.
+
+**Why they existed:**
+The agentic engine was built for V2 which had a different architecture. When V3 added conversation history, the function signatures weren't updated to match.
+
+**Bug 1 — Missing message parameter:**
+`ask_agent()` wasn't accepting the current user message as a parameter. It only received memory fields and history. The actual question was never sent to Gemini.
+
+**Bug 2 — System prompt in wrong position:**
+The system prompt was appended as a `user` role message at the end of `contents`. Gemini read this as the user's latest question and responded to the instruction instead of the actual question. Moving it to `system_instruction` in the config tells Gemini it's a background instruction, not a conversational turn.
+
+**Bug 3 — Typo:**
+`uesr_question` instead of `user_question`. Python is case and spelling sensitive — one wrong character and the variable doesn't exist.
+
+---
+
+That's every change, why it was made, and how it works. Does anything need more depth on a specific part? 

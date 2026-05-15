@@ -1,99 +1,239 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="../js/tailwind-config.js"></script>
-<link rel="stylesheet" href="../css/chat.css">
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeuraChat — Chat</title>
+  <meta name="description" content="Chat with NeuraChat — persistent memory and Gemini-powered responses." />
+  <meta property="og:title" content="NeuraChat — Chat" />
+  <meta property="og:description" content="Persistent memory and Gemini-powered AI conversations." />
+  <meta property="og:image" content="/static/assets/og-image.png" />
+  <link rel="icon" href="/static/assets/favicon.png" type="image/png" sizes="256x256" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            body: ['DM Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/animations.css" />
+  <link rel="stylesheet" href="/css/chat.css" />
 </head>
-<body class="bg-background text-on-background font-body-md min-h-screen overflow-hidden">
-<!-- TopNavBar -->
-<header class="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] rounded-xl border border-white/10 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl shadow-[0_0_20px_rgba(76,215,246,0.1)] z-50">
-<div class="flex justify-between items-center px-6 py-3 max-w-7xl mx-auto">
-<div class="flex items-center gap-8">
-<span class="font-headline-lg text-headline-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">NeuraChat</span>
-<nav class="hidden md:flex items-center gap-6">
-<a class="font-headline-md text-headline-md text-on-surface-variant hover:text-primary transition-colors hover:scale-105 transition-transform duration-200" href="/">Home</a>
-<a class="font-headline-md text-headline-md text-secondary border-b-2 border-secondary pb-1 hover:scale-105 transition-transform duration-200" href="/chat.html">Chat</a>
-<a class="font-headline-md text-headline-md text-on-surface-variant hover:text-primary transition-colors hover:scale-105 transition-transform duration-200" href="/docs.html">Docs</a>
-<a class="font-headline-md text-headline-md text-on-surface-variant hover:text-primary transition-colors hover:scale-105 transition-transform duration-200" href="/contact.html">Contact</a>
-</nav>
-</div>
-<div class="flex items-center gap-4">
-<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors active:scale-95">notifications</button>
-<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors active:scale-95">settings</button>
-<div class="h-8 w-8 rounded-full bg-surface-variant flex items-center justify-center border border-white/10 overflow-hidden active:scale-95 transition-all">
-<img alt="User profile avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHpqSEExi4CE4Oa-zJm-4rw6lKgT9uWjs0Mm9K12KIINpOg2-v_qTvRpTmhl3aWjxKXqU6MfDXRDG5XhL-x-TRPL_BA8WWUc0xjABUOyBOa2H4KORS0swBbjA19EsMczwDxytcHgTFVHZa4WxcqgbCX1IekTAQXIx9EJDJVLq5avPilGNMIDFCq94quNqAV6XXRiDB_1eZcCXnVmqVBchwcqKkr8jpBzNMCnb30hrw0ihZg8a2eSAknUx76HLWlEoLCWk3zfgrMyN1"/>
-</div>
-</div>
-</div>
-</header>
-<main class="flex h-screen pt-24 pb-4 px-4 gap-4 max-w-[1440px] mx-auto">
-<!-- Sidebar: Conversation History -->
-<aside class="hidden lg:flex flex-col w-80 glass-panel rounded-2xl overflow-hidden">
-<div class="p-6">
-<button id="newChatBtn" class="w-full py-4 px-6 bg-gradient-to-r from-primary-container to-inverse-primary text-on-primary-container font-label-md text-label-md rounded-xl flex items-center justify-center gap-2 bloom-primary hover:brightness-110 hover:scale-[1.02] transition-all">
-<span class="material-symbols-outlined">add</span>
-                    New Chat
-                </button>
-</div>
-<div id="chatHistoryList" class="flex-1 overflow-y-auto px-4 pb-6 space-y-2"></div>
-</aside>
-<!-- Main Chat Area -->
-<section class="flex-1 flex flex-col glass-panel rounded-2xl relative overflow-hidden">
-<!-- Chat Header Info -->
-<div class="px-8 py-4 border-b border-white/5 flex items-center justify-between">
-<div class="flex items-center gap-3">
-<div class="w-2 h-2 rounded-full bg-secondary bloom-secondary"></div>
-<h2 class="font-headline-md text-headline-md text-on-surface">Neural Interface Alpha</h2>
-</div>
-<div class="flex gap-4">
-<div class="flex flex-col items-end">
-<span class="text-caption font-caption text-secondary">742ms processing</span>
-<span class="text-caption font-caption text-outline">v4.2.0-stable</span>
-</div>
-</div>
-</div>
-<!-- Messages Area -->
-<div class="flex-1 overflow-y-auto p-8 space-y-8 flex flex-col" id="messagesArea">
-</div>
-<!-- Input Bar -->
-<div class="p-6 bg-gradient-to-t from-surface-container-lowest to-transparent">
-<div class="relative group">
-<div class="absolute -inset-0.5 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl blur opacity-30 group-focus-within:opacity-100 transition duration-500"></div>
-<div class="relative flex items-center gap-3 p-2 bg-surface-container-lowest glass-panel rounded-2xl border-white/10 group-focus-within:border-secondary/40 transition-all">
-<button class="p-3 text-on-surface-variant hover:text-secondary transition-colors material-symbols-outlined active:scale-95">attach_file</button>
-<input class="flex-1 bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-outline font-body-md py-3 px-2" placeholder="Describe the neural interface..." type="text" id="userInput"/>
-<div class="flex items-center gap-2 px-2">
-<button class="p-3 text-on-surface-variant hover:text-primary transition-colors material-symbols-outlined active:scale-95">mic</button>
-<button class="bg-primary-container hover:bg-inverse-primary text-on-primary-container px-6 py-3 rounded-xl font-label-md text-label-md transition-all bloom-primary active:scale-95 flex items-center gap-2" id="sendBtn" >
-                                Send
-                                <span class="material-symbols-outlined text-[20px]">send</span>
-</button>
-</div>
-</div>
-</div>
-<div class="flex justify-center mt-4">
-<p class="text-caption font-caption text-outline">NeuraChat can make mistakes. Check important info.</p>
-</div>
-</div>
-</section>
-</main>
-<!-- Footer -->
-<footer class="fixed bottom-0 left-0 w-full bg-gradient-to-t from-surface-container-lowest to-transparent py-4 z-10 pointer-events-none">
-<div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto gap-4 pointer-events-auto">
-<span class="font-headline-md text-headline-md text-primary opacity-50 text-[16px]">NeuraChat AI</span>
-<div class="flex gap-6">
-<a class="font-caption text-caption text-on-surface-variant hover:text-secondary transition-colors opacity-80 hover:opacity-100" href="/terms.html">Terms</a>
-<a class="font-caption text-caption text-on-surface-variant hover:text-secondary transition-colors opacity-80 hover:opacity-100" href="/terms.html">Privacy</a>
-<a class="font-caption text-caption text-on-surface-variant hover:text-secondary transition-colors opacity-80 hover:opacity-100" href="/docs.html">Documentation</a>
-</div>
-<span class="font-caption text-caption text-secondary opacity-50">© 2024 NeuraChat AI. All rights reserved.</span>
-</div>
-</footer>
-<script src="../js/script.js"></script>
-</body></html>
+<body class="bg-app text-app font-body antialiased overflow-x-hidden">
+  <script src="/js/protect.js"></script>
+  <canvas id="particle-canvas" class="fixed inset-0 z-0 pointer-events-none opacity-70" aria-hidden="true"></canvas>
+
+  <div id="sidebar-backdrop" class="fixed inset-0 z-30 bg-black/50 opacity-0 pointer-events-none transition-opacity lg:hidden"></div>
+
+  <div class="chat-app relative z-10 flex min-h-0">
+    <!-- Sidebar -->
+    <aside
+      id="chat-sidebar"
+      class="chat-sidebar fixed bottom-0 left-0 top-0 z-40 flex flex-col border-r border-[var(--border)] bg-[var(--bg-surface)] lg:static lg:z-10"
+    >
+      <div class="flex items-center justify-between gap-2 border-b border-[var(--border)] px-3 py-3">
+        <a href="/" class="flex min-w-0 items-center gap-2 rounded-xl px-1 py-1 hover:bg-[var(--bg-hover)]">
+          <span class="h-2.5 w-2.5 shrink-0 rounded-full bg-[var(--accent)]"></span>
+          <span class="font-display text-sm font-bold tracking-tight text-[var(--text-primary)]">NeuraChat</span>
+        </a>
+        <button
+          type="button"
+          id="btn-sidebar-collapse"
+          class="hidden rounded-xl p-2 text-[var(--text-muted)] hover:bg-[var(--bg-hover)] hover:text-[var(--accent)] lg:inline-flex"
+          aria-label="Collapse sidebar"
+        >
+          <i data-lucide="panel-left-close" class="h-5 w-5"></i>
+        </button>
+      </div>
+
+      <div class="p-3">
+        <button
+          type="button"
+          id="btn-new-chat"
+          class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--accent)] py-3 text-sm font-semibold text-[#0f172a] shadow-[var(--shadow-accent)] transition-all hover:bg-[var(--accent-hover)] hover:scale-[1.01] active:scale-[0.99]"
+        >
+          <i data-lucide="plus" class="h-5 w-5"></i>
+          New Chat
+        </button>
+      </div>
+
+      <div id="chat-history-scroll" class="min-h-0 flex-1 overflow-y-auto px-2 pb-3">
+        <div id="chat-history-groups"></div>
+      </div>
+
+      <div class="mt-auto border-t border-[var(--border)] p-3">
+        <div class="flex items-center gap-3">
+          <img id="sidebar-avatar" src="" alt="" class="h-8 w-8 shrink-0 rounded-full border border-[var(--border)] bg-[var(--bg-surface-2)]" width="32" height="32" />
+          <div class="min-w-0 flex-1">
+            <p id="sidebar-username" class="truncate text-sm font-semibold text-[var(--text-primary)]">…</p>
+            <span id="sidebar-plan-badge" class="mt-0.5 inline-block rounded-full bg-[var(--bg-surface-2)] px-2 py-0.5 text-[10px] font-bold text-[var(--text-muted)]">FREE</span>
+          </div>
+          <a
+            href="/profile.html"
+            class="rounded-xl p-2 text-[var(--text-muted)] hover:bg-[var(--bg-hover)] hover:text-[var(--accent)]"
+            aria-label="Profile settings"
+          >
+            <i data-lucide="settings" class="h-5 w-5"></i>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <button
+      type="button"
+      id="sidebar-expand"
+      class="chat-sidebar-expand fixed left-0 top-1/2 z-20 -translate-y-1/2 rounded-r-xl border border-l-0 border-[var(--border)] bg-[var(--bg-surface)] px-1.5 py-4 text-[var(--text-muted)] shadow-md hover:text-[var(--accent)]"
+      aria-label="Expand sidebar"
+    >
+      <i data-lucide="panel-left" class="h-5 w-5"></i>
+    </button>
+
+    <!-- Main -->
+    <div class="flex min-w-0 flex-1 flex-col">
+      <header class="flex shrink-0 items-center justify-between gap-3 border-b border-[var(--border)] bg-[var(--bg-primary)]/80 px-3 py-3 backdrop-blur-md sm:px-4">
+        <div class="flex min-w-0 flex-1 items-center gap-2">
+          <button
+            type="button"
+            id="btn-sidebar-toggle"
+            class="inline-flex rounded-xl p-2 text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] hover:text-[var(--accent)] lg:hidden"
+            aria-label="Open chat history"
+          >
+            <i data-lucide="menu" class="h-5 w-5"></i>
+          </button>
+          <div class="min-w-0 flex-1">
+            <h1 class="truncate font-display text-base font-bold text-[var(--text-primary)] sm:text-lg">
+              <span
+                id="chat-title-text"
+                class="select-none lg:cursor-text"
+                title="Double-click to rename (when a chat is open)"
+              >New chat</span>
+              <input
+                id="chat-title-input"
+                type="text"
+                class="hidden w-full max-w-md rounded-xl border border-[var(--border-accent)] bg-[var(--bg-surface)] px-3 py-1.5 font-display text-base font-bold text-[var(--text-primary)] outline-none ring-2 ring-transparent focus:ring-[var(--accent)]/40"
+                maxlength="120"
+                aria-label="Chat title"
+              />
+            </h1>
+          </div>
+        </div>
+        <div class="flex shrink-0 items-center gap-2">
+          <span class="inline-flex shrink-0 items-center rounded-full border border-[var(--border)] bg-[var(--bg-surface)] px-2.5 py-1 text-[10px] font-medium text-[var(--text-secondary)] sm:px-3 sm:text-xs">Gemini 2.5 Flash</span>
+          <button
+            type="button"
+            data-theme-toggle
+            class="rounded-full border border-[var(--border)] bg-[var(--bg-surface)] p-2 text-[var(--text-secondary)] hover:border-[var(--border-accent)] hover:text-[var(--accent)]"
+            aria-label="Toggle theme"
+          >
+            <i data-theme-icon data-lucide="sun" class="h-5 w-5"></i>
+          </button>
+        </div>
+      </header>
+
+      <div class="relative min-h-0 flex-1 flex flex-col bg-[var(--bg-primary)]">
+        <!-- Empty state -->
+        <div id="empty-state" class="flex flex-1 flex-col items-center justify-center px-4 py-8">
+          <div
+            class="empty-state-logo mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-[var(--border-accent)] bg-[var(--bg-surface)] mock-chat-glow"
+            aria-hidden="true"
+          >
+            <span class="h-4 w-4 rounded-full bg-[var(--accent)] ring-4 ring-[var(--accent)]/25"></span>
+          </div>
+          <h2 class="font-display text-2xl font-extrabold text-[var(--text-primary)]">How can I help you today?</h2>
+          <p class="mt-2 max-w-md text-center text-[var(--text-secondary)]">Ask anything. I remember our conversation.</p>
+          <div class="mt-10 grid w-full max-w-lg grid-cols-1 gap-3 sm:grid-cols-2">
+            <button type="button" class="suggest-card rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] p-4 text-left text-sm text-[var(--text-secondary)] transition-all hover:-translate-y-0.5 hover:border-[var(--border-accent)] hover:shadow-md" data-prompt="Explain machine learning simply">
+              Explain machine learning simply
+            </button>
+            <button type="button" class="suggest-card rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] p-4 text-left text-sm text-[var(--text-secondary)] transition-all hover:-translate-y-0.5 hover:border-[var(--border-accent)] hover:shadow-md" data-prompt="Write a Python function for sorting">
+              Write a Python function for sorting
+            </button>
+            <button type="button" class="suggest-card rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] p-4 text-left text-sm text-[var(--text-secondary)] transition-all hover:-translate-y-0.5 hover:border-[var(--border-accent)] hover:shadow-md" data-prompt="What is the difference between REST and GraphQL?">
+              What is the difference between REST and GraphQL?
+            </button>
+            <button type="button" class="suggest-card rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] p-4 text-left text-sm text-[var(--text-secondary)] transition-all hover:-translate-y-0.5 hover:border-[var(--border-accent)] hover:shadow-md" data-prompt="Help me debug this error">
+              Help me debug this error
+            </button>
+          </div>
+        </div>
+
+        <!-- Messages -->
+        <div id="messages-thread" class="hidden min-h-0 flex-1 overflow-y-auto px-3 py-4 sm:px-6"></div>
+
+        <!-- Composer -->
+        <div class="shrink-0 border-t border-[var(--border)] bg-[var(--bg-surface)] px-3 py-3 sm:px-4">
+          <div id="limit-reached-block" class="chat-limit-panel mb-3 hidden p-4 text-center">
+            <p class="font-display text-sm font-bold text-[var(--text-primary)]">Limit reached</p>
+            <p class="mt-1 text-xs text-[var(--text-secondary)]">You have used all free messages this month.</p>
+            <button
+              type="button"
+              id="btn-upgrade-limit"
+              class="mt-4 inline-flex w-full items-center justify-center rounded-xl bg-[var(--accent)] py-3 text-sm font-semibold text-[#0f172a] shadow-[var(--shadow-accent)] transition-all hover:bg-[var(--accent-hover)] sm:w-auto sm:px-8"
+            >
+              Upgrade to Pro
+            </button>
+          </div>
+
+          <div id="membership-bar" class="mb-3 hidden">
+            <div class="mb-1 flex flex-wrap items-center justify-between gap-2 text-xs text-[var(--text-muted)]">
+              <span id="membership-text">0 / 50 messages used this month</span>
+              <button type="button" id="btn-upgrade-chat" class="font-semibold text-[var(--accent)] hover:underline">Upgrade to Pro</button>
+            </div>
+            <div class="h-1 overflow-hidden rounded-full bg-[var(--bg-surface-2)]">
+              <div id="membership-fill" class="h-full rounded-full bg-[var(--accent)] transition-all" style="width: 0%"></div>
+            </div>
+            <p id="membership-warn" class="mt-2 hidden text-xs font-medium text-amber-400/90"></p>
+          </div>
+          <div id="composer-row" class="flex items-end gap-2">
+            <div class="relative min-w-0 flex-1">
+              <textarea
+                id="message-input"
+                rows="1"
+                maxlength="8000"
+                class="chat-input w-full rounded-xl border border-[var(--border)] bg-[var(--bg-surface-2)] px-4 py-3 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] outline-none ring-2 ring-transparent transition-shadow focus:border-[var(--border-accent)] focus:ring-[var(--accent)]/25"
+                placeholder="Message NeuraChat..."
+                autocomplete="off"
+              ></textarea>
+            </div>
+            <div class="flex flex-col items-end gap-1 pb-1">
+              <span id="char-count" class="text-[10px] text-[var(--text-muted)]">0</span>
+              <button
+                type="button"
+                id="btn-send"
+                disabled
+                class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[var(--accent)] text-[#0f172a] shadow-[var(--shadow-accent)] transition-all hover:bg-[var(--accent-hover)] disabled:cursor-not-allowed disabled:opacity-40"
+                aria-label="Send message"
+              >
+                <i data-lucide="arrow-up" class="h-5 w-5"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="/js/toast.js"></script>
+  <script src="/js/theme.js"></script>
+  <script src="/js/cursor.js"></script>
+  <script src="/js/preloader.js"></script>
+  <script src="/js/animations.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+  <script src="/js/chat.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

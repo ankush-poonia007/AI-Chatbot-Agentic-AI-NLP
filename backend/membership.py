@@ -1,7 +1,7 @@
 from backend.database import get_db
 
 PLANS = {
-    'basic': 20,
+    'basic': 50,
     'pro': float('inf')
 }
 
