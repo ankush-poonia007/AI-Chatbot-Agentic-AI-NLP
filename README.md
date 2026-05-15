@@ -52,6 +52,8 @@ Users can register, log in, manage multiple independent chat sessions, view pers
 ![Homepage](screenshots/home.png)
 - **Chat**
 ![Chat](screenshots/chat.png)
+- **Login**
+![Login](screenshots/login.png)
 ---
 
 
