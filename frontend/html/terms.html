@@ -1,162 +1,373 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>NeuraChat - Terms &amp; Policies</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="../css/terms.css">
-<script src="../js/tailwind-config.js"></script>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeuraChat — Terms & Privacy</title>
+  <meta name="description" content="NeuraChat terms of service and privacy policy." />
+  <meta property="og:image" content="/static/assets/og-image.png" />
+  <link rel="icon" href="/static/assets/favicon.png" type="image/png" sizes="256x256" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            body: ['DM Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/animations.css" />
 </head>
-<body class="bg-background text-on-surface font-body-md selection:bg-primary/30 selection:text-primary">
-<!-- TopNavBar Shell -->
-<header class="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] rounded-xl border border-white/10 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl shadow-[0_0_20px_rgba(76,215,246,0.1)] z-50">
-<nav class="flex justify-between items-center px-6 py-3 max-w-7xl mx-auto">
-<div class="flex items-center gap-2">
-<span class="font-headline-lg text-headline-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">NeuraChat</span>
-</div>
-<div class="hidden md:flex items-center gap-8">
-<a class="font-headline-md text-headline-md text-on-surface-variant hover:text-primary transition-colors hover:scale-105 transition-transform duration-200" href="/">Home</a>
-<a class="font-headline-md text-headline-md text-on-surface-variant hover:text-primary transition-colors hover:scale-105 transition-transform duration-200" href="/chat.html">Chat</a>
-<a class="font-headline-md text-headline-md text-secondary border-b-2 border-secondary pb-1 hover:scale-105 transition-transform duration-200" href="/docs.html">Docs</a>
-<a class="font-headline-md text-headline-md text-on-surface-variant hover:text-primary transition-colors hover:scale-105 transition-transform duration-200" href="/contact.html">Contact</a>
-</div>
-<div class="flex items-center gap-4">
-<button class="active:scale-95 transition-all hover:scale-105 transition-transform duration-200">
-<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
-</button>
-<button class="active:scale-95 transition-all hover:scale-105 transition-transform duration-200">
-<span class="material-symbols-outlined text-on-surface-variant" data-icon="settings">settings</span>
-</button>
-<div class="w-10 h-10 rounded-full border border-primary/20 overflow-hidden hover:scale-105 transition-transform duration-200 cursor-pointer">
-<img alt="User profile avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoxfSEfeR0Lq3QgrUXK0_U3CfUzsdLIjcAmZLtLgJ2FMCmC77YbujW4AiiIMp_KJOyH-knpCnzDCC_hzvhF2ASmCVlWJIiue4oLBdMkzkv4qCGu6inLFpwHOLYuzAdCfg0UBHNSw0_wjskQFTsIP4VaaJ6sNHynuSrZv77FSPcEOYnY3IlUweKbFBuU23iC0MPW6mVnwF54_nGASDe_7eYCpkzkmJLXreU6C7fHt-TwEVw2Ahl06hSgWVBPKWKX8u3jJ-3aPSBJ_JE"/>
-</div>
-</div>
-</nav>
-</header>
-<main class="pt-32 pb-xl px- gutter max-w-5xl mx-auto min-h-screen">
-<!-- Header Section -->
-<section class="mb-xl text-center">
-<h1 class="font-display-lg text-display-lg mb-sm">Legal &amp; Compliance</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">Review our operational guidelines, data protection protocols, and your rights as a user of the NeuraChat interface.</p>
-</section>
-<!-- Tabbed Navigation Container -->
-<div class="mb-lg glass-panel bg-surface-container/60 border border-white/5 rounded-xl p-xs sticky top-24 z-40">
-<div class="flex flex-wrap md:flex-nowrap gap-2">
-<button class="flex-1 py-3 px-6 rounded-lg font-label-md text-label-md bg-primary text-on-primary-fixed-variant transition-all hover:brightness-110 active:scale-[0.98]">
-                    Terms of Service
-                </button>
-<button class="flex-1 py-3 px-6 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-white/5 transition-all active:scale-[0.98]">
-                    Privacy Policy
-                </button>
-<button class="flex-1 py-3 px-6 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-white/5 transition-all active:scale-[0.98]">
-                    Cookie Policy
-                </button>
-</div>
-</div>
-<!-- Content Grid Layout -->
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-<!-- Sidebar TOC -->
-<aside class="hidden lg:block lg:col-span-3">
-<div class="sticky top-44 space-y-4">
-<h4 class="font-label-md text-label-md text-secondary uppercase tracking-widest px-4">Summary</h4>
-<nav class="flex flex-col gap-1">
-<a class="px-4 py-2 rounded-lg text-on-surface-variant hover:bg-primary/10 hover:text-primary transition-all border-l-2 border-transparent hover:border-primary" href="#acceptance">Acceptance</a>
-<a class="px-4 py-2 rounded-lg text-on-surface-variant hover:bg-primary/10 hover:text-primary transition-all border-l-2 border-transparent hover:border-primary" href="#usage">Usage Limits</a>
-<a class="px-4 py-2 rounded-lg text-on-surface-variant hover:bg-primary/10 hover:text-primary transition-all border-l-2 border-transparent hover:border-primary" href="#intellectual">IP Rights</a>
-<a class="px-4 py-2 rounded-lg text-on-surface-variant hover:bg-primary/10 hover:text-primary transition-all border-l-2 border-transparent hover:border-primary" href="#liabilities">Liability</a>
-</nav>
-</div>
-</aside>
-<!-- Main Text Content -->
-<article class="lg:col-span-9 space-y-lg">
-<div class="glass-panel bg-surface-container-low/40 border border-white/5 rounded-xl p-md md:p-xl">
-<div class="space-y-md" id="acceptance">
-<h2 class="font-headline-lg text-headline-lg text-primary">1. Acceptance of Terms</h2>
-<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                            By accessing or using NeuraChat, you agree to be bound by these Terms of Service. If you do not agree to all of the terms and conditions, you must not use our neural processing services. These terms apply to all visitors, users, and others who access or use the Service.
-                        </p>
-<div class="bg-secondary/10 border border-secondary/20 rounded-lg p-sm flex gap-4 items-start">
-<span class="material-symbols-outlined text-secondary" data-icon="info">info</span>
-<p class="font-caption text-caption text-on-surface leading-tight">
-                                Last Updated: October 24, 2024. NeuraChat reserves the right to modify these terms at any time without prior individual notice.
-                            </p>
-</div>
-</div>
-<hr class="my-xl border-white/5"/>
-<div class="space-y-md" id="usage">
-<h2 class="font-headline-lg text-headline-lg text-primary">2. Neural Usage Limits</h2>
-<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                            Users are granted a non-exclusive, non-transferable, revocable license to access NeuraChat's computational nodes. You agree not to:
-                        </p>
-<ul class="space-y-3 list-none pl-0">
-<li class="flex items-start gap-3">
-<span class="material-symbols-outlined text-secondary text-[18px] mt-1" data-icon="check_circle" data-weight="fill">check_circle</span>
-<span class="font-body-md text-body-md text-on-surface-variant">Circumvent neural rate limits or technical constraints.</span>
-</li>
-<li class="flex items-start gap-3">
-<span class="material-symbols-outlined text-secondary text-[18px] mt-1" data-icon="check_circle" data-weight="fill">check_circle</span>
-<span class="font-body-md text-body-md text-on-surface-variant">Deploy automated scrapers against the interface architecture.</span>
-</li>
-<li class="flex items-start gap-3">
-<span class="material-symbols-outlined text-secondary text-[18px] mt-1" data-icon="check_circle" data-weight="fill">check_circle</span>
-<span class="font-body-md text-body-md text-on-surface-variant">Reverse-engineer the underlying neural network structures.</span>
-</li>
-</ul>
-</div>
-<hr class="my-xl border-white/5"/>
-<div class="space-y-md" id="intellectual">
-<h2 class="font-headline-lg text-headline-lg text-primary">3. Intellectual Property</h2>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-<div class="p-md bg-surface-container-high rounded-xl border border-white/5">
-<span class="material-symbols-outlined text-secondary mb-2" data-icon="psychology">psychology</span>
-<h3 class="font-headline-md text-headline-md mb-2">Service Assets</h3>
-<p class="font-caption text-caption text-on-surface-variant">The NeuraChat brand, logo, and core algorithms remain the sole property of NeuraChat AI.</p>
-</div>
-<div class="p-md bg-surface-container-high rounded-xl border border-white/5">
-<span class="material-symbols-outlined text-primary mb-2" data-icon="edit_note">edit_note</span>
-<h3 class="font-headline-md text-headline-md mb-2">User Output</h3>
-<p class="font-caption text-caption text-on-surface-variant">You retain ownership of any content you generate, subject to the limited license granted to us for service provision.</p>
-</div>
-</div>
-</div>
-<hr class="my-xl border-white/5"/>
-<div class="space-y-md" id="liabilities">
-<h2 class="font-headline-lg text-headline-lg text-primary">4. Limitation of Liability</h2>
-<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed italic">
-                            "NeuraChat provides its services on an 'as is' and 'as available' basis. We do not warrant that the neural output will be accurate, reliable, or meet your specific requirements in high-stakes environments."
-                        </p>
-<p class="font-body-md text-body-md text-on-surface-variant">
-                            In no event shall NeuraChat AI be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses.
-                        </p>
-</div>
-</div>
-</article>
-</div>
-</main>
-<!-- Floating Back to Top Button -->
-<a class="fixed bottom-8 right-8 w-14 h-14 rounded-full bg-primary text-on-primary flex items-center justify-center bloom-primary shadow-xl hover:scale-110 active:scale-95 transition-all z-50 group" href="#">
-<span class="material-symbols-outlined group-hover:-translate-y-1 transition-transform" data-icon="arrow_upward">arrow_upward</span>
-</a>
-<!-- Footer Shell -->
-<footer class="w-full py-8 border-t border-white/5 bg-surface-container-lowest dark:bg-surface-container-lowest relative">
-<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent pointer-events-none"></div>
-<div class="relative flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto gap-4">
-<div class="flex items-center gap-2">
-<span class="font-headline-md text-headline-md text-primary font-bold">NeuraChat</span>
-</div>
-<div class="flex gap-8">
-<a class="font-caption text-caption text-on-surface-variant hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100" href="/terms.html">Terms</a>
-<a class="font-caption text-caption text-on-surface-variant hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100" href="/terms.html">Privacy</a>
-<a class="font-caption text-caption text-on-surface-variant hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100" href="/docs.html">Documentation</a>
-<a class="font-caption text-caption text-on-surface-variant hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100" href="/contact.html">Contact</a>
-</div>
-<div class="font-caption text-caption text-on-surface-variant">
-                © 2024 NeuraChat AI. All rights reserved.
-            </div>
-</div>
-</footer>
-</body></html>
+<body class="bg-app text-app font-body antialiased overflow-x-hidden min-h-screen flex flex-col">
+  <script>
+    try {
+      sessionStorage.setItem('neurachat-preloader-shown', '1');
+    } catch (_) {}
+  </script>
+  <canvas id="particle-canvas" class="fixed inset-0 z-0 pointer-events-none opacity-40" aria-hidden="true"></canvas>
+
+  <div id="nav-root" class="relative z-[60]"></div>
+
+  <main class="relative z-10 flex-1 px-4 sm:px-6 pt-28 pb-16">
+    <div class="max-w-2xl mx-auto w-full">
+      <!-- Page header -->
+      <header id="terms-page-header" class="mb-10 text-center">
+        <h1 class="font-display font-extrabold text-3xl sm:text-4xl text-[var(--text-primary)] mb-3">Legal</h1>
+        <p class="text-[var(--text-secondary)] text-base sm:text-lg">Terms of Service and Privacy Policy for NeuraChat</p>
+      </header>
+
+      <!-- Tab switcher -->
+      <div class="flex justify-center mb-8">
+      <div
+        id="terms-tab-bar"
+        class="inline-flex w-full sm:w-auto p-1 rounded-xl border border-[var(--border)] bg-surface"
+        role="tablist"
+        aria-label="Legal documents"
+      >
+        <button
+          type="button"
+          id="tab-terms"
+          role="tab"
+          aria-selected="true"
+          aria-controls="panel-terms"
+          class="terms-tab flex-1 sm:flex-none px-4 sm:px-6 py-2.5 rounded-lg font-medium text-sm sm:text-base text-[var(--accent)] bg-surface-2 border-b-2 border-[var(--accent)] transition-colors duration-200"
+        >
+          Terms of Service
+        </button>
+        <button
+          type="button"
+          id="tab-privacy"
+          role="tab"
+          aria-selected="false"
+          aria-controls="panel-privacy"
+          class="terms-tab flex-1 sm:flex-none px-4 sm:px-6 py-2.5 rounded-lg text-sm sm:text-base text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200"
+        >
+          Privacy Policy
+        </button>
+      </div>
+      </div>
+
+      <!-- Panels -->
+      <div id="terms-panels" class="mb-12">
+        <section id="panel-terms" role="tabpanel" aria-labelledby="tab-terms" class="terms-panel">
+          <p class="text-xs text-[var(--text-muted)] mb-6">Last updated: June 2025</p>
+
+          <article class="terms-card rounded-xl border border-[var(--border)] bg-surface p-6 mb-4">
+            <h2 class="font-display font-bold text-lg text-[var(--text-primary)] mb-3">1. Acceptance of Terms</h2>
+            <p class="text-[var(--text-secondary)] text-sm leading-relaxed">
+              By accessing or using NeuraChat, you agree to be bound by these Terms of Service. If you do not agree, please do not use the service.
+            </p>
+          </article>
+
+          <article class="terms-card rounded-xl border border-[var(--border)] bg-surface p-6 mb-4">
+            <h2 class="font-display font-bold text-lg text-[var(--text-primary)] mb-3">2. Description of Service</h2>
+            <p class="text-[var(--text-secondary)] text-sm leading-relaxed">
+              NeuraChat is a portfolio project that provides AI-powered chat functionality via Google Gemini. The service is provided for educational and demonstration purposes. Service availability is not guaranteed and may be interrupted during maintenance or due to Render free tier limitations.
+            </p>
+          </article>
+
+          <article class="terms-card rounded-xl border border-[var(--border)] bg-surface p-6 mb-4">
+            <h2 class="font-display font-bold text-lg text-[var(--text-primary)] mb-3">3. Acceptable Use</h2>
+            <p class="text-[var(--text-secondary)] text-sm leading-relaxed mb-3">You agree not to use NeuraChat to:</p>
+            <ul class="text-[var(--text-secondary)] text-sm leading-relaxed space-y-2 list-disc pl-5">
+              <li>Generate harmful, illegal, or abusive content</li>
+              <li>Attempt to reverse engineer or exploit the service</li>
+              <li>Impersonate other users or attempt unauthorized access</li>
+              <li>Use the service for any commercial purpose without permission</li>
+            </ul>
+          </article>
+
+          <article class="terms-card rounded-xl border border-[var(--border)] bg-surface p-6 mb-4">
+            <h2 class="font-display font-bold text-lg text-[var(--text-primary)] mb-3">4. Account Responsibility</h2>
+            <p class="text-[var(--text-secondary)] text-sm leading-relaxed">
+              You are responsible for maintaining the confidentiality of your login credentials. You are responsible for all activity that occurs under your account. Notify us immediately of any unauthorized use via the Contact page.
+            </p>
+          </article>
+
+          <article class="terms-card rounded-xl border border-[var(--border)] bg-surface p-6 mb-4">
+            <h2 class="font-display font-bold text-lg text-[var(--text-primary)] mb-3">5. Free and Pro Tiers</h2>
+            <p class="text-[var(--text-secondary)] text-sm leading-relaxed">
+              The free tier includes 50 messages per month with full access to all features. The Pro tier offers unlimited messages. Payment integration for Pro is currently pending. Tier limits and features may change with reasonable notice.
+            </p>
+          </article>
+
+          <article class="terms-card rounded-xl border border-[var(--border)] bg-surface p-6 mb-4">
+            <h2 class="font-display font-bold text-lg text-[var(--text-primary)] mb-3">6. Termination</h2>
+            <p class="text-[var(--text-secondary)] text-sm leading-relaxed">
+              We reserve the right to suspend or permanently delete accounts that violate these terms without prior notice. You may delete your account at any time from the Profile page under Danger Zone.
+            </p>
+          </article>
+
+          <article class="terms-card rounded-xl border border-[var(--border)] bg-surface p-6 mb-4">
+            <h2 class="font-display font-bold text-lg text-[var(--text-primary)] mb-3">7. Limitation of Liability</h2>
+            <p class="text-[var(--text-secondary)] text-sm leading-relaxed">
+              NeuraChat is provided as-is without warranties of any kind, express or implied. This is a portfolio and educational project. We are not liable for any damages arising from use of the service.
+            </p>
+          </article>
+        </section>
+
+        <section id="panel-privacy" role="tabpanel" aria-labelledby="tab-privacy" class="terms-panel hidden" hidden>
+          <p class="text-xs text-[var(--text-muted)] mb-6">Last updated: June 2025</p>
+
+          <article class="terms-card rounded-xl border border-[var(--border)] bg-surface p-6 mb-4">
+            <h2 class="font-display font-bold text-lg text-[var(--text-primary)] mb-3">1. Data We Collect</h2>
+            <p class="text-[var(--text-secondary)] text-sm leading-relaxed mb-3">We collect the following information when you use NeuraChat:</p>
+            <ul class="text-[var(--text-secondary)] text-sm leading-relaxed space-y-2 list-disc pl-5">
+              <li>Full name and email address on registration</li>
+              <li>Chat messages and AI responses during conversations</li>
+              <li>Login timestamps and session data</li>
+            </ul>
+          </article>
+
+          <article class="terms-card rounded-xl border border-[var(--border)] bg-surface p-6 mb-4">
+            <h2 class="font-display font-bold text-lg text-[var(--text-primary)] mb-3">2. How Data Is Stored</h2>
+            <p class="text-[var(--text-secondary)] text-sm leading-relaxed">
+              All data is stored in a SQLite database on the Render server. Passwords are hashed using Python scrypt via hashlib and are never stored in plain text. The database is not publicly accessible.
+            </p>
+          </article>
+
+          <article class="terms-card rounded-xl border border-[var(--border)] bg-surface p-6 mb-4">
+            <h2 class="font-display font-bold text-lg text-[var(--text-primary)] mb-3">3. Data Sharing</h2>
+            <p class="text-[var(--text-secondary)] text-sm leading-relaxed">
+              We do not sell, rent, or share your personal data with third parties. Your messages are processed by the Google Gemini API to generate responses. This processing is subject to Google's Privacy Policy.
+            </p>
+          </article>
+
+          <article class="terms-card rounded-xl border border-[var(--border)] bg-surface p-6 mb-4">
+            <h2 class="font-display font-bold text-lg text-[var(--text-primary)] mb-3">4. Data Retention</h2>
+            <p class="text-[var(--text-secondary)] text-sm leading-relaxed">
+              Your data is retained until you delete your account. Deleting your account permanently removes all associated chats, messages, profile data, and membership records from our database.
+            </p>
+          </article>
+
+          <article class="terms-card rounded-xl border border-[var(--border)] bg-surface p-6 mb-4">
+            <h2 class="font-display font-bold text-lg text-[var(--text-primary)] mb-3">5. Cookies</h2>
+            <p class="text-[var(--text-secondary)] text-sm leading-relaxed">
+              NeuraChat uses session cookies for authentication purposes only. We do not use tracking cookies, advertising cookies, or any third-party analytics.
+            </p>
+          </article>
+
+          <article class="terms-card rounded-xl border border-[var(--border)] bg-surface p-6 mb-4">
+            <h2 class="font-display font-bold text-lg text-[var(--text-primary)] mb-3">6. Your Rights</h2>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3 text-[var(--text-secondary)] text-sm leading-relaxed">
+                <i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5 text-[var(--accent)]" aria-hidden="true"></i>
+                <span>Access your data: all your chats are visible in the app</span>
+              </li>
+              <li class="flex items-start gap-3 text-[var(--text-secondary)] text-sm leading-relaxed">
+                <i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5 text-[var(--accent)]" aria-hidden="true"></i>
+                <span>Delete your data: Profile &gt; Danger Zone &gt; Delete Account</span>
+              </li>
+              <li class="flex items-start gap-3 text-[var(--text-secondary)] text-sm leading-relaxed">
+                <i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5 text-[var(--accent)]" aria-hidden="true"></i>
+                <span>Contact us: use the Contact page for any data requests</span>
+              </li>
+            </ul>
+          </article>
+
+          <article class="terms-card rounded-xl border border-[var(--border)] bg-surface p-6 mb-4">
+            <h2 class="font-display font-bold text-lg text-[var(--text-primary)] mb-3">7. Changes to This Policy</h2>
+            <p class="text-[var(--text-secondary)] text-sm leading-relaxed">
+              We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated date. Continued use of the service after changes constitutes acceptance.
+            </p>
+          </article>
+        </section>
+      </div>
+
+      <!-- Bottom CTA -->
+      <section id="terms-cta" class="pt-8 border-t border-[var(--border)] text-center">
+        <p class="text-[var(--text-secondary)] text-sm sm:text-base mb-5">Questions about our terms or privacy policy?</p>
+        <a
+          href="/contact.html"
+          class="inline-flex items-center gap-2 px-7 py-3 rounded-full font-semibold text-sm border-2 border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)]/10 transition-all duration-200"
+        >
+          Contact Us
+          <i data-lucide="arrow-right" class="w-4 h-4" aria-hidden="true"></i>
+        </a>
+      </section>
+    </div>
+  </main>
+
+  <footer class="relative z-10 border-t border-[var(--border)] bg-[var(--bg-surface)]/50 py-14 px-4 sm:px-6">
+    <div class="max-w-6xl mx-auto flex flex-col lg:flex-row gap-10 lg:justify-between lg:items-start">
+      <div class="max-w-sm">
+        <a href="/" class="inline-flex items-center gap-2 font-display font-bold text-xl text-[var(--text-primary)] mb-3">
+          <span class="w-2.5 h-2.5 rounded-full bg-[var(--accent)]"></span>
+          NeuraChat
+        </a>
+        <p class="text-[var(--text-secondary)] text-sm">Built by Ankush Poonia</p>
+      </div>
+      <nav class="flex flex-wrap gap-x-6 gap-y-2 justify-center text-sm text-[var(--text-secondary)]">
+        <a href="/#features" class="hover:text-[var(--accent)] transition-colors">Features</a>
+        <a href="/docs.html" class="hover:text-[var(--accent)] transition-colors">Docs</a>
+        <a href="/#pricing" class="hover:text-[var(--accent)] transition-colors">Pricing</a>
+        <a href="/contact.html" class="hover:text-[var(--accent)] transition-colors">Contact</a>
+        <a href="/terms.html" class="hover:text-[var(--accent)] transition-colors">Terms</a>
+        <a href="/terms.html" class="hover:text-[var(--accent)] transition-colors">Privacy</a>
+      </nav>
+      <div class="flex gap-4 justify-center lg:justify-end">
+        <a href="https://github.com/ankush-poonia007" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-full border border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--accent)] hover:border-[var(--border-accent)] transition-all" aria-label="GitHub">
+          <i data-lucide="github" class="w-5 h-5"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/ankush-poonia007" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-full border border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--accent)] hover:border-[var(--border-accent)] transition-all" aria-label="LinkedIn">
+          <i data-lucide="linkedin" class="w-5 h-5"></i>
+        </a>
+      </div>
+    </div>
+    <p class="text-center text-xs text-[var(--text-muted)] mt-10">© 2026 NeuraChat. Open source portfolio project.</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="/js/toast.js"></script>
+  <script src="/js/theme.js"></script>
+  <script src="/js/cursor.js"></script>
+  <script src="/js/animations.js"></script>
+  <script src="/js/nav.js"></script>
+  <script>
+    (function () {
+      if (window.lucide) lucide.createIcons();
+
+      var tabTerms = document.getElementById('tab-terms');
+      var tabPrivacy = document.getElementById('tab-privacy');
+      var panelTerms = document.getElementById('panel-terms');
+      var panelPrivacy = document.getElementById('panel-privacy');
+      var tabBar = document.getElementById('terms-tab-bar');
+      var pageHeader = document.getElementById('terms-page-header');
+      var cta = document.getElementById('terms-cta');
+      var activeTab = 'terms';
+      var switching = false;
+
+      var tabActiveClasses = ['font-medium', 'text-[var(--accent)]', 'bg-surface-2', 'border-b-2', 'border-[var(--accent)]'];
+      function setTabStyles(tab, isActive) {
+        if (isActive) {
+          tabActiveClasses.forEach(function (c) { tab.classList.add(c); });
+          tab.classList.remove('text-[var(--text-secondary)]');
+          tab.setAttribute('aria-selected', 'true');
+        } else {
+          tabActiveClasses.forEach(function (c) { tab.classList.remove(c); });
+          tab.classList.add('text-[var(--text-secondary)]');
+          tab.setAttribute('aria-selected', 'false');
+        }
+      }
+
+      function getVisiblePanel() {
+        return activeTab === 'terms' ? panelTerms : panelPrivacy;
+      }
+
+      function animateCards(panel) {
+        if (typeof gsap === 'undefined' || !panel) return;
+        var cards = panel.querySelectorAll('.terms-card');
+        gsap.fromTo(cards, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, stagger: 0.08, ease: 'power2.out' });
+      }
+
+      function switchTab(next) {
+        if (switching || next === activeTab) return;
+        if (typeof gsap === 'undefined') {
+          activeTab = next;
+          panelTerms.classList.toggle('hidden', next !== 'terms');
+          panelTerms.hidden = next !== 'terms';
+          panelPrivacy.classList.toggle('hidden', next !== 'privacy');
+          panelPrivacy.hidden = next !== 'privacy';
+          setTabStyles(tabTerms, next === 'terms');
+          setTabStyles(tabPrivacy, next === 'privacy');
+          if (window.lucide) lucide.createIcons();
+          return;
+        }
+
+        switching = true;
+        var outPanel = getVisiblePanel();
+        var inPanel = next === 'terms' ? panelTerms : panelPrivacy;
+
+        setTabStyles(tabTerms, next === 'terms');
+        setTabStyles(tabPrivacy, next === 'privacy');
+
+        gsap.to(outPanel, {
+          opacity: 0,
+          duration: 0.25,
+          ease: 'power1.inOut',
+          onComplete: function () {
+            outPanel.classList.add('hidden');
+            outPanel.hidden = true;
+            inPanel.classList.remove('hidden');
+            inPanel.hidden = false;
+            inPanel.style.opacity = '0';
+            gsap.to(inPanel, {
+              opacity: 1,
+              duration: 0.25,
+              ease: 'power1.inOut',
+              onComplete: function () {
+                activeTab = next;
+                switching = false;
+                if (window.lucide) lucide.createIcons();
+                animateCards(inPanel);
+              },
+            });
+          },
+        });
+      }
+
+      tabTerms.addEventListener('click', function () { switchTab('terms'); });
+      tabPrivacy.addEventListener('click', function () { switchTab('privacy'); });
+
+      function initPageAnimations() {
+        if (typeof gsap === 'undefined') return;
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) return;
+
+        gsap.set(pageHeader, { y: 24, opacity: 0 });
+        gsap.set(tabBar, { scale: 0.97, opacity: 0 });
+        gsap.set(panelTerms.querySelectorAll('.terms-card'), { y: 20, opacity: 0 });
+        if (cta) gsap.set(cta, { opacity: 0, y: 12 });
+
+        gsap.to(pageHeader, { y: 0, opacity: 1, duration: 0.55, ease: 'power2.out', delay: 0.1 });
+        gsap.to(tabBar, { scale: 1, opacity: 1, duration: 0.45, ease: 'power2.out', delay: 0.22 });
+        gsap.to(panelTerms.querySelectorAll('.terms-card'), {
+          y: 0,
+          opacity: 1,
+          duration: 0.5,
+          stagger: 0.08,
+          ease: 'power2.out',
+          delay: 0.32,
+        });
+        if (cta) {
+          gsap.to(cta, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out', delay: 0.85 });
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initPageAnimations);
+      } else {
+        initPageAnimations();
+      }
+    })();
+  </script>
+</body>
+</html>

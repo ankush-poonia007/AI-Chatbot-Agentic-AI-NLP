@@ -1,208 +1,213 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="en">
-
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Contact NeuraChat AI</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <link rel="stylesheet" href="../css/contact.css">
-    <script src="../js/tailwind-config.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeuraChat — Contact Us</title>
+  <meta name="description" content="Get in touch with NeuraChat. Report bugs, request features, or just say hello." />
+  <meta property="og:image" content="/static/assets/og-image.png" />
+  <link rel="icon" href="/static/assets/favicon.png" type="image/png" sizes="256x256" />
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            body: ['DM Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/animations.css" />
 </head>
+<body class="bg-app text-app font-body antialiased overflow-x-hidden min-h-screen flex flex-col">
+  <script>
+    try {
+      sessionStorage.setItem('neurachat-preloader-shown', '1');
+    } catch (_) {}
+  </script>
+  <canvas id="particle-canvas" class="fixed inset-0 z-0 pointer-events-none opacity-40" aria-hidden="true"></canvas>
 
-<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col overflow-x-hidden">
-    <!-- Ambient Background Effects -->
-    <div class="fixed inset-0 pointer-events-none z-0">
-        <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/10 rounded-full blur-[120px]"></div>
-        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-secondary/10 rounded-full blur-[100px]">
-        </div>
+  <div id="nav-root" class="relative z-[60]"></div>
+<!-- MAIN CONTENT -->
+<main class="relative z-10 flex-1 pt-28 pb-16 px-4">
+  <div class="max-w-lg mx-auto">
+
+    <!-- Page Header -->
+    <div id="contact-header" class="text-center mb-10">
+      <h1 class="font-display font-extrabold text-4xl mb-3" style="color:var(--text-primary)">Get in Touch</h1>
+      <p style="color:var(--text-secondary)">Have a question, bug report, or just want to say hello?<br>We'll get back to you within 24 hours.</p>
     </div>
-    <!-- TopNavBar -->
-    <header
-        class="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] z-50 rounded-xl border border-white/10 bg-surface/80 backdrop-blur-xl shadow-[0_0_20px_rgba(76,215,246,0.1)]">
-        <nav class="flex justify-between items-center px-6 py-3 max-w-7xl mx-auto">
-            <div
-                class="font-headline-lg text-headline-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
-                NeuraChat
-            </div>
-            <div class="hidden md:flex items-center gap-8">
-                <a class="font-headline-md text-headline-md text-on-surface-variant hover:text-primary transition-colors hover:scale-105 transition-transform duration-200"
-                    href="/">Home</a>
-                <a class="font-headline-md text-headline-md text-on-surface-variant hover:text-primary transition-colors hover:scale-105 transition-transform duration-200"
-                    href="/chat.html">Chat</a>
-                <a class="font-headline-md text-headline-md text-on-surface-variant hover:text-primary transition-colors hover:scale-105 transition-transform duration-200"
-                    href="/docs.html">Docs</a>
-                <a class="font-headline-md text-headline-md text-secondary border-b-2 border-secondary pb-1 hover:scale-105 transition-transform duration-200"
-                    href="/contact.html">Contact</a>
-            </div>
-            <div class="flex items-center gap-4">
-                <button class="material-symbols-outlined text-on-surface-variant hover:scale-105 transition-transform"
-                    data-icon="notifications">notifications</button>
-                <button class="material-symbols-outlined text-on-surface-variant hover:scale-105 transition-transform"
-                    data-icon="settings">settings</button>
-                <div
-                    class="w-10 h-10 rounded-full border-2 border-secondary/30 overflow-hidden active:scale-95 transition-all">
-                    <img alt="User profile avatar" class="w-full h-full object-cover"
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1QosYxAJBXl1r-PWu-gLqIOXy4_dm_lK4zaNXXoXXmuwr9B5fl1AMjSSVaCAlf8GH9LTeXqyEt48aY9uslZR56M9-UpHhGBzARYUWcMwxU5AjU9tOHp1AxT_7MKup_UsvPJwpCrdUlyYanYO8CRBjaIgew9e61DYIrmLu5wlWwaJWwkXSEVaH3lbb8dEI0dGXx1cK0PMhzB4UaHTtHQVt7q_yU3yU__UO4Fclp7uD51IOsEHVhUlXMX7aBszlSdwRvArvHjkGEE9B" />
-                </div>
-            </div>
-        </nav>
-    </header>
-    <!-- Main Content Area -->
-    <main class="flex-grow pt-32 pb-16 px-4 relative z-10">
-        <div class="max-w-4xl mx-auto">
-            <!-- Hero Heading -->
-            <div class="text-center mb-12">
-                <h1 class="font-display-lg text-display-lg mb-4 text-on-surface">Initiate <span
-                        class="text-secondary">Connection</span></h1>
-                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
-                    Reach out to our neural support matrix. Whether it's complex technical inquiries or partnership
-                    proposals, we process every signal with priority.
-                </p>
-            </div>
-            <div class="grid md:grid-cols-12 gap-8 items-start">
-                <!-- Contact Info Side -->
-                <div class="md:col-span-4 space-y-6">
-                    <div class="glass-panel bg-surface-container-high/40 border border-white/5 p-6 rounded-xl">
-                        <div class="flex items-center gap-3 mb-4">
-                            <span class="material-symbols-outlined text-secondary"
-                                data-icon="alternate_email">alternate_email</span>
-                            <span
-                                class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant">Direct
-                                Access</span>
-                        </div>
-                        <a class="font-headline-md text-headline-md text-secondary hover:text-primary transition-colors duration-300"
-                            href="mailto:support@neurachat.ai">support@neurachat.ai</a>
-                    </div>
-                    <div class="glass-panel bg-surface-container-high/40 border border-white/5 p-6 rounded-xl">
-                        <div class="flex items-center gap-3 mb-6">
-                            <span class="material-symbols-outlined text-secondary" data-icon="share">share</span>
-                            <span
-                                class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant">Neural
-                                Nodes</span>
-                        </div>
-                        <div class="flex gap-6">
-                            <a class="group relative" href="https://twitter.com/neurachat">
-                                <div
-                                    class="absolute -inset-2 bg-primary/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity">
-                                </div>
-                                <span
-                                    class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors text-3xl"
-                                    data-icon="terminal">terminal</span>
-                            </a>
-                            <a class="group relative" href="https://github.com/neurachat">
-                                <div
-                                    class="absolute -inset-2 bg-secondary/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity">
-                                </div>
-                                <span
-                                    class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary transition-colors text-3xl"
-                                    data-icon="dataset">dataset</span>
-                            </a>
-                            <a class="group relative" href="https://discord.com/invite/neurachat">
-                                <div
-                                    class="absolute -inset-2 bg-primary/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity">
-                                </div>
-                                <span
-                                    class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors text-3xl"
-                                    data-icon="hub">hub</span>
-                            </a>
-                        </div>
-                        <div class="mt-8 pt-6 border-t border-white/5 flex flex-col gap-2">
-                            <p class="font-caption text-caption text-on-surface-variant italic">Active social protocols:
-                                X, LinkedIn, Discord</p>
-                        </div>
-                    </div>
-                    <div class="rounded-xl overflow-hidden h-48 relative border border-white/10">
-                        <img class="w-full h-full object-cover"
-                            data-alt="A high-tech server room with glowing cyan and violet neon lines running along the floor and ceilings. The environment is dark and futuristic, with blurred reflections on the glass floor panels, creating a sense of deep cybernetic infrastructure and advanced AI processing units in a cold, sleek laboratory setting."
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBA1QacxW3sNrQcIkb2M7BRfTt6C9ma7btjL54SL8u7xIDlzbO2SXgNwE7GoxZDxZR0_RQihoSUu9AWuS9MiEhhVajys9epnhVHLDClbIx_qjuS93KjrUn1_jYeA2RqIciep5GRXt4OLctx8XRi25Z-Jpi9tvgXZow4Ta84o9zLPh_GUhi2fV4Z-CPkhUP2sPwCi23FGhxspY_GAWTxuigLgBLdbpnQNw-dEmjjZzF9SG-EjFsWihQ6pXo-EDSspULAsS8Lque7XDWz" />
-                        <div class="absolute inset-0 bg-gradient-to-t from-background to-transparent"></div>
-                    </div>
-                </div>
-                <!-- Contact Form -->
-                <div class="md:col-span-8">
-                    <form
-                        class="glass-panel bg-surface-container/60 border border-white/10 p-8 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
-                        <div class="grid md:grid-cols-2 gap-6 mb-6">
-                            <div class="space-y-2">
-                                <label class="font-label-md text-label-md text-on-surface-variant ml-1">Identity
-                                    Name</label>
-                                <input
-                                    class="w-full bg-surface-container-highest/50 border border-white/10 rounded-lg px-4 py-3 text-on-surface placeholder:text-on-surface-variant/40 focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all"
-                                    placeholder="e.g. Satoshi Nakamoto" type="text" />
-                            </div>
-                            <div class="space-y-2">
-                                <label class="font-label-md text-label-md text-on-surface-variant ml-1">Signal Protocol
-                                    (Email)</label>
-                                <input
-                                    class="w-full bg-surface-container-highest/50 border border-white/10 rounded-lg px-4 py-3 text-on-surface placeholder:text-on-surface-variant/40 focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all"
-                                    placeholder="neural@link.io" type="email" />
-                            </div>
-                        </div>
-                        <div class="space-y-2 mb-6">
-                            <label class="font-label-md text-label-md text-on-surface-variant ml-1">Subject
-                                Vector</label>
-                            <input
-                                class="w-full bg-surface-container-highest/50 border border-white/10 rounded-lg px-4 py-3 text-on-surface placeholder:text-on-surface-variant/40 focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all"
-                                placeholder="Inquiry about API throughput" type="text" />
-                        </div>
-                        <div class="space-y-2 mb-8">
-                            <label class="font-label-md text-label-md text-on-surface-variant ml-1">Data Payload
-                                (Message)</label>
-                            <textarea
-                                class="w-full bg-surface-container-highest/50 border border-white/10 rounded-lg px-4 py-3 text-on-surface placeholder:text-on-surface-variant/40 focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all resize-none"
-                                placeholder="Enter your detailed transmission here..." rows="5"></textarea>
-                        </div>
-                        <button
-                            class="w-full bg-gradient-to-r from-primary to-secondary py-4 rounded-lg font-headline-md text-headline-md text-on-primary-fixed font-bold flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-95 transition-all shadow-[0_0_20px_rgba(210,187,255,0.3)] group"
-                            type="submit">
-                            <span>Transmit Message</span>
-                            <span
-                                class="material-symbols-outlined text-2xl group-hover:translate-x-1 transition-transform"
-                                data-icon="send">send</span>
-                        </button>
-                        <div class="mt-4 flex items-center justify-center gap-2 text-secondary opacity-0 animate-pulse">
-                            <span class="material-symbols-outlined" data-icon="check_circle" data-weight="fill"
-                                style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                            <span class="font-label-md text-label-md">Transmission Successful</span>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </main>
-    <!-- Footer -->
-    <footer class="mt-auto bg-surface-container-lowest border-t border-white/5 py-8 w-full">
-        <div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto gap-4">
-            <div class="font-headline-md text-headline-md text-primary font-bold">
-                NeuraChat
-            </div>
-            <div class="flex gap-6">
-                <a class="font-caption text-caption text-on-surface-variant hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100"
-                    href="/terms.html">Terms</a>
-                <a class="font-caption text-caption text-on-surface-variant hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100"
-                    href="/terms.html">Privacy</a>
-                <a class="font-caption text-caption text-on-surface-variant hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100"
-                    href="/docs.html">Documentation</a>
-                <a class="font-caption text-caption text-primary font-bold hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100"
-                    href="/contact.html">Contact</a>
-            </div>
-            <div class="font-caption text-caption text-on-surface-variant">
-                © 2024 NeuraChat AI. All rights reserved.
-            </div>
-        </div>
-        <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-secondary/20 to-transparent mt-8"></div>
-    </footer>
-    <script src="../js/script.js"></script>
-</body>
 
+    <!-- Contact Card -->
+    <div id="contact-card" class="rounded-2xl border p-8 mb-8">
+
+      <!-- FORM STATE -->
+      <form id="contact-form" novalidate>
+
+        <!-- Full Name -->
+        <div class="mb-5">
+          <label class="block text-sm font-medium mb-1.5" style="color:var(--text-primary)">Full Name</label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+              <i data-lucide="user" class="w-4 h-4" style="color:var(--text-secondary)"></i>
+            </span>
+            <input id="field-name" type="text" placeholder="Your full name"
+              class="w-full rounded-xl pl-10 pr-4 py-2.5 text-sm outline-none transition-all"
+              style="background:var(--bg-surface-2);border:1px solid var(--border);color:var(--text-primary)" />
+          </div>
+          <p id="err-name" class="text-xs mt-1 hidden" style="color:#f87171"></p>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-5">
+          <label class="block text-sm font-medium mb-1.5" style="color:var(--text-primary)">Email Address</label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+              <i data-lucide="mail" class="w-4 h-4" style="color:var(--text-secondary)"></i>
+            </span>
+            <input id="field-email" type="email" placeholder="you@example.com"
+              class="w-full rounded-xl pl-10 pr-4 py-2.5 text-sm outline-none transition-all"
+              style="background:var(--bg-surface-2);border:1px solid var(--border);color:var(--text-primary)" />
+          </div>
+          <p id="err-email" class="text-xs mt-1 hidden" style="color:#f87171"></p>
+        </div>
+
+        <!-- Subject -->
+        <div class="mb-5">
+          <label class="block text-sm font-medium mb-1.5" style="color:var(--text-primary)">Subject</label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+              <i data-lucide="tag" class="w-4 h-4" style="color:var(--text-secondary)"></i>
+            </span>
+            <select id="field-subject"
+              class="w-full rounded-xl pl-10 pr-4 py-2.5 text-sm outline-none transition-all appearance-none cursor-pointer"
+              style="background:var(--bg-surface-2);border:1px solid var(--border);color:var(--text-primary)">
+              <option value="General Inquiry">General Inquiry</option>
+              <option value="Bug Report">Bug Report</option>
+              <option value="Feature Request">Feature Request</option>
+              <option value="Partnership">Partnership</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Message -->
+        <div class="mb-6">
+          <label class="block text-sm font-medium mb-1.5" style="color:var(--text-primary)">Message</label>
+          <textarea id="field-message" rows="6" placeholder="Write your message here..."
+            class="w-full rounded-xl px-4 py-2.5 text-sm outline-none transition-all resize-none"
+            style="background:var(--bg-surface-2);border:1px solid var(--border);color:var(--text-primary)"
+            maxlength="1000"></textarea>
+          <div class="flex justify-between items-center mt-1">
+            <p id="err-message" class="text-xs hidden" style="color:#f87171"></p>
+            <span id="char-count" class="text-xs ml-auto" style="color:var(--text-muted)">0 / 1000</span>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button id="btn-submit" type="submit"
+          class="w-full rounded-xl py-3 text-sm font-semibold flex items-center justify-center gap-2 transition-all overflow-hidden"
+          style="background:var(--accent);color:#000;min-height:48px;max-height:48px"
+          onmouseover="this.style.background='var(--accent-hover)'"
+          onmouseout="this.style.background='var(--accent)'">
+          <i data-lucide="send" class="w-4 h-4"></i>
+          <span id="btn-text">Send Message</span>
+          <svg id="btn-spinner" class="hidden w-4 h-4 animate-spin shrink-0" 
+            viewBox="0 0 24 24" fill="none" 
+            style="min-width:16px;min-height:16px;max-width:16px;max-height:16px">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" 
+            stroke-dasharray="31.4" stroke-dashoffset="10"/>
+          </svg>
+        </button>
+
+      </form>
+
+      <!-- SUCCESS STATE (hidden by default) -->
+      <div id="success-state" class="hidden text-center py-6">
+        <div class="flex justify-center mb-4">
+          <i data-lucide="check-circle" id="success-icon"
+             class="w-16 h-16" style="color:var(--accent)"></i>
+        </div>
+        <h2 class="font-display font-bold text-2xl mb-2" style="color:var(--text-primary)">Message sent!</h2>
+        <p class="mb-6" style="color:var(--text-secondary)">
+          We'll get back to you at
+          <span id="success-email" class="font-medium" style="color:var(--accent)"></span>
+          within 24 hours.
+        </p>
+        <button id="btn-reset"
+          class="text-sm underline underline-offset-2 transition-colors"
+          style="color:var(--accent)">
+          Send another message
+        </button>
+      </div>
+
+    </div><!-- /contact-card -->
+
+    <!-- Alternative Contact -->
+    <div id="alt-contact" class="text-center">
+      <p class="text-sm mb-3" style="color:var(--text-secondary)">Or reach us directly</p>
+
+      <!-- Email copy row -->
+      <div class="inline-flex items-center gap-2 rounded-xl px-4 py-2 mb-6"
+           style="background:var(--bg-surface);border:1px solid var(--border)">
+        <i data-lucide="mail" class="w-4 h-4" style="color:var(--accent)"></i>
+        <span id="support-email-display" class="text-sm font-mono" style="color:var(--accent)">neurachat.support@gmail.com</span>
+        <button id="btn-copy-email" class="ml-1 transition-colors" title="Copy email" style="color:var(--text-secondary)">
+          <i data-lucide="copy" id="copy-icon" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Social links -->
+      <div class="flex items-center justify-center gap-4">
+        <a href="https://github.com/ankush-poonia007" target="_blank" rel="noopener"
+           class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm transition-all"
+           style="border:1px solid var(--border);color:var(--text-secondary)">
+          <i data-lucide="github" class="w-4 h-4"></i>
+          View on GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/ankush-poonia007" target="_blank" rel="noopener"
+           class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm transition-all"
+           style="border:1px solid var(--border);color:var(--text-secondary)">
+          <i data-lucide="linkedin" class="w-4 h-4"></i>
+          Connect on LinkedIn
+        </a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="relative z-10 border-t py-8 px-6" style="border-color:var(--border)">
+  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+    <span class="text-sm" style="color:var(--text-muted)">© 2026 NeuraChat. Built by
+      <a href="https://www.linkedin.com/in/ankush-poonia007" class="hover:underline" style="color:var(--accent)">Ankush Poonia</a>
+    </span>
+    <div class="flex items-center gap-5 text-sm" style="color:var(--text-secondary)">
+      <a href="/index.html" class="hover:text-accent transition-colors">Home</a>
+      <a href="/docs.html" class="hover:text-accent transition-colors">Docs</a>
+      <a href="/terms.html" class="hover:text-accent transition-colors">Terms</a>
+      <a href="https://github.com/ankush-poonia007" target="_blank" class="hover:text-accent transition-colors">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="/js/toast.js"></script>
+<script src="/js/theme.js"></script>
+<script src="/js/cursor.js"></script>
+<script src="/js/animations.js"></script>
+<script src="/js/nav.js"></script>
+<script src="/js/contact.js"></script>
+
+</body>
 </html>

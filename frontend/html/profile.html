@@ -1,162 +1,322 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>NeuraChat - User Profile</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="../js/tailwind-config.js"></script>
-<link rel="stylesheet" href="../css/profile.css">
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeuraChat — Profile</title>
+  <meta name="description" content="Manage your NeuraChat account, membership, and security settings." />
+  <meta property="og:title" content="NeuraChat — Profile" />
+  <meta property="og:description" content="Manage your NeuraChat profile, plan usage, and account security." />
+  <meta property="og:image" content="/static/assets/og-image.png" />
+  <link rel="icon" href="/static/assets/favicon.png" type="image/png" sizes="256x256" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            body: ['DM Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/animations.css" />
 </head>
-<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
-<!-- TopNavBar -->
-<header class="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] z-50 rounded-xl border border-white/10 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl shadow-[0_0_20px_rgba(76,215,246,0.1)]">
-<nav class="flex justify-between items-center px-6 py-3 max-w-7xl mx-auto">
-<div class="font-headline-lg text-headline-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
-                NeuraChat
-            </div>
-<div class="hidden md:flex gap-8 items-center">
-<a class="font-headline-md text-headline-md text-on-surface-variant hover:text-primary transition-colors hover:scale-105 transition-transform duration-200" href="/">Home</a>
-<a class="font-headline-md text-headline-md text-on-surface-variant hover:text-primary transition-colors hover:scale-105 transition-transform duration-200" href="/chat.html">Chat</a>
-<a class="font-headline-md text-headline-md text-on-surface-variant hover:text-primary transition-colors hover:scale-105 transition-transform duration-200" href="/docs.html">Docs</a>
-<a class="font-headline-md text-headline-md text-secondary border-b-2 border-secondary pb-1 hover:scale-105 transition-transform duration-200" href="/profile.html">Profile</a>
-</div>
-<div class="flex items-center gap-4">
-<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="notifications">notifications</span>
-<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="settings">settings</span>
-<div class="w-10 h-10 rounded-full border-2 border-primary/30 overflow-hidden cursor-pointer hover:scale-110 transition-transform active:scale-95">
-<img alt="Profile" class="w-full h-full object-cover" data-alt="A highly detailed close-up portrait of a professional male software developer in a futuristic, dimly lit workspace. Soft purple and cyan ambient lighting catches the edges of his face and glasses. The background is a soft blur of glowing digital screens and neural network patterns, maintaining a high-end tech-savvy aesthetic consistent with the NeuraChat brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4IvCLyZR0WRama6wL2Fc8p7baOs_0ED0ARTLZNPScMclSBFZq4xWs782QMb0qDBVNoNo_5bWZ1DHYg495grdtF9Hia1RH5FilHn82MhDCPbUaJZ-wOaEujRoTUpxjuIDAhT9bHyLzTYxS_dioJqqJMWy8dox_zbdzAzwJdu4v20_4pQZLjQA4-3oanl1Gy76PwfnaVqegALXovNe8tztKvtHHt09SWZAh_PkxXy7nvxG6hRuikST80LjxqDNlJ6PR4HHP16rZHXil"/>
-</div>
-</div>
-</nav>
-</header>
-<main class="pt-32 pb-24 px-4 md:px-8 max-w-7xl mx-auto">
-<!-- Hero Profile Section -->
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
-<!-- Left Column: Avatar & Quick Info -->
-<div class="lg:col-span-4 flex flex-col gap-6">
-<div class="glass-card rounded-3xl p-8 flex flex-col items-center text-center relative overflow-hidden group">
-<!-- Glow effect -->
-<div class="absolute -top-24 -right-24 w-48 h-48 bg-primary/20 blur-[60px] rounded-full"></div>
-<div class="relative w-32 h-32 mb-6 group cursor-pointer">
-<div class="absolute inset-0 rounded-full border-2 border-primary animate-pulse opacity-50"></div>
-<img alt="Avatar" class="w-full h-full object-cover rounded-full border-4 border-surface-container shadow-xl" data-alt="A high-resolution, centered portrait of a tech professional with short hair and modern glasses. The lighting is sophisticated, with violet rim lighting and a deep dark background. The image is crisp and professional, fitting perfectly into a futuristic dashboard interface. The skin texture is realistic, and the overall mood is intelligent and focused." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2cyFkE_JY8MTiMKY2PHwL_ZMlHtIP2x45oIUrL9XyhM4hKxrsVLRIw9ZMfQx1tffSvyA2FhIpgIeIznZcBNKdwYwNHovdWRa6knk53Tt9WZ0Kdfat06Of9-cQqfOvSNhyVR1FX1z0REjUS8CCHRtOwwyIu3M-8Fd5raEGWkAuYNfcVOs4VkeY7nenJAWyFWAoYKSzK4NCUxK3kXLswaAuBtJIZhzim-awyA08HkkJDGjeCg7cKk_XU29ec6Z8kuRsvOR6J2YcjFYi"/>
-<div class="absolute inset-0 flex items-center justify-center bg-background/60 rounded-full opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
-<span class="material-symbols-outlined text-primary text-3xl" data-icon="photo_camera">photo_camera</span>
-<span class="absolute bottom-2 text-[10px] font-label-md uppercase tracking-widest text-primary">Change Photo</span>
-</div>
-</div>
-<h2 class="font-headline-lg text-headline-lg text-on-surface mb-1">Alex Thorne</h2>
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-label-md mb-4">
-<span class="material-symbols-outlined text-sm" data-icon="verified" data-weight="fill">verified</span>
-                        PRO MEMBER
-                    </div>
-<p class="font-body-md text-on-surface-variant mb-6">Senior AI Architect focusing on neural networks and generative interfaces.</p>
-<div class="w-full h-px bg-white/5 mb-6"></div>
-<div class="flex items-center justify-between w-full mb-4">
-<span class="font-label-md text-on-surface-variant">Theme Mode</span>
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-on-surface-variant" data-icon="light_mode">light_mode</span>
-<button id="themeToggle" class="relative w-14 h-7 rounded-full bg-surface-container-highest border border-white/10 p-1 flex items-center">
-<div id="themeToggleHandle" class="w-5 h-5 rounded-full bg-gradient-to-r from-primary to-secondary shadow-lg translate-x-7 transition-transform"></div>
-</button>
-<span class="material-symbols-outlined text-primary" data-icon="dark_mode">dark_mode</span>
-</div>
-</div>
-</div>
-<!-- Stats Cards -->
-<div class="grid grid-cols-2 gap-4">
-<div class="glass-card rounded-2xl p-6 flex flex-col gap-2">
-<span class="material-symbols-outlined text-secondary" data-icon="chat_bubble">chat_bubble</span>
-<div class="text-secondary font-display-lg text-headline-lg">1,248</div>
-<div class="text-caption text-on-surface-variant uppercase tracking-widest">Messages Sent</div>
-</div>
-<div class="glass-card rounded-2xl p-6 flex flex-col gap-2">
-<span class="material-symbols-outlined text-primary" data-icon="token">token</span>
-<div class="text-primary font-display-lg text-headline-lg">84%</div>
-<div class="text-caption text-on-surface-variant uppercase tracking-widest">AI Credits</div>
-</div>
-</div>
-</div>
-<!-- Right Column: Form Fields -->
-<div class="lg:col-span-8 flex flex-col gap-8">
-<!-- Profile Settings -->
-<div class="glass-card rounded-3xl p-8 lg:p-10">
-<div class="flex items-center gap-3 mb-10">
-<span class="material-symbols-outlined text-primary text-3xl" data-icon="person_edit">person_edit</span>
-<h3 class="font-headline-lg text-headline-lg text-on-surface">Account Settings</h3>
-</div>
-<form class="space-y-8">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-<div class="flex flex-col gap-2">
-<label class="font-label-md text-on-surface-variant px-1">Display Name</label>
-<input class="bg-surface-container-low border border-white/5 rounded-xl px-4 py-3 focus:ring-2 focus:ring-secondary/50 focus:border-secondary outline-none transition-all text-on-surface" type="text" value="Alex Thorne"/>
-</div>
-<div class="flex flex-col gap-2">
-<label class="font-label-md text-on-surface-variant px-1">Email Address</label>
-<input class="bg-surface-container-low border border-white/5 rounded-xl px-4 py-3 focus:ring-2 focus:ring-secondary/50 focus:border-secondary outline-none transition-all text-on-surface" type="email" value="alex.thorne@neura.ai"/>
-</div>
-</div>
-<div class="flex flex-col gap-2">
-<label class="font-label-md text-on-surface-variant px-1">Professional Bio</label>
-<textarea class="bg-surface-container-low border border-white/5 rounded-xl px-4 py-3 focus:ring-2 focus:ring-secondary/50 focus:border-secondary outline-none transition-all text-on-surface resize-none" rows="4">I design experiences where human intuition meets artificial intelligence. Passionate about LLMs and real-time inference systems.</textarea>
-</div>
-<div class="flex justify-end pt-4">
-<button class="bg-gradient-to-r from-primary-container to-inverse-primary text-on-primary-container font-label-md px-8 py-3 rounded-xl hover:scale-105 active:scale-95 transition-all shadow-lg neon-border-primary">
-                                Save Profile Changes
-                            </button>
-</div>
-</form>
-</div>
-<!-- Security Section -->
-<div class="glass-card rounded-3xl p-8 lg:p-10">
-<div class="flex items-center justify-between mb-8">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-secondary text-3xl" data-icon="lock">lock</span>
-<h3 class="font-headline-lg text-headline-lg text-on-surface">Security</h3>
-</div>
-<span class="text-caption text-secondary flex items-center gap-1 font-semibold uppercase tracking-widest">
-<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
-                            Encrypted Session
-                        </span>
-</div>
-<div class="bg-surface-container-low/50 border border-white/5 rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-6">
-<div class="flex flex-col gap-1">
-<div class="font-headline-md text-headline-md text-on-surface">Password</div>
-<div class="font-body-md text-on-surface-variant">Last changed 3 months ago</div>
-</div>
-<button class="bg-surface-variant text-on-surface font-label-md px-6 py-3 rounded-xl border border-white/10 hover:bg-surface-container-highest transition-colors active:scale-95">
-                            Update Password
-                        </button>
-</div>
-<div class="mt-8 flex items-start gap-4 p-4 rounded-xl bg-secondary/5 border border-secondary/10">
-<span class="material-symbols-outlined text-secondary" data-icon="info">info</span>
-<p class="font-caption text-on-surface-variant">Two-factor authentication is currently <span class="text-secondary font-bold">Enabled</span>. Your account is protected by your primary biometric device.</p>
-</div>
-</div>
-</div>
-</div>
-</main>
-<!-- Footer -->
-<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest w-full py-8 border-t border-white/5 relative">
-<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent pointer-events-none"></div>
-<div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto gap-4 relative z-10">
-<div class="font-headline-md text-headline-md text-primary font-bold">
-                NeuraChat
-            </div>
-<div class="flex gap-6">
-<a class="font-caption text-caption text-on-surface-variant hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100" href="/terms.html">Terms</a>
-<a class="font-caption text-caption text-on-surface-variant hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100" href="/terms.html">Privacy</a>
-<a class="font-caption text-caption text-on-surface-variant hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100" href="/docs.html">Documentation</a>
-<a class="font-caption text-caption text-on-surface-variant hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100" href="/contact.html">Contact</a>
-</div>
-<div class="font-caption text-caption text-on-surface-variant opacity-60">
-                © 2024 NeuraChat AI. All rights reserved.
-            </div>
-</div>
-</footer>
-</body></html>
+<body class="bg-app text-app font-body antialiased overflow-x-hidden min-h-screen flex flex-col">
+  <script src="/js/protect.js"></script>
+  <script>
+    try {
+      sessionStorage.setItem('neurachat-preloader-shown', '1');
+    } catch (_) {}
+  </script>
+  <canvas id="particle-canvas" class="fixed inset-0 z-0 pointer-events-none opacity-40" aria-hidden="true"></canvas>
 
+  <div id="nav-root" class="relative z-[60]"></div>
+
+  <div class="relative z-10 flex flex-col flex-1 min-h-screen">
+    <main class="flex-1 px-4 sm:px-6 pt-28 pb-16">
+      <div class="max-w-2xl mx-auto w-full">
+        <div class="mb-10 text-center sm:text-left">
+          <h1 class="font-display font-bold text-2xl sm:text-3xl text-[var(--text-primary)] mb-2">Your Profile</h1>
+          <p class="text-sm text-[var(--text-secondary)]">Manage your account, plan, and security settings.</p>
+        </div>
+
+        <div id="profile-cards" class="stagger-cards space-y-6">
+          <!-- Card 1: Profile Info -->
+          <article id="card-profile" class="stagger-card card-app rounded-2xl border border-[var(--border)] bg-[var(--bg-surface)] p-6 sm:p-8">
+            <h2 class="font-display font-bold text-lg text-[var(--text-primary)] mb-6">Profile Info</h2>
+            <form id="profile-form" class="space-y-6" novalidate>
+              <div class="flex flex-col sm:flex-row gap-6 sm:gap-8">
+                <div class="flex flex-col items-center sm:items-start shrink-0">
+                  <img
+                    id="profile-avatar"
+                    src=""
+                    alt="Your avatar"
+                    width="80"
+                    height="80"
+                    class="w-20 h-20 rounded-full border-2 border-[var(--border-accent)] bg-[var(--bg-surface-2)] object-cover"
+                  />
+                  <button
+                    type="button"
+                    id="profile-change-avatar"
+                    class="mt-3 text-sm font-medium text-[var(--accent)] hover:underline transition-colors"
+                  >
+                    Change Avatar
+                  </button>
+                </div>
+                <div class="flex-1 space-y-4 w-full min-w-0">
+                  <div>
+                    <label for="profile-display-name" class="block text-sm font-medium text-[var(--text-primary)] mb-1.5">Display name</label>
+                    <input
+                      id="profile-display-name"
+                      name="display_name"
+                      type="text"
+                      autocomplete="name"
+                      required
+                      class="w-full rounded-xl border border-[var(--border)] bg-[var(--bg-surface-2)] px-4 py-3 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] outline-none transition-all duration-200 focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent-glow-strong)]"
+                      placeholder="Your display name"
+                    />
+                    <p id="profile-display-name-error" class="mt-1.5 text-sm text-red-400 hidden" role="alert"></p>
+                  </div>
+                  <div>
+                    <label for="profile-email" class="block text-sm font-medium text-[var(--text-primary)] mb-1.5">Email</label>
+                    <input
+                      id="profile-email"
+                      type="email"
+                      readonly
+                      tabindex="-1"
+                      class="w-full rounded-xl border border-[var(--border)] bg-[var(--bg-hover)] px-4 py-3 text-sm text-[var(--text-muted)] cursor-not-allowed outline-none"
+                    />
+                  </div>
+                  <div>
+                    <span class="block text-sm font-medium text-[var(--text-primary)] mb-1.5">Member since</span>
+                    <p id="profile-member-since" class="text-sm text-[var(--text-secondary)]">—</p>
+                  </div>
+                </div>
+              </div>
+              <button
+                type="submit"
+                id="profile-save-btn"
+                class="relative inline-flex items-center justify-center gap-2 rounded-xl py-3 px-6 text-sm font-semibold text-[#0f1117] bg-[var(--accent)] hover:bg-[var(--accent-hover)] shadow-[var(--shadow-accent)] transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-70 disabled:pointer-events-none"
+              >
+                <span id="profile-save-label">Save Changes</span>
+                <span id="profile-save-spinner" class="hidden absolute inset-0 flex items-center justify-center" aria-hidden="true">
+                  <svg class="animate-spin h-5 w-5 text-[#0f1117]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                </span>
+              </button>
+            </form>
+          </article>
+
+          <!-- Card 2: Membership -->
+          <article id="card-membership" class="stagger-card card-app rounded-2xl border border-[var(--border)] bg-[var(--bg-surface)] p-6 sm:p-8">
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+              <h2 class="font-display font-bold text-lg text-[var(--text-primary)]">Membership</h2>
+              <span id="profile-plan-badge" class="inline-flex items-center rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wide bg-[var(--bg-surface-2)] text-[var(--text-muted)]">FREE</span>
+            </div>
+            <p id="profile-usage-text" class="text-sm text-[var(--text-secondary)] mb-3">0 of 50 messages used this month</p>
+            <div class="h-2 w-full rounded-full bg-[var(--bg-hover)] overflow-hidden mb-3">
+              <div id="profile-usage-bar" class="h-full rounded-full bg-[var(--accent)] transition-all duration-500" style="width: 0%"></div>
+            </div>
+            <p id="profile-reset-text" class="text-xs text-[var(--text-muted)] mb-5">Resets on —</p>
+            <button
+              type="button"
+              id="profile-upgrade-btn"
+              class="hidden inline-flex items-center gap-1 text-sm font-semibold text-[var(--accent)] hover:underline transition-colors"
+            >
+              Upgrade to Pro →
+            </button>
+          </article>
+
+          <!-- Card 3: Security -->
+          <article id="card-security" class="stagger-card card-app rounded-2xl border border-[var(--border)] bg-[var(--bg-surface)] p-6 sm:p-8">
+            <h2 class="font-display font-bold text-lg text-[var(--text-primary)] mb-5">Security</h2>
+            <button
+              type="button"
+              id="profile-toggle-password"
+              class="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg-surface-2)] px-4 py-2.5 text-sm font-medium text-[var(--text-primary)] hover:bg-[var(--bg-hover)] hover:border-[var(--border-accent)] transition-all"
+            >
+              <i data-lucide="lock" class="w-4 h-4 text-[var(--accent)]"></i>
+              Change Password
+            </button>
+            <div
+              id="password-panel"
+              class="grid transition-[grid-template-rows] duration-300 ease-out"
+              style="grid-template-rows: 0fr"
+              aria-hidden="true"
+            >
+              <div class="overflow-hidden">
+                <form id="password-form" class="pt-6 space-y-5" novalidate>
+                  <div>
+                    <label for="password-current" class="block text-sm font-medium text-[var(--text-primary)] mb-1.5">Current password</label>
+                    <div class="relative">
+                      <input
+                        id="password-current"
+                        type="password"
+                        autocomplete="current-password"
+                        class="w-full rounded-xl border border-[var(--border)] bg-[var(--bg-surface-2)] pl-4 pr-12 py-3 text-sm text-[var(--text-primary)] outline-none transition-all duration-200 focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent-glow-strong)]"
+                      />
+                      <button
+                        type="button"
+                        class="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-lg text-[var(--text-muted)] hover:text-[var(--accent)] hover:bg-[var(--bg-hover)] transition-all"
+                        data-toggle-password="password-current"
+                        aria-label="Show password"
+                      >
+                        <i data-lucide="eye" class="w-5 h-5 js-pw-icon-show"></i>
+                        <i data-lucide="eye-off" class="w-5 h-5 js-pw-icon-hide hidden"></i>
+                      </button>
+                    </div>
+                    <p id="password-current-error" class="mt-1.5 text-sm text-red-400 hidden" role="alert"></p>
+                  </div>
+                  <div>
+                    <label for="password-new" class="block text-sm font-medium text-[var(--text-primary)] mb-1.5">New password</label>
+                    <div class="relative">
+                      <input
+                        id="password-new"
+                        type="password"
+                        autocomplete="new-password"
+                        minlength="8"
+                        class="w-full rounded-xl border border-[var(--border)] bg-[var(--bg-surface-2)] pl-4 pr-12 py-3 text-sm text-[var(--text-primary)] outline-none transition-all duration-200 focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent-glow-strong)]"
+                      />
+                      <button
+                        type="button"
+                        class="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-lg text-[var(--text-muted)] hover:text-[var(--accent)] hover:bg-[var(--bg-hover)] transition-all"
+                        data-toggle-password="password-new"
+                        aria-label="Show password"
+                      >
+                        <i data-lucide="eye" class="w-5 h-5 js-pw-icon-show"></i>
+                        <i data-lucide="eye-off" class="w-5 h-5 js-pw-icon-hide hidden"></i>
+                      </button>
+                    </div>
+                    <div class="mt-3 space-y-1.5">
+                      <div class="h-1.5 w-full rounded-full bg-[var(--bg-hover)] overflow-hidden flex">
+                        <div id="password-strength-bar" class="h-full w-0 transition-all duration-300 rounded-full bg-red-500"></div>
+                      </div>
+                      <p id="password-strength-text" class="text-xs font-medium text-[var(--text-muted)]">Password strength</p>
+                    </div>
+                    <p id="password-new-error" class="mt-1.5 text-sm text-red-400 hidden" role="alert"></p>
+                  </div>
+                  <div>
+                    <label for="password-confirm" class="block text-sm font-medium text-[var(--text-primary)] mb-1.5">Confirm new password</label>
+                    <div class="relative">
+                      <input
+                        id="password-confirm"
+                        type="password"
+                        autocomplete="new-password"
+                        class="w-full rounded-xl border border-[var(--border)] bg-[var(--bg-surface-2)] pl-4 pr-20 py-3 text-sm text-[var(--text-primary)] outline-none transition-all duration-200 focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent-glow-strong)]"
+                      />
+                      <span id="password-confirm-match" class="pointer-events-none absolute right-12 top-1/2 -translate-y-1/2 hidden text-emerald-400" aria-hidden="true">
+                        <i data-lucide="check" class="w-5 h-5"></i>
+                      </span>
+                      <span id="password-confirm-mismatch" class="pointer-events-none absolute right-12 top-1/2 -translate-y-1/2 hidden text-red-400" aria-hidden="true">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                      </span>
+                      <button
+                        type="button"
+                        class="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-lg text-[var(--text-muted)] hover:text-[var(--accent)] hover:bg-[var(--bg-hover)] transition-all"
+                        data-toggle-password="password-confirm"
+                        aria-label="Show password"
+                      >
+                        <i data-lucide="eye" class="w-5 h-5 js-pw-icon-show"></i>
+                        <i data-lucide="eye-off" class="w-5 h-5 js-pw-icon-hide hidden"></i>
+                      </button>
+                    </div>
+                    <p id="password-confirm-error" class="mt-1.5 text-sm text-red-400 hidden" role="alert"></p>
+                  </div>
+                  <div class="flex flex-wrap items-center gap-4 pt-1">
+                    <button
+                      type="submit"
+                      id="password-submit-btn"
+                      class="relative inline-flex items-center justify-center rounded-xl py-3 px-6 text-sm font-semibold text-[#0f1117] bg-[var(--accent)] hover:bg-[var(--accent-hover)] shadow-[var(--shadow-accent)] transition-all disabled:opacity-70 disabled:pointer-events-none"
+                    >
+                      <span id="password-submit-label">Update Password</span>
+                      <span id="password-submit-spinner" class="hidden absolute inset-0 flex items-center justify-center" aria-hidden="true">
+                        <svg class="animate-spin h-5 w-5 text-[#0f1117]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                      </span>
+                    </button>
+                    <button type="button" id="password-cancel" class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4: Danger Zone -->
+          <article id="card-danger" class="stagger-card card-app rounded-2xl border border-red-500/40 bg-red-500/5 p-6 sm:p-8">
+            <h2 class="font-display font-bold text-lg text-red-400 mb-2">Danger Zone</h2>
+            <p class="text-sm text-[var(--text-secondary)] mb-5">Permanently delete your account and all chat history.</p>
+            <button
+              type="button"
+              id="profile-delete-open"
+              class="inline-flex items-center justify-center rounded-xl border border-red-500/60 px-5 py-2.5 text-sm font-semibold text-red-400 hover:bg-red-500/10 transition-all"
+            >
+              Delete Account
+            </button>
+          </article>
+        </div>
+      </div>
+    </main>
+
+    <footer class="relative z-10 border-t border-[var(--border)] bg-[var(--bg-surface)]/50 py-10 px-4 sm:px-6 mt-auto">
+      <div class="max-w-6xl mx-auto flex flex-col sm:flex-row gap-6 sm:justify-between sm:items-center">
+        <div>
+          <p class="font-display font-bold text-lg text-[var(--text-primary)]">NeuraChat</p>
+          <p class="text-[var(--text-secondary)] text-sm mt-1">Built by Ankush Poonia</p>
+        </div>
+        <div class="flex flex-wrap gap-4 justify-center sm:justify-end">
+          <a href="https://github.com/ankush-poonia007/AI-Chatbot-Agentic-AI-NLP" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-full border border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--accent)] hover:border-[var(--border-accent)] transition-all" aria-label="GitHub">
+            <i data-lucide="github" class="w-5 h-5"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/ankush-poonia007" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-full border border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--accent)] hover:border-[var(--border-accent)] transition-all" aria-label="LinkedIn">
+            <i data-lucide="linkedin" class="w-5 h-5"></i>
+          </a>
+        </div>
+      </div>
+      <p class="text-center text-xs text-[var(--text-muted)] mt-8">© 2026 NeuraChat. Open source portfolio project.</p>
+    </footer>
+  </div>
+
+  <!-- Delete confirmation modal -->
+  <div id="delete-modal" class="fixed inset-0 z-[200] hidden items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="delete-modal-title">
+    <div id="delete-modal-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+    <div class="relative w-full max-w-md rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] p-6 sm:p-8 shadow-[var(--shadow)]">
+      <h3 id="delete-modal-title" class="font-display font-bold text-xl text-[var(--text-primary)] mb-3">Are you sure?</h3>
+      <p class="text-sm text-[var(--text-secondary)] mb-6">
+        This will permanently delete your account, profile, and all chat history. This action cannot be undone.
+      </p>
+      <div class="flex flex-wrap gap-3 justify-end">
+        <button type="button" id="delete-modal-cancel" class="rounded-xl border border-[var(--border)] px-5 py-2.5 text-sm font-medium text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] transition-all">
+          Cancel
+        </button>
+        <button type="button" id="delete-modal-confirm" class="rounded-xl bg-red-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-red-500 transition-all disabled:opacity-70">
+          Delete My Account
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="/js/toast.js"></script>
+  <script src="/js/theme.js"></script>
+  <script src="/js/nav.js"></script>
+  <script src="/js/cursor.js"></script>
+  <script src="/js/animations.js"></script>
+  <script src="/js/profile.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

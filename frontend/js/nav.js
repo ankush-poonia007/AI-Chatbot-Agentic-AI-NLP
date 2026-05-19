@@ -13,9 +13,9 @@
       <span class="font-display font-bold text-lg tracking-tight text-[var(--text-primary)]">NeuraChat</span>
     </a>
     <div class="hidden lg:flex items-center gap-8 text-sm font-medium text-[var(--text-secondary)]">
-      <a href="#features" class="hover:text-[var(--accent)] transition-colors">Features</a>
+      <a href="/#features" class="hover:text-[var(--accent)] transition-colors">Features</a>
       <a href="/docs.html" class="hover:text-[var(--accent)] transition-colors">Docs</a>
-      <a href="#pricing" class="hover:text-[var(--accent)] transition-colors">Pricing</a>
+      <a href="/#pricing" class="hover:text-[var(--accent)] transition-colors">Pricing</a>
       <a href="/contact.html" class="hover:text-[var(--accent)] transition-colors">Contact</a>
     </div>
     <div class="flex items-center gap-2 sm:gap-3">
@@ -38,9 +38,9 @@
     </button>
   </div>
   <div class="flex flex-col gap-6 p-8 text-lg font-medium text-[var(--text-primary)]">
-    <a href="#features" class="nav-overlay-link">Features</a>
+    <a href="/#features" class="nav-overlay-link">Features</a>
     <a href="/docs.html" class="nav-overlay-link">Docs</a>
-    <a href="#pricing" class="nav-overlay-link">Pricing</a>
+    <a href="/#pricing" class="nav-overlay-link">Pricing</a>
     <a href="/contact.html" class="nav-overlay-link">Contact</a>
     <a href="/login.html" class="mt-4 text-[var(--accent)]">Login</a>
   </div>

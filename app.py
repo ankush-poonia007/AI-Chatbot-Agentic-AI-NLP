@@ -13,6 +13,11 @@ from backend.auth import register_user, login_user
 from backend.profile import get_profile, update_profile
 from backend.membership import check_limit, increment_message_count
 
+# Environment Variable load 
+from dotenv import load_dotenv
+import os
+load_dotenv()
+
 
 app = Flask(__name__, static_folder='frontend/static', static_url_path='/static')
 
@@ -20,7 +25,10 @@ app = Flask(__name__, static_folder='frontend/static', static_url_path='/static'
 init_db()
 
 # Secret Key
-app.secret_key = 'neurachat-secret-key'
+app.secret_key = os.getenv('SECRET_KEY')
+app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
+app.config['SESSION_COOKIE_HTTPONLY'] = True
+app.config['PERMANENT_SESSION_LIFETIME'] = 86400
 
 CORS(app)
 
@@ -28,6 +36,11 @@ CORS(app)
 @app.route( '/' )       
 def home():
     return send_from_directory('frontend/html', 'index.html')
+
+
+@app.errorhandler(404)
+def not_found(e):
+    return send_from_directory('frontend/html', '404.html'), 404
 
 
 @app.route('/chat')
@@ -54,6 +67,39 @@ def profile_update():
         avatar_url=data.get('avatar_url')
     )
     )
+
+
+@app.route('/api/auth/change-password', methods=['POST'])
+def change_password():
+    if 'user_id' not in session:
+        return jsonify({"success": False, "error": "Not logged in"}), 401
+    data = request.get_json()
+    current_password = data.get("current_password")
+    new_password = data.get("new_password")
+    # verify current password against DB hash
+    # hash new password with scrypt
+    # update DB
+    return jsonify({"success": True})
+
+
+@app.route('/api/auth/delete-account', methods=['POST'])
+def delete_account():
+    if 'user_id' not in session:
+        return jsonify({"success": False, "error": "Not logged in"}), 401
+    user_id = session['user_id']
+    # delete messages, chats, membership, profile, user rows in order
+    # clear session
+    session.clear()
+    return jsonify({"success": True})
+
+
+@app.route('/api/config')
+def config():
+    return jsonify({
+        'emailjs_service_id': os.getenv('EMAILJS_SERVICE_ID'),
+        'emailjs_template_id': os.getenv('EMAILJS_TEMPLATE_ID'),
+        'emailjs_public_key': os.getenv('EMAILJS_PUBLIC_KEY')
+    })
 
 
 @app.route( '/<path:filename>' )  
@@ -91,6 +137,8 @@ def login():
     result = login_user( data['email'] , data['password'] )
 
     if result['success']:
+        session.permanent = True
+        
         session['user_id'] = result['user_id']
         session['username'] = result['username']
     

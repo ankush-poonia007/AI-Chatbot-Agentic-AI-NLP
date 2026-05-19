@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeuraChat — Page Not Found</title>
+  <meta name="description" content="The page you are looking for does not exist." />
+  <meta property="og:image" content="/static/assets/og-image.png" />
+  <link rel="icon" href="/static/assets/favicon.png" type="image/png" sizes="256x256" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            body: ['DM Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/animations.css" />
+</head>
+<body class="bg-app text-app font-body antialiased overflow-hidden h-screen">
+  <script>
+    try {
+      sessionStorage.setItem('neurachat-preloader-shown', '1');
+    } catch (_) {}
+  </script>
+  <canvas id="particle-canvas" class="fixed inset-0 z-0 pointer-events-none opacity-40" aria-hidden="true"></canvas>
+
+  <button
+    type="button"
+    data-theme-toggle
+    class="fixed top-4 right-4 z-20 p-2.5 rounded-full border border-[var(--border)] bg-[var(--bg-surface)] text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-all"
+    aria-label="Toggle theme"
+  >
+    <i data-theme-icon data-lucide="sun" class="w-5 h-5"></i>
+  </button>
+
+  <a
+    id="404-logo"
+    href="/"
+    class="fixed top-8 left-1/2 -translate-x-1/2 z-10 inline-flex items-center gap-2 group"
+    aria-label="NeuraChat home"
+  >
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="shrink-0">
+      <circle cx="16" cy="16" r="6" fill="#22d3ee" class="transition-transform group-hover:scale-110 origin-center" />
+      <circle cx="16" cy="16" r="12" stroke="#22d3ee" stroke-opacity="0.5" stroke-width="1.5" />
+    </svg>
+    <span class="font-display font-bold text-xl tracking-tight text-[var(--text-primary)]">NeuraChat</span>
+  </a>
+
+  <main class="relative z-10 flex h-full items-center justify-center px-4 sm:px-6">
+    <div class="flex flex-col items-center text-center">
+      <p
+        id="404-code"
+        class="font-display font-extrabold leading-none tracking-tight text-[var(--accent)] text-[clamp(6rem,15vw,10rem)]"
+        style="text-shadow: 0 0 40px var(--accent-glow-strong)"
+        aria-hidden="true"
+      >
+        404
+      </p>
+
+      <h1 id="404-heading" class="font-display font-bold text-[2rem] text-[var(--text-primary)] mt-4 mb-3">
+        Page not found
+      </h1>
+
+      <p id="404-sub" class="text-[var(--text-secondary)] text-sm sm:text-base max-w-[360px] mb-8">
+        Looks like you followed a broken link or typed the wrong URL.
+      </p>
+
+      <a
+        id="404-cta"
+        href="/"
+        class="inline-flex items-center justify-center gap-2 rounded-full py-3.5 px-6 text-sm font-semibold text-[#0f1117] bg-[var(--accent)] hover:bg-[var(--accent-hover)] shadow-[var(--shadow-accent)] transition-all duration-200 hover:scale-[1.02] hover:shadow-[0_0_24px_var(--accent-glow-strong)]"
+      >
+        <i data-lucide="arrow-left" class="w-4 h-4" aria-hidden="true"></i>
+        Back to NeuraChat
+      </a>
+
+      <p id="404-links" class="mt-6 text-xs text-[var(--text-muted)]">
+        or go to
+        <a href="/login.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">Login</a>
+        <span class="mx-1.5 text-[var(--border)]" aria-hidden="true">|</span>
+        <a href="/docs.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">Docs</a>
+        <span class="mx-1.5 text-[var(--border)]" aria-hidden="true">|</span>
+        <a href="/contact.html" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">Contact</a>
+      </p>
+    </div>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="/js/toast.js"></script>
+  <script src="/js/theme.js"></script>
+  <script src="/js/cursor.js"></script>
+  <script src="/js/animations.js"></script>
+  <script>
+    lucide.createIcons();
+
+    (function () {
+      if (typeof gsap === 'undefined') return;
+
+      const targets = ['#404-logo', '#404-code', '#404-heading', '#404-sub', '#404-cta', '#404-links'];
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (reduce) {
+        gsap.set(targets, { opacity: 1, y: 0, scale: 1 });
+        return;
+      }
+
+      gsap.set('#404-logo', { opacity: 0 });
+      gsap.set('#404-code', { opacity: 0, y: 40 });
+      gsap.set('#404-heading', { opacity: 0 });
+      gsap.set('#404-sub', { opacity: 0 });
+      gsap.set('#404-cta', { opacity: 0, scale: 0.9 });
+      gsap.set('#404-links', { opacity: 0 });
+
+      const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+      tl.to('#404-logo', { opacity: 1, duration: 0.3 })
+        .to('#404-code', { opacity: 1, y: 0, duration: 0.5 })
+        .to('#404-heading', { opacity: 1, duration: 0.3 }, '+=0.1')
+        .to('#404-sub', { opacity: 1, duration: 0.3 }, '+=0.1')
+        .to('#404-cta', { opacity: 1, scale: 1, duration: 0.3 })
+        .to('#404-links', { opacity: 1, duration: 0.2 });
+    })();
+  </script>
+</body>
+</html>

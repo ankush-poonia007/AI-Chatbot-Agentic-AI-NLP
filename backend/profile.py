@@ -8,7 +8,7 @@ def get_profile(user_id):
         row = db.execute(
             """
             SELECT p.user_id, p.display_name, p.bio, p.avatar_url,
-                   u.username, u.plan, u.message_count
+                   u.username, u.email, u.plan, u.message_count, u.created_at
             FROM profiles p
             JOIN users u ON u.user_id = p.user_id
             WHERE p.user_id = ?
@@ -35,6 +35,8 @@ def get_profile(user_id):
             "success": True,
             "profile": profile,
             "username": r["username"],
+            "email": r["email"],
+            "created_at": r["created_at"],
             "plan": plan,
             "message_count": int(r["message_count"] or 0),
             "message_limit": message_limit,

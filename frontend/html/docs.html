@@ -1,237 +1,542 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>NeuraChat Documentation</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="../js/tailwind-config.js"></script>
-<link rel="stylesheet" href="../css/docs.css">
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeuraChat Docs — Documentation</title>
+  <meta name="description" content="Complete documentation for NeuraChat — architecture, API reference, security, and more." />
+  <meta property="og:title" content="NeuraChat Docs — Documentation" />
+  <meta property="og:description" content="Complete documentation for NeuraChat — architecture, API reference, security, and more." />
+  <meta property="og:image" content="/static/assets/og-image.png" />
+  <link rel="icon" href="/static/assets/favicon.png" type="image/png" sizes="256x256" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            body: ['DM Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/animations.css" />
 </head>
-<body class="bg-background text-on-surface font-body-md min-h-screen selection:bg-primary/30">
-<!-- TopNavBar -->
-<header class="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] z-50 rounded-xl border border-white/10 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl shadow-[0_0_20px_rgba(76,215,246,0.1)]">
-<nav class="flex justify-between items-center px-6 py-3 max-w-7xl mx-auto">
-<div class="flex items-center gap-8">
-<span class="font-headline-lg text-headline-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">NeuraChat</span>
-<div class="hidden md:flex gap-6">
-<a class="text-on-surface-variant hover:text-primary transition-colors hover:scale-105 transition-transform duration-200" href="/">Home</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors hover:scale-105 transition-transform duration-200" href="/chat.html">Chat</a>
-<a class="text-secondary border-b-2 border-secondary pb-1 hover:scale-105 transition-transform duration-200" href="/docs.html">Docs</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors hover:scale-105 transition-transform duration-200" href="/contact.html">Contact</a>
-</div>
-</div>
-<!-- Search Bar Integration -->
-<div class="hidden lg:flex flex-1 max-w-md mx-8">
-<div class="w-full relative group">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-secondary">search</span>
-<input class="w-full bg-surface-container-high/50 border border-white/5 rounded-full py-2 pl-10 pr-4 text-on-surface focus:outline-none focus:ring-1 focus:ring-secondary/50 backdrop-blur-sm" placeholder="Search documentation..." type="text"/>
-</div>
-</div>
-<div class="flex items-center gap-4">
-<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">notifications</button>
-<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">settings</button>
-<div class="flex items-center gap-2 pl-4 border-l border-white/10">
-<img alt="User profile avatar" class="w-8 h-8 rounded-full border border-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBN-2bcyDvfkcGiQSnfBhHAWBE5GF_KzDVuW4zkG4iszrUFKLMxWyxRl3pkF5XtQEktYLXB-QRzmJZDC4jsF9B65Cu9h_aH0CwKKBH8IECrO_oYL_WkXefmrpyEzsXA0NZK2b6IGtft8HFG0WOdgG7buhRLbgRESP_mL56vZdeaDJ50GFyvvjW4KznjiMxpp7zubzNDW2CEF59jA6f9djcQr2mS2nrTy_BTyCNtkZ0pgB-EH-y1HByQ3gnRi7XC7S1O1ZdAyBJSD1Pw"/>
-<span class="hidden sm:inline font-label-md text-label-md text-on-surface">Profile</span>
-</div>
-</div>
-</nav>
-</header>
-<div class="max-w-7xl mx-auto pt-28 px-4 flex gap-8">
-<!-- Sidebar Navigation -->
-<aside class="hidden lg:block w-64 fixed h-[calc(100vh-8rem)] overflow-y-auto pr-4 custom-scrollbar">
-<div class="space-y-8">
-<div>
-<h3 class="font-label-md text-label-md text-secondary uppercase tracking-widest mb-4">Foundation</h3>
-<ul class="space-y-2">
-<li><a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary font-medium" href="#"><span class="material-symbols-outlined text-[20px]">rocket_launch</span> Getting Started</a></li>
-<li><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-white/5 transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">architecture</span> Architecture</a></li>
-<li><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-white/5 transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">security</span> Security</a></li>
-</ul>
-</div>
-<div>
-<h3 class="font-label-md text-label-md text-secondary uppercase tracking-widest mb-4">API Reference</h3>
-<ul class="space-y-2">
-<li><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-white/5 transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">terminal</span> Authentication</a></li>
-<li><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-white/5 transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">chat_bubble</span> Messages</a></li>
-<li><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-white/5 transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">neurology</span> Neural Models</a></li>
-<li><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-white/5 transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">database</span> Storage</a></li>
-</ul>
-</div>
-<div>
-<h3 class="font-label-md text-label-md text-secondary uppercase tracking-widest mb-4">Resources</h3>
-<ul class="space-y-2">
-<li><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-white/5 transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">quiz</span> FAQ</a></li>
-<li><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-white/5 transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">history_edu</span> Changelog</a></li>
-</ul>
-</div>
-</div>
-</aside>
-<!-- Main Content -->
-<main class="flex-1 lg:ml-72 pb-20">
-<!-- Hero Breadcrumb -->
-<nav class="flex gap-2 text-caption font-caption text-on-surface-variant mb-6">
-<span>Docs</span>
-<span>/</span>
-<span class="text-secondary">Getting Started</span>
-</nav>
-<!-- Getting Started Content -->
-<article class="space-y-12">
-<section>
-<h1 class="font-display-lg text-display-lg text-on-surface mb-4">Getting Started</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
-                        Welcome to the NeuraChat ecosystem. Our platform provides high-performance neural interfaces designed for seamless AI integration. This guide will help you initialize your first connection and understand the core communication protocols.
-                    </p>
-</section>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div class="glass-panel p-6 rounded-xl border-l-4 border-l-primary group hover:bloom-active transition-all">
-<div class="flex items-center gap-4 mb-3">
-<span class="material-symbols-outlined text-primary text-headline-md">key</span>
-<h3 class="font-headline-md text-headline-md">Quick Auth</h3>
-</div>
-<p class="text-on-surface-variant mb-4">Get your API keys and initialize your first environment in less than 2 minutes.</p>
-<a class="text-primary font-label-md flex items-center gap-1 group-hover:gap-2 transition-all" href="#">View Setup <span class="material-symbols-outlined">arrow_forward</span></a>
-</div>
-<div class="glass-panel p-6 rounded-xl border-l-4 border-l-secondary group hover:bloom-active transition-all">
-<div class="flex items-center gap-4 mb-3">
-<span class="material-symbols-outlined text-secondary text-headline-md">sdk</span>
-</div>
-<h3 class="font-headline-md text-headline-md">SDKs</h3>
-<p class="text-on-surface-variant mb-4">Native libraries for Python, TypeScript, and Rust to accelerate your development workflow.</p>
-<a class="text-secondary font-label-md flex items-center gap-1 group-hover:gap-2 transition-all" href="#">Explore SDKs <span class="material-symbols-outlined">arrow_forward</span></a>
-</div>
-</div>
-<section class="space-y-6">
-<h2 class="font-headline-lg text-headline-lg text-on-surface">Installation</h2>
-<p class="text-on-surface-variant">Install the NeuraChat core package using your preferred package manager. We recommend using our optimized CLI for the best experience.</p>
-<div class="code-block p-6 rounded-xl relative group">
-<div class="absolute right-4 top-4 opacity-0 group-hover:opacity-100 transition-opacity">
-<button class="material-symbols-outlined text-on-surface-variant hover:text-secondary">content_copy</button>
-</div>
-<pre class="font-mono text-[14px] leading-relaxed"><span class="text-secondary">npm</span> install <span class="text-primary">@neurachat/core</span>
-<span class="text-on-tertiary-fixed-variant"># or using yarn</span>
-<span class="text-secondary">yarn</span> add <span class="text-primary">@neurachat/core</span></pre>
-</div>
-</section>
-<section class="space-y-6">
-<h2 class="font-headline-lg text-headline-lg text-on-surface">Your First Connection</h2>
-<p class="text-on-surface-variant">Initialize the NeuraClient with your encrypted workspace token to begin processing neural requests.</p>
-<div class="code-block p-6 rounded-xl relative group overflow-x-auto">
-<div class="absolute right-4 top-4 opacity-0 group-hover:opacity-100 transition-opacity">
-<button class="material-symbols-outlined text-on-surface-variant hover:text-secondary">content_copy</button>
-</div>
-<pre class="font-mono text-[14px] leading-relaxed"><span class="text-primary">import</span> { NeuraClient } <span class="text-primary">from</span> <span class="text-secondary">'@neurachat/core'</span>;
+<body class="bg-app text-app font-body antialiased overflow-hidden h-screen flex flex-col">
+  <script>
+    try {
+      sessionStorage.setItem('neurachat-preloader-shown', '1');
+    } catch (_) {}
+  </script>
+  <canvas id="particle-canvas" class="fixed inset-0 z-0 pointer-events-none opacity-40" aria-hidden="true"></canvas>
 
-<span class="text-on-tertiary-fixed-variant">// Initialize client with futuristic backdrop</span>
-<span class="text-primary">const</span> client = <span class="text-primary">new</span> <span class="text-secondary">NeuraClient</span>({
-  apiKey: process.env.NEURA_KEY,
-  environment: <span class="text-secondary">'production'</span>,
-  latencyMode: <span class="text-secondary">'ultra-low'</span>
-});
+  <div id="nav-root" class="relative z-[60] shrink-0"></div>
 
-<span class="text-primary">async function</span> <span class="text-secondary">startNeuralLink</span>() {
-  <span class="text-primary">const</span> response = <span class="text-primary">await</span> client.<span class="text-secondary">generate</span>({
-    prompt: <span class="text-secondary">"Analyze system diagnostics"</span>,
-    temperature: <span class="text-cyan-400">0.7</span>
-  });
-  
-  console.<span class="text-secondary">log</span>(response.data);
-}</pre>
-</div>
-</section>
-<!-- FAQ Section -->
-<section class="space-y-8 pt-12 border-t border-white/5">
-<h2 class="font-headline-lg text-headline-lg text-on-surface">Frequently Asked Questions</h2>
-<div class="space-y-4">
-<div class="glass-panel rounded-xl overflow-hidden">
-<button class="w-full px-6 py-4 flex justify-between items-center text-left hover:bg-white/5 transition-colors group">
-<span class="font-headline-md text-body-lg text-on-surface">How is NeuraChat's latency so low?</span>
-<span class="material-symbols-outlined text-secondary transition-transform group-hover:rotate-180">expand_more</span>
-</button>
-<div class="px-6 pb-4 text-on-surface-variant">
-                                Our proprietary edge-mesh architecture routes requests through the nearest neural processing unit (NPU), reducing round-trip time to under 15ms in major metropolitan areas.
-                            </div>
-</div>
-<div class="glass-panel rounded-xl overflow-hidden">
-<button class="w-full px-6 py-4 flex justify-between items-center text-left hover:bg-white/5 transition-colors group">
-<span class="font-headline-md text-body-lg text-on-surface">Is my data used for model training?</span>
-<span class="material-symbols-outlined text-secondary transition-transform group-hover:rotate-180">expand_more</span>
-</button>
-<div class="px-6 pb-4 text-on-surface-variant hidden">
-                                No. Enterprise accounts feature a strict data-isolation policy. Your inputs and generated outputs are exclusively yours and are never used to train global or shared models.
-                            </div>
-</div>
-<div class="glass-panel rounded-xl overflow-hidden">
-<button class="w-full px-6 py-4 flex justify-between items-center text-left hover:bg-white/5 transition-colors group">
-<span class="font-headline-md text-body-lg text-on-surface">What are the token limits?</span>
-<span class="material-symbols-outlined text-secondary transition-transform group-hover:rotate-180">expand_more</span>
-</button>
-<div class="px-6 pb-4 text-on-surface-variant hidden">
-                                Basic plans start at 128k context windows, while Enterprise plans can support up to 1M+ tokens for massive document analysis.
-                            </div>
-</div>
-</div>
-</section>
-</article>
-</main>
-</div>
-<!-- Footer -->
-<footer class="mt-20 border-t border-white/5 bg-surface-container-lowest dark:bg-surface-container-lowest bg-gradient-to-t from-surface to-transparent">
-<div class="flex flex-col md:flex-row justify-between items-center px-8 py-8 max-w-7xl mx-auto gap-4">
-<div class="flex items-center gap-4">
-<span class="font-headline-md text-headline-md text-primary">NeuraChat AI</span>
-<span class="font-caption text-caption text-on-surface-variant">© 2024 NeuraChat AI. All rights reserved.</span>
-</div>
-<div class="flex gap-6">
-<a class="font-caption text-caption text-on-surface-variant hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100" href="/terms.html">Terms</a>
-<a class="font-caption text-caption text-on-surface-variant hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100" href="/terms.html">Privacy</a>
-<a class="font-caption text-caption text-primary font-bold hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100" href="/docs.html">Documentation</a>
-<a class="font-caption text-caption text-on-surface-variant hover:text-secondary transition-colors cursor-pointer opacity-80 hover:opacity-100" href="/contact.html">Contact</a>
-</div>
-<div class="flex gap-4">
-<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors">hub</span>
-<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors">smart_toy</span>
-</div>
-</div>
-</footer>
-<!-- Background Decorative Elements -->
-<div class="fixed top-0 left-0 w-full h-full -z-10 overflow-hidden pointer-events-none">
-<div class="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px]"></div>
-<div class="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[100px]"></div>
-</div>
+  <div class="relative z-10 flex flex-1 min-h-0 pt-24">
+      <button
+        type="button"
+        id="docs-sidebar-toggle"
+        class="lg:hidden fixed bottom-6 left-4 z-50 flex items-center justify-center w-12 h-12 rounded-full border border-[var(--border)] bg-[var(--bg-surface)] text-[var(--text-primary)] shadow-[var(--shadow)] hover:border-[var(--border-accent)] hover:text-[var(--accent)] transition-colors"
+        aria-label="Toggle documentation sidebar"
+      >
+        <i data-lucide="panel-left" class="w-5 h-5"></i>
+      </button>
 
-<script>
-    // Copy code
-    document.querySelectorAll('.code-block').forEach(block => {
-        const btn = block.querySelector('button');
-        const pre = block.querySelector('pre');
-        if(btn && pre) {
-            btn.addEventListener('click', () => {
-                navigator.clipboard.writeText(pre.innerText);
-                const originalText = btn.innerText;
-                btn.innerText = 'check';
-                setTimeout(() => btn.innerText = originalText, 2000);
-            });
-        }
-    });
+      <div
+        id="docs-sidebar-backdrop"
+        class="hidden fixed inset-0 z-30 bg-[var(--bg-primary)]/70 backdrop-blur-sm lg:!hidden"
+        aria-hidden="true"
+      ></div>
 
-    // FAQ toggles
-    const faqs = document.querySelectorAll('.glass-panel.rounded-xl.overflow-hidden');
-    faqs.forEach(panel => {
-        const btn = panel.querySelector('button');
-        const answer = panel.querySelector('div.px-6.pb-4');
-        if(btn && answer) {
-            const icon = btn.querySelector('.material-symbols-outlined.text-secondary');
-            btn.addEventListener('click', () => {
-                answer.classList.toggle('hidden');
-                if(icon) icon.classList.toggle('rotate-180');
-            });
-        }
-    });
-</script>
-</body></html>
+      <aside
+        id="docs-sidebar"
+        class="docs-sidebar fixed lg:static top-24 left-0 z-40 flex flex-col w-[240px] h-[calc(100vh-6rem)] lg:h-auto shrink-0 border-r border-[var(--border)] bg-[var(--bg-surface)]/95 backdrop-blur-xl -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-out"
+      >
+        <div class="p-4 border-b border-[var(--border)] shrink-0">
+          <div class="relative">
+            <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--text-muted)] pointer-events-none"></i>
+            <input
+              type="search"
+              id="docs-search"
+              placeholder="Search docs..."
+              class="w-full rounded-xl border border-[var(--border)] bg-[var(--bg-surface-2)] py-2.5 pl-9 pr-3 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] outline-none transition-all duration-200 focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent-glow-strong)]"
+              autocomplete="off"
+            />
+          </div>
+        </div>
 
+        <nav class="flex-1 overflow-y-auto p-4 space-y-6 custom-scrollbar" aria-label="Documentation">
+          <div class="docs-nav-group">
+            <p class="docs-nav-heading font-display text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)] mb-2 px-3">Foundation</p>
+            <ul class="space-y-0.5">
+              <li><a href="#getting-started" data-section="getting-started" class="docs-nav-link docs-nav-link-active block py-2 px-3 text-sm text-[var(--text-secondary)] border-l-2 border-transparent hover:text-[var(--accent)] transition-colors rounded-r-lg" aria-current="true">Getting Started</a></li>
+              <li><a href="#architecture" data-section="architecture" class="docs-nav-link block py-2 px-3 text-sm text-[var(--text-secondary)] border-l-2 border-transparent hover:text-[var(--accent)] transition-colors rounded-r-lg">Architecture</a></li>
+              <li><a href="#security" data-section="security" class="docs-nav-link block py-2 px-3 text-sm text-[var(--text-secondary)] border-l-2 border-transparent hover:text-[var(--accent)] transition-colors rounded-r-lg">Security</a></li>
+            </ul>
+          </div>
+
+          <div class="docs-nav-group">
+            <p class="docs-nav-heading font-display text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)] mb-2 px-3">API Reference</p>
+            <ul class="space-y-0.5">
+              <li><a href="#authentication" data-section="authentication" class="docs-nav-link block py-2 px-3 text-sm text-[var(--text-secondary)] border-l-2 border-transparent hover:text-[var(--accent)] transition-colors rounded-r-lg">Authentication</a></li>
+              <li><a href="#messages" data-section="messages" class="docs-nav-link block py-2 px-3 text-sm text-[var(--text-secondary)] border-l-2 border-transparent hover:text-[var(--accent)] transition-colors rounded-r-lg">Messages</a></li>
+              <li><a href="#neural-models" data-section="neural-models" class="docs-nav-link block py-2 px-3 text-sm text-[var(--text-secondary)] border-l-2 border-transparent hover:text-[var(--accent)] transition-colors rounded-r-lg">Neural Models</a></li>
+              <li><a href="#storage" data-section="storage" class="docs-nav-link block py-2 px-3 text-sm text-[var(--text-secondary)] border-l-2 border-transparent hover:text-[var(--accent)] transition-colors rounded-r-lg">Storage</a></li>
+            </ul>
+          </div>
+
+          <div class="docs-nav-group">
+            <p class="docs-nav-heading font-display text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)] mb-2 px-3">Resources</p>
+            <ul class="space-y-0.5">
+              <li><a href="#faq" data-section="faq" class="docs-nav-link block py-2 px-3 text-sm text-[var(--text-secondary)] border-l-2 border-transparent hover:text-[var(--accent)] transition-colors rounded-r-lg">FAQ</a></li>
+              <li><a href="#changelog" data-section="changelog" class="docs-nav-link block py-2 px-3 text-sm text-[var(--text-secondary)] border-l-2 border-transparent hover:text-[var(--accent)] transition-colors rounded-r-lg">Changelog</a></li>
+            </ul>
+          </div>
+        </nav>
+      </aside>
+
+      <main id="docs-main" class="flex-1 min-w-0 h-[calc(100vh-6rem)] overflow-y-auto custom-scrollbar">
+        <div class="max-w-3xl mx-auto px-4 sm:px-8 py-10 pb-20 space-y-20">
+
+          <!-- Getting Started -->
+          <section id="getting-started" class="docs-section scroll-mt-6">
+            <h1 class="font-display font-extrabold text-3xl sm:text-4xl text-[var(--text-primary)] mb-4">Getting Started with NeuraChat</h1>
+            <p class="text-[var(--text-secondary)] leading-relaxed mb-8">
+              NeuraChat is a full-stack AI chatbot powered by Google Gemini 2.5 Flash. Here is everything you need to start using it.
+            </p>
+            <ol class="list-decimal list-inside space-y-3 text-[var(--text-secondary)] mb-8 marker:text-[var(--accent)] marker:font-semibold">
+              <li class="pl-2">Visit the live app and click &ldquo;Get Started&rdquo;</li>
+              <li class="pl-2">Create a free account — no credit card required</li>
+              <li class="pl-2">You land on the chat interface automatically</li>
+              <li class="pl-2">Type any message and press Enter or click Send</li>
+              <li class="pl-2">Your chats are automatically saved in the sidebar</li>
+              <li class="pl-2">Access previous conversations anytime from chat history</li>
+            </ol>
+            <div class="rounded-xl border-l-4 border-[var(--accent)] bg-[var(--accent)]/10 px-5 py-4 text-sm text-[var(--text-secondary)]">
+              NeuraChat runs on Render free tier. The first request after inactivity may take up to 50 seconds to respond. This is normal.
+            </div>
+          </section>
+
+          <!-- Architecture -->
+          <section id="architecture" class="docs-section scroll-mt-6">
+            <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-[var(--text-primary)] mb-2">System Architecture</h2>
+            <p class="text-[var(--text-muted)] text-sm mb-8">How NeuraChat works under the hood</p>
+
+            <div class="mb-10 p-6 rounded-2xl border border-[var(--border)] bg-[var(--bg-surface)] overflow-x-auto">
+              <div class="flex flex-col items-center gap-4 min-w-[280px]">
+                <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+                  <div class="rounded-xl border border-[var(--border)] bg-surface-2 px-5 py-3 text-sm font-medium text-[var(--text-primary)] text-center min-w-[100px]">Browser</div>
+                  <span class="text-[var(--accent)] text-xl font-mono" aria-hidden="true">→</span>
+                  <div class="rounded-xl border border-[var(--border)] bg-surface-2 px-5 py-3 text-sm font-medium text-[var(--text-primary)] text-center min-w-[120px]">Flask Server</div>
+                  <span class="text-[var(--accent)] text-xl font-mono" aria-hidden="true">→</span>
+                  <div class="rounded-xl border border-[var(--border)] bg-surface-2 px-5 py-3 text-sm font-medium text-[var(--text-primary)] text-center min-w-[100px]">Gemini API</div>
+                </div>
+                <div class="flex flex-col items-center text-[var(--accent)] text-xl font-mono leading-none" aria-hidden="true">
+                  <span>↕</span>
+                </div>
+                <div class="rounded-xl border border-[var(--border)] bg-surface-2 px-5 py-3 text-sm font-medium text-[var(--text-primary)] text-center">SQLite DB</div>
+              </div>
+            </div>
+
+            <div class="space-y-8">
+              <div>
+                <h3 class="font-display font-bold text-lg text-[var(--text-primary)] mb-2">Frontend</h3>
+                <p class="text-[var(--text-secondary)] text-sm leading-relaxed">Vanilla JS, Tailwind CSS, GSAP. Served as static HTML files by Flask.</p>
+              </div>
+              <div>
+                <h3 class="font-display font-bold text-lg text-[var(--text-primary)] mb-2">Backend</h3>
+                <p class="text-[var(--text-secondary)] text-sm leading-relaxed">Python Flask handles authentication, chat routing, profile management, and membership enforcement. All routes prefixed /api/.</p>
+              </div>
+              <div>
+                <h3 class="font-display font-bold text-lg text-[var(--text-primary)] mb-2">AI Engine</h3>
+                <p class="text-[var(--text-secondary)] text-sm leading-relaxed">An agentic engine wraps Gemini 2.5 Flash. It detects intent, tracks topic and depth, and passes full conversation history on every request.</p>
+              </div>
+              <div>
+                <h3 class="font-display font-bold text-lg text-[var(--text-primary)] mb-2">Database</h3>
+                <p class="text-[var(--text-secondary)] text-sm leading-relaxed">SQLite with 5 tables — users, chats, messages, profiles, membership. Auto-generated on startup.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Security -->
+          <section id="security" class="docs-section scroll-mt-6">
+            <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-[var(--text-primary)] mb-8">Security</h2>
+            <ul class="grid sm:grid-cols-2 gap-4">
+              <li class="card-app rounded-2xl border border-[var(--border)] bg-[var(--bg-surface)] p-5 flex gap-4">
+                <div class="shrink-0 w-10 h-10 rounded-full bg-[var(--accent)]/15 flex items-center justify-center">
+                  <i data-lucide="shield-check" class="w-5 h-5 text-[var(--accent)]"></i>
+                </div>
+                <p class="text-sm text-[var(--text-secondary)] leading-relaxed">Passwords hashed using Python scrypt via hashlib. Never stored in plain text.</p>
+              </li>
+              <li class="card-app rounded-2xl border border-[var(--border)] bg-[var(--bg-surface)] p-5 flex gap-4">
+                <div class="shrink-0 w-10 h-10 rounded-full bg-[var(--accent)]/15 flex items-center justify-center">
+                  <i data-lucide="lock" class="w-5 h-5 text-[var(--accent)]"></i>
+                </div>
+                <p class="text-sm text-[var(--text-secondary)] leading-relaxed">Sessions managed server-side via Flask sessions. No JWT tokens exposed to the client.</p>
+              </li>
+              <li class="card-app rounded-2xl border border-[var(--border)] bg-[var(--bg-surface)] p-5 flex gap-4">
+                <div class="shrink-0 w-10 h-10 rounded-full bg-[var(--accent)]/15 flex items-center justify-center">
+                  <i data-lucide="code" class="w-5 h-5 text-[var(--accent)]"></i>
+                </div>
+                <p class="text-sm text-[var(--text-secondary)] leading-relaxed">All markdown from AI responses is sanitized through DOMPurify before rendering. Prevents XSS injection.</p>
+              </li>
+              <li class="card-app rounded-2xl border border-[var(--border)] bg-[var(--bg-surface)] p-5 flex gap-4">
+                <div class="shrink-0 w-10 h-10 rounded-full bg-[var(--accent)]/15 flex items-center justify-center">
+                  <i data-lucide="eye-off" class="w-5 h-5 text-[var(--accent)]"></i>
+                </div>
+                <p class="text-sm text-[var(--text-secondary)] leading-relaxed">All /api/ routes except /register and /login require a valid session. Unauthorized requests return 401.</p>
+              </li>
+            </ul>
+          </section>
+
+          <!-- Authentication -->
+          <section id="authentication" class="docs-section scroll-mt-6">
+            <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-[var(--text-primary)] mb-2">Authentication</h2>
+            <p class="text-[var(--text-muted)] text-sm mb-8">How user auth works in NeuraChat</p>
+
+            <div class="rounded-xl border border-[var(--border)] bg-surface-2 overflow-hidden mb-8" role="table" aria-label="Authentication endpoints">
+              <div class="grid grid-cols-[auto_1fr] sm:grid-cols-[auto_minmax(0,11rem)_1fr] gap-x-4 gap-y-1 sm:gap-y-0 items-center px-4 py-3.5 border-b border-[var(--border)]" role="row">
+                <span class="inline-flex items-center justify-center min-w-[3.25rem] px-2.5 py-1 rounded-full bg-teal-500 font-mono text-[10px] font-bold uppercase tracking-wide text-white" role="cell">POST</span>
+                <code class="font-mono text-sm text-[var(--accent)] sm:col-start-2" role="cell">/api/register</code>
+                <p class="col-span-2 sm:col-span-1 sm:col-start-3 text-sm text-[var(--text-secondary)] leading-relaxed" role="cell">Creates new user, hashes password, sets session</p>
+              </div>
+              <div class="grid grid-cols-[auto_1fr] sm:grid-cols-[auto_minmax(0,11rem)_1fr] gap-x-4 gap-y-1 sm:gap-y-0 items-center px-4 py-3.5 border-b border-[var(--border)]" role="row">
+                <span class="inline-flex items-center justify-center min-w-[3.25rem] px-2.5 py-1 rounded-full bg-teal-500 font-mono text-[10px] font-bold uppercase tracking-wide text-white" role="cell">POST</span>
+                <code class="font-mono text-sm text-[var(--accent)] sm:col-start-2" role="cell">/api/login</code>
+                <p class="col-span-2 sm:col-span-1 sm:col-start-3 text-sm text-[var(--text-secondary)] leading-relaxed" role="cell">Verifies credentials, sets session cookie</p>
+              </div>
+              <div class="grid grid-cols-[auto_1fr] sm:grid-cols-[auto_minmax(0,11rem)_1fr] gap-x-4 gap-y-1 sm:gap-y-0 items-center px-4 py-3.5 border-b border-[var(--border)]" role="row">
+                <span class="inline-flex items-center justify-center min-w-[3.25rem] px-2.5 py-1 rounded-full bg-teal-500 font-mono text-[10px] font-bold uppercase tracking-wide text-white" role="cell">POST</span>
+                <code class="font-mono text-sm text-[var(--accent)] sm:col-start-2" role="cell">/api/logout</code>
+                <p class="col-span-2 sm:col-span-1 sm:col-start-3 text-sm text-[var(--text-secondary)] leading-relaxed" role="cell">Clears server-side session</p>
+              </div>
+              <div class="grid grid-cols-[auto_1fr] sm:grid-cols-[auto_minmax(0,11rem)_1fr] gap-x-4 gap-y-1 sm:gap-y-0 items-center px-4 py-3.5" role="row">
+                <span class="inline-flex items-center justify-center min-w-[3.25rem] px-2.5 py-1 rounded-full bg-blue-500 font-mono text-[10px] font-bold uppercase tracking-wide text-white" role="cell">GET</span>
+                <code class="font-mono text-sm text-[var(--accent)] sm:col-start-2" role="cell">/api/auth/status</code>
+                <p class="col-span-2 sm:col-span-1 sm:col-start-3 text-sm text-[var(--text-secondary)] leading-relaxed" role="cell">Returns authentication state</p>
+              </div>
+            </div>
+
+            <p class="text-sm font-semibold text-[var(--text-primary)] mb-3">Request example</p>
+            <div class="docs-code-block relative rounded-xl border border-[var(--border)] bg-surface-2 p-4 mb-6">
+              <button type="button" class="docs-copy-btn absolute top-3 right-3 p-2 rounded-lg border border-[var(--border)] text-[var(--text-muted)] hover:text-[var(--accent)] hover:border-[var(--border-accent)] transition-colors" aria-label="Copy code">
+                <i data-lucide="copy" class="w-4 h-4"></i>
+              </button>
+              <pre class="font-mono text-xs sm:text-sm text-[var(--text-secondary)] overflow-x-auto pr-10"><code>POST /api/register
+{
+  "username": "ankush",
+  "email": "ankush@example.com",
+  "password": "yourpassword"
+}</code></pre>
+            </div>
+
+            <p class="text-sm font-semibold text-[var(--text-primary)] mb-3">Response example</p>
+            <div class="docs-code-block relative rounded-xl border border-[var(--border)] bg-surface-2 p-4">
+              <button type="button" class="docs-copy-btn absolute top-3 right-3 p-2 rounded-lg border border-[var(--border)] text-[var(--text-muted)] hover:text-[var(--accent)] hover:border-[var(--border-accent)] transition-colors" aria-label="Copy code">
+                <i data-lucide="copy" class="w-4 h-4"></i>
+              </button>
+              <pre class="font-mono text-xs sm:text-sm text-[var(--text-secondary)] overflow-x-auto pr-10"><code>{ "success": true, "user_id": "abc123" }</code></pre>
+            </div>
+          </section>
+
+          <!-- Messages -->
+          <section id="messages" class="docs-section scroll-mt-6">
+            <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-[var(--text-primary)] mb-2">Messages</h2>
+            <p class="text-[var(--text-muted)] text-sm mb-8">How chat messages are sent and received</p>
+
+            <div class="rounded-xl border border-[var(--border)] bg-surface-2 overflow-hidden mb-6" role="table" aria-label="Messages endpoints">
+              <div class="grid grid-cols-[auto_1fr] sm:grid-cols-[auto_minmax(0,11rem)_1fr] gap-x-4 gap-y-1 sm:gap-y-0 items-center px-4 py-3.5" role="row">
+                <span class="inline-flex items-center justify-center min-w-[3.25rem] px-2.5 py-1 rounded-full bg-teal-500 font-mono text-[10px] font-bold uppercase tracking-wide text-white" role="cell">POST</span>
+                <code class="font-mono text-sm text-[var(--accent)] sm:col-start-2" role="cell">/api/chat</code>
+                <p class="col-span-2 sm:col-span-1 sm:col-start-3 text-sm text-[var(--text-secondary)] leading-relaxed" role="cell">Sends a user message and returns the AI response</p>
+              </div>
+            </div>
+
+            <p class="text-sm font-semibold text-[var(--text-primary)] mb-3">Request</p>
+            <div class="docs-code-block relative rounded-xl border border-[var(--border)] bg-surface-2 p-4 mb-6">
+              <button type="button" class="docs-copy-btn absolute top-3 right-3 p-2 rounded-lg border border-[var(--border)] text-[var(--text-muted)] hover:text-[var(--accent)] hover:border-[var(--border-accent)] transition-colors" aria-label="Copy code">
+                <i data-lucide="copy" class="w-4 h-4"></i>
+              </button>
+              <pre class="font-mono text-xs sm:text-sm text-[var(--text-secondary)] overflow-x-auto pr-10"><code>{
+  "message": "What is machine learning?",
+  "chat_id": "chat_abc123"
+}</code></pre>
+            </div>
+
+            <p class="text-sm font-semibold text-[var(--text-primary)] mb-3">Response</p>
+            <div class="docs-code-block relative rounded-xl border border-[var(--border)] bg-surface-2 p-4 mb-8">
+              <button type="button" class="docs-copy-btn absolute top-3 right-3 p-2 rounded-lg border border-[var(--border)] text-[var(--text-muted)] hover:text-[var(--accent)] hover:border-[var(--border-accent)] transition-colors" aria-label="Copy code">
+                <i data-lucide="copy" class="w-4 h-4"></i>
+              </button>
+              <pre class="font-mono text-xs sm:text-sm text-[var(--text-secondary)] overflow-x-auto pr-10"><code>{
+  "response": "Machine learning is...",
+  "limit_reached": false
+}</code></pre>
+            </div>
+
+            <ul class="list-disc list-inside space-y-2 text-sm text-[var(--text-secondary)] marker:text-[var(--accent)]">
+              <li class="pl-1">chat_id links the message to a saved conversation</li>
+              <li class="pl-1">Full conversation history is loaded server-side on each request</li>
+              <li class="pl-1">Responses are markdown formatted — rendered client-side via marked.js</li>
+              <li class="pl-1">Free tier returns limit_reached: true after 50 messages</li>
+            </ul>
+          </section>
+
+          <!-- Neural Models -->
+          <section id="neural-models" class="docs-section scroll-mt-6">
+            <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-[var(--text-primary)] mb-2">Neural Models</h2>
+            <p class="text-[var(--text-muted)] text-sm mb-8">The AI that powers NeuraChat</p>
+
+            <article class="rounded-2xl border border-[var(--border-accent)] bg-[var(--bg-surface)] p-6 mb-8">
+              <h3 class="font-display font-bold text-xl text-[var(--text-primary)] mb-4">Gemini 2.5 Flash</h3>
+              <dl class="grid sm:grid-cols-2 gap-3 text-sm">
+                <div><dt class="text-[var(--text-muted)]">Provider</dt><dd class="text-[var(--text-primary)] font-medium">Google DeepMind</dd></div>
+                <div><dt class="text-[var(--text-muted)]">Context window</dt><dd class="text-[var(--text-primary)] font-medium">1,000,000 tokens</dd></div>
+                <div class="sm:col-span-2"><dt class="text-[var(--text-muted)]">Strengths</dt><dd class="text-[var(--text-primary)] font-medium">Fast responses, strong reasoning, markdown output</dd></div>
+              </dl>
+            </article>
+
+            <h3 class="font-display font-bold text-lg text-[var(--text-primary)] mb-3">How history works</h3>
+            <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-8">
+              On every message, the full conversation history is passed to Gemini as a structured contents array. Each message includes role (user or model) and content. This gives Gemini full context of the conversation.
+            </p>
+
+            <h3 class="font-display font-bold text-lg text-[var(--text-primary)] mb-3">Limitations</h3>
+            <ul class="list-disc list-inside space-y-2 text-sm text-[var(--text-secondary)] marker:text-[var(--accent)]">
+              <li class="pl-1">Subject to Google Gemini API rate limits on free tier</li>
+              <li class="pl-1">10 requests per minute, 250 requests per day on free tier</li>
+              <li class="pl-1">First response after cold start may be slower</li>
+            </ul>
+          </section>
+
+          <!-- Storage -->
+          <section id="storage" class="docs-section scroll-mt-6">
+            <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-[var(--text-primary)] mb-2">Storage</h2>
+            <p class="text-[var(--text-muted)] text-sm mb-6">How data is stored in NeuraChat</p>
+            <p class="text-sm text-[var(--text-secondary)] mb-8">Database: <code class="font-mono text-[var(--accent)]">SQLite</code> (<span class="font-mono">neurachat.db</span>)</p>
+
+            <div class="grid sm:grid-cols-2 gap-4 mb-8">
+              <article class="rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] p-4">
+                <h4 class="font-mono text-sm font-semibold text-[var(--accent)] mb-2">users</h4>
+                <p class="text-xs text-[var(--text-secondary)] leading-relaxed">id, username, email, password_hash, plan, message_count, created_at</p>
+              </article>
+              <article class="rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] p-4">
+                <h4 class="font-mono text-sm font-semibold text-[var(--accent)] mb-2">chats</h4>
+                <p class="text-xs text-[var(--text-secondary)] leading-relaxed">id, user_id, title, created_at</p>
+              </article>
+              <article class="rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] p-4">
+                <h4 class="font-mono text-sm font-semibold text-[var(--accent)] mb-2">messages</h4>
+                <p class="text-xs text-[var(--text-secondary)] leading-relaxed">id, chat_id, role, content, created_at</p>
+              </article>
+              <article class="rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] p-4">
+                <h4 class="font-mono text-sm font-semibold text-[var(--accent)] mb-2">profiles</h4>
+                <p class="text-xs text-[var(--text-secondary)] leading-relaxed">user_id, display_name, bio, avatar_url</p>
+              </article>
+              <article class="rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] sm:col-span-2 p-4">
+                <h4 class="font-mono text-sm font-semibold text-[var(--accent)] mb-2">membership</h4>
+                <p class="text-xs text-[var(--text-secondary)] leading-relaxed">user_id, plan, message_count, reset_date</p>
+              </article>
+            </div>
+
+            <div class="rounded-xl border-l-4 border-amber-400 bg-amber-400/10 px-5 py-4 text-sm text-[var(--text-secondary)]">
+              NeuraChat runs on Render free tier. The SQLite database resets on each redeploy. For persistent storage, add a Render Disk.
+            </div>
+          </section>
+
+          <!-- FAQ -->
+          <section id="faq" class="docs-section scroll-mt-6">
+            <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-[var(--text-primary)] mb-8">Frequently Asked Questions</h2>
+            <div class="space-y-3" id="docs-faq-root">
+              <div class="faq-item rounded-2xl border border-[var(--border)] bg-[var(--bg-surface)] overflow-hidden">
+                <button type="button" class="faq-trigger flex w-full items-center justify-between gap-4 p-5 text-left font-semibold text-[var(--text-primary)]" aria-expanded="false">
+                  Is NeuraChat free to use?
+                  <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-[var(--accent)] shrink-0 transition-transform"></i>
+                </button>
+                <div class="faq-panel px-5 text-[var(--text-secondary)] text-sm leading-relaxed">
+                  <div class="pb-5">Yes. Free tier includes 50 messages per month with full access to all features. No credit card required.</div>
+                </div>
+              </div>
+              <div class="faq-item rounded-2xl border border-[var(--border)] bg-[var(--bg-surface)] overflow-hidden">
+                <button type="button" class="faq-trigger flex w-full items-center justify-between gap-4 p-5 text-left font-semibold text-[var(--text-primary)]" aria-expanded="false">
+                  Is my data private?
+                  <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-[var(--accent)] shrink-0 transition-transform"></i>
+                </button>
+                <div class="faq-panel px-5 text-[var(--text-secondary)] text-sm leading-relaxed">
+                  <div class="pb-5">Chats are stored in SQLite on the server. Data is not shared with third parties. Messages are processed by Google Gemini API per their privacy policy.</div>
+                </div>
+              </div>
+              <div class="faq-item rounded-2xl border border-[var(--border)] bg-[var(--bg-surface)] overflow-hidden">
+                <button type="button" class="faq-trigger flex w-full items-center justify-between gap-4 p-5 text-left font-semibold text-[var(--text-primary)]" aria-expanded="false">
+                  What AI model powers NeuraChat?
+                  <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-[var(--accent)] shrink-0 transition-transform"></i>
+                </button>
+                <div class="faq-panel px-5 text-[var(--text-secondary)] text-sm leading-relaxed">
+                  <div class="pb-5">Google Gemini 2.5 Flash, accessed via the official Gemini API.</div>
+                </div>
+              </div>
+              <div class="faq-item rounded-2xl border border-[var(--border)] bg-[var(--bg-surface)] overflow-hidden">
+                <button type="button" class="faq-trigger flex w-full items-center justify-between gap-4 p-5 text-left font-semibold text-[var(--text-primary)]" aria-expanded="false">
+                  Why is the first response slow?
+                  <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-[var(--accent)] shrink-0 transition-transform"></i>
+                </button>
+                <div class="faq-panel px-5 text-[var(--text-secondary)] text-sm leading-relaxed">
+                  <div class="pb-5">NeuraChat runs on Render free tier which spins down after inactivity. The first request after a period of inactivity can take up to 50 seconds. Subsequent responses are fast.</div>
+                </div>
+              </div>
+              <div class="faq-item rounded-2xl border border-[var(--border)] bg-[var(--bg-surface)] overflow-hidden">
+                <button type="button" class="faq-trigger flex w-full items-center justify-between gap-4 p-5 text-left font-semibold text-[var(--text-primary)]" aria-expanded="false">
+                  How do I delete a chat?
+                  <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-[var(--accent)] shrink-0 transition-transform"></i>
+                </button>
+                <div class="faq-panel px-5 text-[var(--text-secondary)] text-sm leading-relaxed">
+                  <div class="pb-5">Hover over any chat in the sidebar and click the trash icon that appears on the right.</div>
+                </div>
+              </div>
+              <div class="faq-item rounded-2xl border border-[var(--border)] bg-[var(--bg-surface)] overflow-hidden">
+                <button type="button" class="faq-trigger flex w-full items-center justify-between gap-4 p-5 text-left font-semibold text-[var(--text-primary)]" aria-expanded="false">
+                  What is the message limit?
+                  <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-[var(--accent)] shrink-0 transition-transform"></i>
+                </button>
+                <div class="faq-panel px-5 text-[var(--text-secondary)] text-sm leading-relaxed">
+                  <div class="pb-5">Free tier is 50 messages per month. The count resets on the 1st of each month.</div>
+                </div>
+              </div>
+              <div class="faq-item rounded-2xl border border-[var(--border)] bg-[var(--bg-surface)] overflow-hidden">
+                <button type="button" class="faq-trigger flex w-full items-center justify-between gap-4 p-5 text-left font-semibold text-[var(--text-primary)]" aria-expanded="false">
+                  Can I export my chats?
+                  <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-[var(--accent)] shrink-0 transition-transform"></i>
+                </button>
+                <div class="faq-panel px-5 text-[var(--text-secondary)] text-sm leading-relaxed">
+                  <div class="pb-5">Not currently. This is planned for a future update.</div>
+                </div>
+              </div>
+              <div class="faq-item rounded-2xl border border-[var(--border)] bg-[var(--bg-surface)] overflow-hidden">
+                <button type="button" class="faq-trigger flex w-full items-center justify-between gap-4 p-5 text-left font-semibold text-[var(--text-primary)]" aria-expanded="false">
+                  Is there a mobile app?
+                  <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-[var(--accent)] shrink-0 transition-transform"></i>
+                </button>
+                <div class="faq-panel px-5 text-[var(--text-secondary)] text-sm leading-relaxed">
+                  <div class="pb-5">Not yet. The web app is fully responsive and works on mobile browsers.</div>
+                </div>
+              </div>
+              <div class="faq-item rounded-2xl border border-[var(--border)] bg-[var(--bg-surface)] overflow-hidden">
+                <button type="button" class="faq-trigger flex w-full items-center justify-between gap-4 p-5 text-left font-semibold text-[var(--text-primary)]" aria-expanded="false">
+                  How do I report a bug?
+                  <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-[var(--accent)] shrink-0 transition-transform"></i>
+                </button>
+                <div class="faq-panel px-5 text-[var(--text-secondary)] text-sm leading-relaxed">
+                  <div class="pb-5">Use the Contact page or open an issue on GitHub.</div>
+                </div>
+              </div>
+              <div class="faq-item rounded-2xl border border-[var(--border)] bg-[var(--bg-surface)] overflow-hidden">
+                <button type="button" class="faq-trigger flex w-full items-center justify-between gap-4 p-5 text-left font-semibold text-[var(--text-primary)]" aria-expanded="false">
+                  How do I contact support?
+                  <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-[var(--accent)] shrink-0 transition-transform"></i>
+                </button>
+                <div class="faq-panel px-5 text-[var(--text-secondary)] text-sm leading-relaxed">
+                  <div class="pb-5">Visit the Contact page at <a href="/contact.html" class="text-[var(--accent)] hover:underline">/contact.html</a></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Changelog -->
+          <section id="changelog" class="docs-section scroll-mt-6">
+            <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-[var(--text-primary)] mb-2">Changelog</h2>
+            <p class="text-[var(--text-muted)] text-sm mb-10">NeuraChat version history</p>
+
+            <ol class="relative border-l-2 border-[var(--accent)] pl-8 space-y-12">
+              <li class="relative">
+                <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-[var(--accent)] ring-4 ring-[var(--bg-primary)]"></span>
+                <div class="flex flex-wrap items-center gap-2 mb-3">
+                  <h3 class="font-display font-bold text-lg text-[var(--text-primary)]">V3</h3>
+                  <span class="text-xs font-semibold uppercase tracking-wide px-2 py-0.5 rounded-full bg-[var(--accent)]/20 text-[var(--accent)]">Current</span>
+                </div>
+                <ul class="list-disc list-inside text-sm text-[var(--text-secondary)] space-y-1.5 marker:text-[var(--accent)]">
+                  <li>Full authentication system (scrypt password hashing)</li>
+                  <li>Persistent chat history with SQLite</li>
+                  <li>Membership tiers (Free and Pro)</li>
+                  <li>Agentic AI engine with full conversation history</li>
+                  <li>Dark and light theme with localStorage persistence</li>
+                  <li>GSAP animations and particle canvas</li>
+                  <li>Deployed on Render</li>
+                </ul>
+              </li>
+              <li class="relative">
+                <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-[var(--border)] ring-4 ring-[var(--bg-primary)]"></span>
+                <h3 class="font-display font-bold text-lg text-[var(--text-primary)] mb-3">V2</h3>
+                <ul class="list-disc list-inside text-sm text-[var(--text-secondary)] space-y-1.5 marker:text-[var(--accent)]">
+                  <li>Improved response quality</li>
+                  <li>Added conversation context (basic)</li>
+                  <li>UI improvements over V1</li>
+                </ul>
+              </li>
+              <li class="relative">
+                <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-[var(--border)] ring-4 ring-[var(--bg-primary)]"></span>
+                <h3 class="font-display font-bold text-lg text-[var(--text-primary)] mb-3">V1 — Initial Release</h3>
+                <ul class="list-disc list-inside text-sm text-[var(--text-secondary)] space-y-1.5 marker:text-[var(--accent)]">
+                  <li>Basic chatbot (IBM Summer Program project)</li>
+                  <li>Single-turn responses only</li>
+                  <li>No authentication, no persistence</li>
+                </ul>
+              </li>
+            </ol>
+          </section>
+
+        </div>
+
+        <footer class="border-t border-[var(--border)] bg-[var(--bg-surface)]/50 py-14 px-4 sm:px-8">
+          <div class="max-w-3xl mx-auto flex flex-col lg:flex-row gap-10 lg:justify-between lg:items-start">
+            <div class="max-w-sm">
+              <a href="/" class="inline-flex items-center gap-2 font-display font-bold text-xl text-[var(--text-primary)] mb-3">
+                <span class="w-2.5 h-2.5 rounded-full bg-[var(--accent)]"></span>
+                NeuraChat
+              </a>
+              <p class="text-[var(--text-secondary)] text-sm">Built by Ankush Poonia</p>
+            </div>
+            <nav class="flex flex-wrap gap-x-6 gap-y-2 justify-center text-sm text-[var(--text-secondary)]">
+              <a href="/" class="hover:text-[var(--accent)] transition-colors">Home</a>
+              <a href="/docs.html" class="hover:text-[var(--accent)] transition-colors">Docs</a>
+              <a href="/contact.html" class="hover:text-[var(--accent)] transition-colors">Contact</a>
+              <a href="/terms.html" class="hover:text-[var(--accent)] transition-colors">Terms</a>
+            </nav>
+            <div class="flex gap-4 justify-center lg:justify-end">
+              <a href="https://github.com/ankush-poonia007/AI-Chatbot-Agentic-AI-NLP" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-full border border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--accent)] hover:border-[var(--border-accent)] transition-all" aria-label="GitHub">
+                <i data-lucide="github" class="w-5 h-5"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/ankush-poonia007" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-full border border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--accent)] hover:border-[var(--border-accent)] transition-all" aria-label="LinkedIn">
+                <i data-lucide="linkedin" class="w-5 h-5"></i>
+              </a>
+            </div>
+          </div>
+          <p class="text-center text-xs text-[var(--text-muted)] mt-10 max-w-3xl mx-auto">© 2026 NeuraChat. Open source portfolio project.</p>
+        </footer>
+      </main>
+  </div>
+
+  <style>
+    .docs-nav-link-active {
+      border-left-color: var(--accent) !important;
+      color: var(--accent) !important;
+      background-color: var(--accent-glow);
+    }
+  </style>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="/js/toast.js"></script>
+  <script src="/js/theme.js"></script>
+  <script src="/js/nav.js"></script>
+  <script src="/js/cursor.js"></script>
+  <script src="/js/animations.js"></script>
+  <script src="/js/docs.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

@@ -381,9 +381,154 @@
     initAuthCardIntro();
   }
 
+  function initRecovery() {
+    const form = document.getElementById('recovery-form');
+    if (!form) return;
+
+    const step1 = document.getElementById('recovery-step-1');
+    const step2 = document.getElementById('recovery-step-2');
+    const emailInput = document.getElementById('recovery-email');
+    const errEmail = document.getElementById('recovery-email-error');
+    const emailDisplay = document.getElementById('recovery-email-display');
+    const submitBtn = document.getElementById('recovery-submit');
+    const submitLabel = document.getElementById('recovery-submit-label');
+    const submitSpinner = document.getElementById('recovery-submit-spinner');
+    const resendBtn = document.getElementById('recovery-resend');
+    const resendTimer = document.getElementById('recovery-resend-timer');
+
+    const RESEND_SECONDS = 60;
+    const RECOVERY_TOAST = 'If this email exists, a reset link has been sent.';
+    let savedEmail = '';
+    let countdownId = null;
+    let secondsLeft = 0;
+
+    function clearCountdown() {
+      if (countdownId) {
+        clearInterval(countdownId);
+        countdownId = null;
+      }
+    }
+
+    function setResendDisabled(disabled) {
+      if (!resendBtn) return;
+      resendBtn.disabled = !!disabled;
+      if (disabled) {
+        resendBtn.classList.add('text-[var(--text-muted)]', 'cursor-not-allowed');
+        resendBtn.classList.remove('text-[var(--accent)]', 'hover:underline', 'cursor-pointer');
+      } else {
+        resendBtn.classList.remove('text-[var(--text-muted)]', 'cursor-not-allowed');
+        resendBtn.classList.add('text-[var(--accent)]', 'hover:underline', 'cursor-pointer');
+      }
+    }
+
+    function updateResendTimerText() {
+      if (!resendTimer) return;
+      if (secondsLeft > 0) {
+        resendTimer.textContent = ' (' + secondsLeft + 's)';
+      } else {
+        resendTimer.textContent = '';
+      }
+    }
+
+    function startResendCountdown() {
+      clearCountdown();
+      secondsLeft = RESEND_SECONDS;
+      setResendDisabled(true);
+      updateResendTimerText();
+      countdownId = setInterval(function () {
+        secondsLeft -= 1;
+        updateResendTimerText();
+        if (secondsLeft <= 0) {
+          clearCountdown();
+          setResendDisabled(false);
+        }
+      }, 1000);
+    }
+
+    async function postRecovery(email) {
+      try {
+        await fetch('/api/recovery', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'same-origin',
+          body: JSON.stringify({ email: email }),
+        });
+      } catch (_) {}
+    }
+
+    function showRecoveryToast() {
+      if (window.Toast) Toast.show(RECOVERY_TOAST, 'info');
+    }
+
+    function transitionToStep2(email) {
+      savedEmail = email;
+      if (emailDisplay) emailDisplay.textContent = email;
+
+      if (!step1 || !step2) return;
+
+      const finish = function () {
+        step1.classList.add('hidden');
+        step2.classList.remove('hidden');
+        refreshIcons();
+        startResendCountdown();
+        if (typeof gsap !== 'undefined' && !prefersReducedMotion()) {
+          gsap.fromTo(step2, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out' });
+        }
+      };
+
+      if (typeof gsap !== 'undefined' && !prefersReducedMotion()) {
+        gsap.to(step1, {
+          opacity: 0,
+          duration: 0.2,
+          ease: 'power2.in',
+          onComplete: finish,
+        });
+      } else {
+        finish();
+      }
+    }
+
+    emailInput &&
+      emailInput.addEventListener('input', function () {
+        setText(errEmail, '');
+      });
+
+    resendBtn &&
+      resendBtn.addEventListener('click', async function () {
+        if (resendBtn.disabled || !savedEmail) return;
+        setResendDisabled(true);
+        await postRecovery(savedEmail);
+        showRecoveryToast();
+        startResendCountdown();
+      });
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      setText(errEmail, '');
+
+      const email = (emailInput && emailInput.value.trim()) || '';
+      if (!email || !validEmailFormat(email)) {
+        setText(errEmail, email ? 'Invalid email format' : 'Please enter your email');
+        shakeCard();
+        refreshIcons();
+        return;
+      }
+
+      setLoading(submitBtn, submitLabel, submitSpinner, true);
+      await postRecovery(email);
+      setLoading(submitBtn, submitLabel, submitSpinner, false);
+      showRecoveryToast();
+      transitionToStep2(email);
+      refreshIcons();
+    });
+
+    initAuthCardIntro();
+  }
+
   function boot() {
     initLogin();
     initRegister();
+    initRecovery();
   }
 
   if (document.readyState === 'loading') {

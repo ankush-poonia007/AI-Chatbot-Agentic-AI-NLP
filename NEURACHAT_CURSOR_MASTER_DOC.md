@@ -1397,8 +1397,8 @@ Today we are building: [PAGE NAME]
 4. login.html + register.html + auth.js
 5. recovery.html
 6. chat.html (most complex — give it a full session) Partially Done 
-7. profile.html
-8. docs.html
+7. profile.html Done
+8. docs.html Done
 9. contact.html
 10. terms.html
 11. 404.html
