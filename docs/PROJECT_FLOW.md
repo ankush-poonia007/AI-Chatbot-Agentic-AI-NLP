@@ -360,28 +360,53 @@
 # GET  /css/<filename>        → frontend/css/
 #
 # ============================================================
-# V3 FRONTEND (7 Pages)
+# V3 FRONTEND (Modular UI Refactor)
 # ============================================================
 #
-# index.html    → Landing page, "Start Chatting" → /chat.html
-# chat.html     → Main chat interface, send/receive messages
-# login.html    → Login + Signup tabs with form switching
-# profile.html  → Display name, bio, dark mode toggle
-# docs.html     → FAQ toggles, copy code buttons
+# Pages (frontend/html/):
+# index.html    → Landing page (hero, pricing, features)
+# chat.html     → Main chat interface (auth-protected)
+# login.html    → Login page
+# register.html → Dedicated registration page
+# profile.html  → User profile management
+# docs.html     → In-app documentation
 # contact.html  → Contact form + social links
 # terms.html    → Terms of service
-# recovery.html → Forgot password page
+# recovery.html → Forgot password page (UI placeholder)
 #
-# JS Features (script.js):
-# - sendMessage() with loading bubble (animated dots)
-# - Error handling: network error / limit_reached / fallback
-# - New chat button clears messagesArea
-# - Session login/register via fetch
-# - All nav links use absolute paths (/)
+# Modular CSS (frontend/css/):
+# main.css       → Design tokens, dark/light themes, typography
+# animations.css → Keyframes and reusable motion
+# chat.css       → Chat layout, message bubbles
+# index.css      → Legacy page styles
+#
+# Modular JS (frontend/js/):
+# nav.js         → Injects shared navbar on marketing pages
+# theme.js       → Dark/light toggle with localStorage
+# auth.js        → Login/register forms + API validation
+# chat.js        → Chat sessions, messaging, markdown rendering
+# animations.js  → GSAP page load, scroll reveals, particles
+# toast.js       → Global toast notifications
+# cursor.js      → Custom accent-colored cursor glow
+# protect.js     → Auth guard for protected routes
+#
+# Key Frontend Tech:
+# - Tailwind CSS (CDN)
+# - GSAP (Animations)
+# - marked.js + DOMPurify (Safe Markdown rendering)
+# - Lucide Icons
 #
 # ============================================================
 # V3 KEY TECHNICAL DECISIONS
 # ============================================================
+#
+# Modular Frontend Architecture
+#   → Removed monolithic script.js/style tags. Extracted to modular 
+#     assets for maintainability and caching.
+#
+# CDN-Based Tooling
+#   → Uses Tailwind, GSAP, and markdown parsers via CDN to avoid
+#     Node.js or complex bundler pipelines. 
 #
 # Flask Sessions (not JWT)
 #   → Simpler for portfolio scope, no token management needed
@@ -402,18 +427,19 @@
 #   → No auto-increment collision risk, globally unique
 #
 # ============================================================
-# V3 STATUS: COMPLETE
+# V3 STATUS: COMPLETE & DEPLOYED
 # ============================================================
 #
 # Repo:    https://github.com/ankush-poonia007/AI-Chatbot-Agentic-AI-NLP
+# Live:    https://ai-chatbot-agentic-ai-nlp.onrender.com
 # Run:     python app.py
 # Access:  http://127.0.0.1:5000
 #
 # Planned V4:
+# - Align legacy pages (profile, docs, contact) with new design system
 # - RAG with ChromaDB / FAISS
-# - Real-time streaming (SSE)
-# - Deployment (Railway / Render)
+# - Real-time streaming responses (SSE)
 # - Admin dashboard
-# - OAuth login
+# - OAuth login (Google)
 #
 # ============================================================
