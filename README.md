@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- BANNER PLACEHOLDER — replace with your actual banner -->
-![NeuraChat Banner](https://via.placeholder.com/1200x300/0f0f1a/a78bfa?text=NeuraChat+AI+—+Agentic+AI+Chatbot)
+![NeuraChat Banner](assets/Banner.png)
 
 # 🤖 NeuraChat AI
 ### *An intelligent, context-aware chatbot with agentic reasoning, persistent memory, and a production-grade full-stack web interface.*
