@@ -14,6 +14,7 @@
   };
 
   let emptySuggestAnimated = false;
+  let userScrolledUp = false;
 
   const els = {};
 
@@ -25,6 +26,16 @@
     const d = document.createElement('div');
     d.textContent = text;
     return d.innerHTML;
+  }
+
+  function updateUserScrolledUpState() {
+    const thread = els.messagesThread;
+    if (!thread) {
+      userScrolledUp = false;
+      return;
+    }
+    const distanceFromBottom = thread.scrollHeight - thread.scrollTop - thread.clientHeight;
+    userScrolledUp = distanceFromBottom > 100;
   }
 
   function formatTime(ts) {
@@ -351,7 +362,9 @@
       });
     }
     if (window.lucide) lucide.createIcons();
-    thread.scrollTop = thread.scrollHeight;
+    if (!userScrolledUp) {
+      wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 
   function showTyping() {
@@ -367,7 +380,9 @@
     if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       gsap.from(row, { opacity: 0, duration: 0.25 });
     }
-    thread.scrollTop = thread.scrollHeight;
+    if (!userScrolledUp) {
+      row.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 
   function removeTyping() {
@@ -599,6 +614,11 @@
     els.messageInput = $('message-input');
     els.sendBtn = $('btn-send');
     els.membershipBar = $('membership-bar');
+
+    if (els.messagesThread) {
+      els.messagesThread.addEventListener('scroll', updateUserScrolledUpState);
+      updateUserScrolledUpState();
+    }
 
     $('btn-new-chat')?.addEventListener('click', newChat);
     $('btn-sidebar-toggle')?.addEventListener('click', openMobileSidebar);
