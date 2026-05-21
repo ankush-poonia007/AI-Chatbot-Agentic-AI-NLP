@@ -13,7 +13,7 @@
 [![TailwindCSS](https://img.shields.io/badge/Tailwind%20CSS-3.x-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 [![License](https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge)](./LICENSE)
 
-**[🌐 Live Demo](https://ai-chatbot-agentic-ai-nlp.onrender.com)** &nbsp;•&nbsp; **[📂 Repository](https://github.com/ankush-poonia007/AI-Chatbot-Agentic-AI-NLP)** &nbsp;•&nbsp; **[🐛 Report Bug](https://github.com/ankush-poonia007/AI-Chatbot-Agentic-AI-NLP/issues)**
+**[🌐 Live Demo](https://neurachat-nlp.onrender.com)** &nbsp;•&nbsp; **[📂 Repository](https://github.com/ankush-poonia007/neurachat-nlp)** &nbsp;•&nbsp; **[🐛 Report Bug](https://github.com/ankush-poonia007/neurachat-nlp)**
 
 </div>
 
@@ -376,7 +376,7 @@ Dark mode is the default. Light mode is toggled via `theme.js` using `data-theme
 | Auth, chat, profile, membership | ✅ Complete |
 | All 10 frontend pages | ✅ Rebuilt with new design system |
 | EmailJS contact form | ✅ Live |
-| Production deployment | ✅ [Live on Render](https://ai-chatbot-agentic-ai-nlp.onrender.com) |
+| Production deployment | ✅ [Live on Render](https://neurachat-nlp.onrender.com) |
 | Session persistence fix | 🔧 In progress (`fixes/ui-and-session`) |
 | UI audit (all pages) | 🔧 In progress |
 | GIF demo + screenshots | 📋 Pending |
@@ -444,7 +444,7 @@ Genuinely useful collaboration. The key was coming in with a clear plan and usin
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/ankush-poonia007/AI-Chatbot-Agentic-AI-NLP.git
+git clone https://github.com/ankush-poonia007/neurachat-nlp.git
 cd AI-Chatbot-Agentic-AI-NLP
 
 # 2. Create and activate a virtual environment
@@ -540,7 +540,7 @@ git commit -m "Add your feature"
 git push origin feature/your-feature
 ```
 
-Found a bug? [Open an issue](https://github.com/ankush-poonia007/AI-Chatbot-Agentic-AI-NLP/issues) with steps to reproduce.
+Found a bug? [Open an issue](https://github.com/ankush-poonia007/neurachat-nlp/issues) with steps to reproduce.
 
 ---
 
