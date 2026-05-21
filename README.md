@@ -13,7 +13,7 @@
 [![TailwindCSS](https://img.shields.io/badge/Tailwind%20CSS-3.x-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 [![License](https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge)](./LICENSE)
 
-**[🌐 Live Demo]([https://neurachat-nlp.onrender.com](https://ai-chatbot-agentic-ai-nlp.onrender.com))** &nbsp;•&nbsp; **[📂 Repository](https://github.com/ankush-poonia007/neurachat-nlp)** &nbsp;•&nbsp; **[🐛 Report Bug](https://github.com/ankush-poonia007/neurachat-nlp)**
+**[🌐 Live Demo](https://ai-chatbot-agentic-ai-nlp.onrender.com)** &nbsp;•&nbsp; **[📂 Repository](https://github.com/ankush-poonia007/neurachat-nlp)** &nbsp;•&nbsp; **[🐛 Report Bug](https://github.com/ankush-poonia007/neurachat-nlp)**
 
 </div>
 
