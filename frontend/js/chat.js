@@ -506,7 +506,6 @@
       );
     }
 
-    if (els.messagesThread) els.messagesThread.scrollTop = els.messagesThread.scrollHeight;
   }
 
   function newChat() {
