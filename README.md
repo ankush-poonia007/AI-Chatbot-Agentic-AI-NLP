@@ -1,17 +1,17 @@
 <div align="center">
 
-<!-- BANNER PLACEHOLDER — replace with your actual banner -->
 ![NeuraChat Banner](assets/Banner.png)
 
-# 🤖 NeuraChat AI
+# 🤖 NeuraChat AI Chatbot — V3
+
 ### *An intelligent, context-aware chatbot with agentic reasoning, persistent memory, and a production-grade full-stack web interface.*
 
-[![Python](https://img.shields.io/badge/Python-3.14-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![Flask](https://img.shields.io/badge/Flask-3.x-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com)
-[![Gemini](https://img.shields.io/badge/Gemini-2.5_Flash-FF6D00?style=for-the-badge&logo=google&logoColor=white)](https://deepmind.google/gemini)
+[![Gemini](https://img.shields.io/badge/Gemini%202.5%20Flash-Google%20AI-FF6D00?style=for-the-badge&logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
 [![SQLite](https://img.shields.io/badge/SQLite-Database-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://sqlite.org)
-[![TailwindCSS](https://img.shields.io/badge/Tailwind-CSS-38BDF8?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
-[![License](https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge)](LICENSE)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind%20CSS-3.x-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+[![License](https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge)](./LICENSE)
 
 **[🌐 Live Demo](https://ai-chatbot-agentic-ai-nlp.onrender.com)** &nbsp;•&nbsp; **[📂 Repository](https://github.com/ankush-poonia007/AI-Chatbot-Agentic-AI-NLP)** &nbsp;•&nbsp; **[🐛 Report Bug](https://github.com/ankush-poonia007/AI-Chatbot-Agentic-AI-NLP/issues)**
 
@@ -34,6 +34,8 @@
 - [Vibe Coding & AI Collaboration](#-vibe-coding--ai-collaboration)
 - [AI Collaboration Review](#-ai-collaboration-review)
 - [Installation & Usage](#-installation--usage)
+- [Branch Structure](#-branch-structure)
+- [Known Issues](#-known-issues)
 - [Contributing & Credits](#-contributing--credits)
 
 ---
@@ -45,17 +47,26 @@ NeuraChat AI is a **third-generation agentic chatbot** built from scratch with a
 It goes beyond a simple API wrapper — it **reasons** about user intent and topic before a single token is sent to the LLM. A custom NLP routing layer detects intent (greeting, definition, follow-up, reset, exit) and topic (AI, ML, DL, Neural Networks), then builds a structured, context-enriched prompt for Gemini 2.5 Flash. The result is sharper, more relevant responses with genuine conversational memory.
 
 Users can register, log in, manage multiple independent chat sessions, view persistent history, update their profile, and are subject to a plan-based message limit system — all backed by a production-quality relational schema.
----
-> ## 📸 Screenshots
 
-- **Home Page**
-![Homepage](screenshots/home.png)
-- **Chat**
-![Chat](screenshots/chat.png)
-- **Login**
-![Login](screenshots/login.png)
+Built and deployed by **Ankush Poonia** — B.Tech AI/ML Engineering, 2nd Year, Arya College of Engineering, Jaipur.
+
+> **Version history:** V1 was a terminal prototype. V2 was a modular NLP refactor. V3 is a complete rewrite — new architecture, new UI, new backend capabilities, fully deployed.
+
 ---
 
+## 📸 Screenshots
+
+| Home Page | Chat |
+|---|---|
+| ![Homepage](screenshots/home.png) | ![Chat](screenshots/chat.png) |
+
+| Login | — |
+|---|---|
+| ![Login](screenshots/login.png) | *More screenshots coming soon* |
+
+> 📹 GIF demo coming soon — record with [ScreenToGif](https://www.screentogif.com/) showing: `landing → login → chat → history → theme toggle`. Save as `static/assets/neurachat-demo.gif`.
+
+---
 
 ## 💡 Why I Built This
 
@@ -115,8 +126,10 @@ Complete rebuild around a Flask API backend:
 - Built secure auth with hashed passwords (scrypt via Werkzeug) and Flask sessions
 - Implemented multi-session chat with persistent history and Gemini context injection
 - Added profile management and a plan-based membership system
-- Connected a multi-page frontend served directly through Flask (no separate build step)
-- Rebuilt core pages (home, chat, login, register) with a modular JS/CSS architecture, GSAP animations, markdown rendering, and Render deployment
+- Complete frontend rebuild — 10 pages from scratch with a modular JS/CSS architecture
+- GSAP animations, particle canvas, custom cursor, and a shared design system
+- EmailJS contact form with keys loaded securely from backend via `/api/config`
+- Deployed on Render with `render.yaml` config
 
 ---
 
@@ -153,17 +166,17 @@ AI-Chatbot-Agentic-AI-NLP/
 │   │   ├── chat.html            # Chat workspace (auth-protected)
 │   │   ├── login.html           # Sign in
 │   │   ├── register.html        # Sign up
-│   │   ├── profile.html         # User profile
+│   │   ├── profile.html         # User profile + membership
 │   │   ├── docs.html            # In-app documentation
-│   │   ├── contact.html         # Contact form
-│   │   ├── terms.html           # Terms of service
-│   │   └── recovery.html        # Password recovery (UI placeholder)
+│   │   ├── contact.html         # EmailJS contact form
+│   │   ├── terms.html           # Terms of service + privacy (tabbed)
+│   │   ├── recovery.html        # Password recovery
+│   │   └── 404.html             # Custom error page
 │   │
 │   ├── css/
 │   │   ├── main.css             # Design tokens, base styles, shared utilities
 │   │   ├── animations.css       # Keyframes and motion utilities
 │   │   ├── chat.css             # Chat layout, sidebar, message bubbles
-│   │   ├── index.css            # Legacy page-specific styles
 │   │   ├── login.css
 │   │   ├── profile.css
 │   │   ├── docs.css
@@ -180,8 +193,7 @@ AI-Chatbot-Agentic-AI-NLP/
 │   │   ├── preloader.js         # Page preloader fade-in
 │   │   ├── chat.js              # Chat UI — sessions, messages, markdown, limits
 │   │   ├── auth.js              # Login + register forms and API calls
-│   │   ├── tailwind-config.js   # Tailwind config for legacy pages
-│   │   └── script.js            # Legacy contact-page logic
+│   │   └── tailwind-config.js   # Tailwind config
 │   │
 │   └── static/
 │       └── assets/
@@ -205,6 +217,7 @@ AI-Chatbot-Agentic-AI-NLP/
 ## ✨ Features
 
 ### AI & Backend
+
 | Feature | Description |
 |---|---|
 | Custom NLP routing | Intent + topic detection before every LLM call |
@@ -212,11 +225,14 @@ AI-Chatbot-Agentic-AI-NLP/
 | User auth | Registration, login, scrypt-hashed passwords, Flask sessions |
 | Multi-session chat | Create, rename, and soft-delete independent chat rooms |
 | Persistent history | All messages stored in SQLite with roles and timestamps |
-| Profile API | Display name, bio, and avatar URL |
+| Profile API | Display name, bio, and avatar URL; email and created_at exposed |
 | Membership tiers | Basic (50 msgs) vs Pro (unlimited) with server-side enforcement |
-| Relational schema | 5 tables, foreign keys, indexes, and an auto-update trigger |
+| Relational schema | 5 tables, foreign keys, performance indexes, and an auto-update trigger |
+| EmailJS integration | Contact form backed by live email delivery; keys loaded via `/api/config` |
+| Custom error handling | Flask 404 handler with a dedicated branded error page |
 
 ### Frontend & UX
+
 | Feature | Description |
 |---|---|
 | Landing page | Hero, feature grid, pricing, FAQ, and CTA sections |
@@ -224,15 +240,14 @@ AI-Chatbot-Agentic-AI-NLP/
 | Markdown replies | `marked.js` rendering with `DOMPurify` sanitization |
 | Dark / light theme | Toggle with `localStorage` persistence across pages |
 | GSAP animations | Page load, scroll reveals, message transitions |
-| Toast notifications | Global success/error feedback |
-| Auth guard | Protected chat route redirects unauthenticated users |
-| Register flow | Dedicated sign-up page with client-side validation |
+| Particle canvas | Canvas-based ambient background on core pages |
+| Custom cursor | Accent-colored cursor glow on pointer devices |
+| Toast notifications | Global success/error feedback via `showToast()` |
+| Auth guard | `protect.js` redirects unauthenticated users before render |
 | Shared navbar | Injected via `nav.js` on marketing pages |
-| Particle background | Canvas-based ambient effect on core pages |
-| Lucide icons | Consistent icon set across rebuilt pages |
+| Lucide icons | Consistent SVG icon set across all rebuilt pages |
 | SEO & sharing | Meta tags, favicon, and Open Graph image |
-| Responsive chat UI | Mobile sidebar, touch-friendly controls |
-| Flask-served static | HTML, CSS, JS, and assets from one server (no CORS setup) |
+| Responsive layout | Mobile sidebar, touch-friendly controls |
 | Live deployment | Hosted on [Render](https://render.com) via `render.yaml` |
 
 ---
@@ -249,13 +264,14 @@ The frontend is **CDN-based** — no Node.js, no bundler. Tailwind, GSAP, Lucide
 | Chat | `/chat` | Required | Full chat app — `protect.js` + `chat.js` |
 | Login | `/login.html` | Public | Session login via `auth.js` |
 | Register | `/register.html` | Public | Account creation via `auth.js` |
-| Profile | `/profile.html` | Required | Legacy layout (pending rebuild) |
-| Docs | `/docs.html` | Public | In-app documentation |
-| Contact | `/contact.html` | Public | Contact form |
-| Terms | `/terms.html` | Public | Terms of service |
-| Recovery | `/recovery.html` | Public | Password recovery UI placeholder |
+| Profile | `/profile.html` | Required | Profile + membership; email and created_at |
+| Docs | `/docs.html` | Public | In-app documentation with endpoint reference |
+| Contact | `/contact.html` | Public | EmailJS contact form |
+| Terms | `/terms.html` | Public | Terms of service and privacy (tabbed) |
+| Recovery | `/recovery.html` | Public | Password recovery flow |
+| 404 | — | — | Custom Flask error handler |
 
-### Shared modules
+### Shared Modules
 
 | Module | Role |
 |---|---|
@@ -271,14 +287,21 @@ The frontend is **CDN-based** — no Node.js, no bundler. Tailwind, GSAP, Lucide
 | `chat.js` | Session sidebar, send/receive, markdown, plan limits |
 | `auth.js` | Login/register forms, validation, API integration |
 
-### Design system
+### Design System
 
-- **Accent:** cyan/teal (`#22d3ee` dark / `#0891b2` light)
-- **Fonts:** Syne (headings), DM Sans (body), JetBrains Mono (code)
-- **Themes:** `data-theme="dark"` (default) and `data-theme="light"` on `<html>`
-- **Layout:** Rounded cards, full-width sections, minimal gradient use — inspired by modern AI product UIs
+| Token | Value |
+|---|---|
+| Base background | `#0f1117` |
+| Surface | `#1a1d27` |
+| Accent (dark) | `#22d3ee` |
+| Accent (light) | `#0891b2` |
+| Heading font | Syne |
+| Body font | DM Sans |
+| Code font | JetBrains Mono |
 
-### Serving (Flask)
+Dark mode is the default. Light mode is toggled via `theme.js` using `data-theme="dark/light"` on `<html>` and persisted in `localStorage`.
+
+### Flask Static Serving
 
 ```
 /              → frontend/html/index.html
@@ -294,9 +317,10 @@ The frontend is **CDN-based** — no Node.js, no bundler. Tailwind, GSAP, Lucide
 ## 🛠 Tech Stack & Skills Demonstrated
 
 ### Backend
+
 | Technology | Purpose |
 |---|---|
-| Python 3.14 | Core language |
+| Python 3.11 | Core language |
 | Flask | REST API + static file serving |
 | Flask-CORS | Cross-origin support for API routes |
 | SQLite | Relational database |
@@ -305,6 +329,7 @@ The frontend is **CDN-based** — no Node.js, no bundler. Tailwind, GSAP, Lucide
 | python-dotenv | Environment variable management |
 
 ### Frontend
+
 | Technology | Purpose |
 |---|---|
 | HTML5 / CSS3 | Semantic markup and custom properties (`main.css` design system) |
@@ -314,18 +339,19 @@ The frontend is **CDN-based** — no Node.js, no bundler. Tailwind, GSAP, Lucide
 | marked.js + DOMPurify | Safe markdown rendering in chat bubbles |
 | Lucide Icons | SVG icon set via CDN |
 | Syne / DM Sans / JetBrains Mono | Display, body, and code typography |
-| Flask static routes | `/css/`, `/js/`, `/static/` served from `app.py` |
 
 ### Skills Demonstrated
-- Modular backend architecture
-- Custom NLP routing layer design
+
+- Modular backend architecture with separation of concerns
+- Custom NLP routing layer design (intent + topic + depth)
 - Relational DB schema design (normalization, triggers, indexes)
 - REST API design with session-based authentication
 - Full-stack integration (Flask serves API + frontend from one app)
 - Modular vanilla JS frontend (no framework, no build pipeline)
 - Prompt engineering with structured context injection
-- Secure credential handling and sanitized markdown output
-- Cloud deployment (Render)
+- Secure credential handling (scrypt hashing, `.env` for keys, `/api/config` endpoint)
+- Sanitized markdown output (DOMPurify)
+- Cloud deployment (Render via `render.yaml`)
 
 ---
 
@@ -333,31 +359,34 @@ The frontend is **CDN-based** — no Node.js, no bundler. Tailwind, GSAP, Lucide
 
 | Phase | Duration |
 |---|---|
-| V1 — Terminal prototype | ~3 day |
+| V1 — Terminal prototype | ~3 days |
 | V2 — Modular NLP refactor | ~5 days |
-| V3 — Full stack build | ~7 days |
+| V3 — Full stack build + frontend rebuild | ~7 days |
 | **Total** | **~15 days** |
 
 ---
 
 ## 📊 Current Status
 
-**V3 is complete and deployed.** Backend, database, agentic engine, and core user flows work end-to-end. The app is live on Render.
+**V3 is complete and deployed.** Backend, database, agentic engine, and all 10 pages are live.
 
 | Area | Status |
 |---|---|
 | Backend API & NLP engine | ✅ Complete |
 | Auth, chat, profile, membership | ✅ Complete |
-| Core frontend (home, chat, login, register) | ✅ Rebuilt with new design system |
-| Secondary pages (profile, docs, contact, terms, recovery) | 🔄 Legacy UI — scheduled for design-system alignment |
+| All 10 frontend pages | ✅ Rebuilt with new design system |
+| EmailJS contact form | ✅ Live |
 | Production deployment | ✅ [Live on Render](https://ai-chatbot-agentic-ai-nlp.onrender.com) |
-
-### Known Issues (being polished)
-- Secondary pages still use the older glassmorphism layout and relative asset paths
-- Minor chat UI edge cases on very small viewports
+| Session persistence fix | 🔧 In progress (`fixes/ui-and-session`) |
+| UI audit (all pages) | 🔧 In progress |
+| GIF demo + screenshots | 📋 Pending |
 
 ### Roadmap — V4
-- [ ] Align profile, docs, contact, and terms with the new design system
+
+- [ ] Fix session persistence (`session.permanent = True`)
+- [ ] Complete UI audit across all 10 pages
+- [ ] Fix `marked.js` markdown rendering in chat
+- [ ] Add GIF demo and screenshots to README
 - [ ] RAG with ChromaDB or FAISS
 - [ ] Real-time streaming responses (SSE)
 - [ ] Admin dashboard
@@ -409,6 +438,7 @@ Genuinely useful collaboration. The key was coming in with a clear plan and usin
 ### Prerequisites
 - Python 3.10+
 - A [Google Gemini API key](https://aistudio.google.com/app/apikey)
+- An [EmailJS](https://www.emailjs.com/) account (for the contact form)
 
 ### Setup
 
@@ -417,20 +447,37 @@ Genuinely useful collaboration. The key was coming in with a clear plan and usin
 git clone https://github.com/ankush-poonia007/AI-Chatbot-Agentic-AI-NLP.git
 cd AI-Chatbot-Agentic-AI-NLP
 
-# 2. Install dependencies
+# 2. Create and activate a virtual environment
+python -m venv venv
+source venv/bin/activate       # Windows: venv\Scripts\activate
+
+# 3. Install dependencies
 pip install -r requirements.txt
 
-# 3. Create your .env file
-echo GEMINI_API_KEY=your_key_here > .env
+# 4. Set up environment variables
+cp .env.example .env           # Then fill in your values
 
-# 4. Run the app
+# 5. Run the app
 python app.py
 ```
 
-### Access
+Open `http://127.0.0.1:5000` in your browser.
+
+### Environment Variables
+
+Create a `.env` file in the project root:
+
+```env
+GEMINI_API_KEY=your_gemini_api_key_here
+FLASK_SECRET_KEY=your_secret_key_here
+
+# EmailJS — loaded via /api/config, never hardcoded in frontend
+EMAILJS_SERVICE_ID=your_service_id
+EMAILJS_TEMPLATE_ID=your_template_id
+EMAILJS_PUBLIC_KEY=your_public_key
 ```
-http://127.0.0.1:5000
-```
+
+> ⚠️ Never commit your `.env` file. It is listed in `.gitignore`.
 
 ### API Reference
 
@@ -439,25 +486,48 @@ http://127.0.0.1:5000
 | POST | `/api/register` | ❌ | Register new user |
 | POST | `/api/login` | ❌ | Login |
 | POST | `/logout` | ✅ | Logout |
-| GET | `/api/profile` | ✅ | Get profile |
+| GET | `/api/auth/status` | ❌ | Check session state |
+| GET | `/api/profile` | ✅ | Get profile + membership info |
 | POST | `/api/profile/update` | ✅ | Update profile |
 | POST | `/api/chats/new` | ✅ | Create chat session |
-| GET | `/api/chats` | ✅ | List all chats |
+| GET | `/api/chats` | ✅ | List all sessions |
 | GET | `/api/chats/<id>/messages` | ✅ | Get chat history |
-| POST | `/api/chats/<id>/rename` | ✅ | Rename chat |
-| POST | `/api/chats/<id>/delete` | ✅ | Soft delete chat |
-| POST | `/api/chat` | ✅ | Send message |
+| POST | `/api/chats/<id>/rename` | ✅ | Rename session |
+| POST | `/api/chats/<id>/delete` | ✅ | Soft delete session |
+| POST | `/api/chat` | ✅ | Send message, receive AI response |
+| GET | `/api/config` | ❌ | Return public EmailJS keys from `.env` |
+
+---
+
+## 🌿 Branch Structure
+
+| Branch | Status | Purpose |
+|---|---|---|
+| `main` | ✅ Stable | Complete V3 rebuild — deployed |
+| `fixes/ui-and-session` | 🔧 In progress | Session persistence + UI audit + doc styling |
+
+---
+
+## 🐛 Known Issues
+
+Active on `fixes/ui-and-session` branch:
+
+- **Session drops on navigation** — Fix: `session.permanent = True` in login route (config already has `SESSION_COOKIE_SAMESITE = Lax`)
+- **Minor UI glitches** — Page-by-page audit in progress
+- **Docs endpoint table** — Method badge color pills need styling
+- **Navbar anchor links** — Some links still need verification
 
 ---
 
 ## 🤝 Contributing & Credits
 
-**Built by:** [Ankush Poonia](https://github.com/ankush-poonia007) — 2nd year B.Tech AI/ML Engineering, Arya College of Engineering, Jaipur.  
+**Built by:** [Ankush Poonia](https://github.com/ankush-poonia007) — 2nd year B.Tech AI/ML Engineering, Arya College of Engineering, Jaipur.
 **LinkedIn:** [Ankush Poonia](https://www.linkedin.com/in/ankush-poonia007/)
 
 **AI Pair Programmer:** Claude (Anthropic) — used for accelerated development, debugging, and review during V3.
 
 ### Contributing
+
 ```bash
 # 1. Fork the repo
 # 2. Create your feature branch
@@ -471,6 +541,12 @@ git push origin feature/your-feature
 ```
 
 Found a bug? [Open an issue](https://github.com/ankush-poonia007/AI-Chatbot-Agentic-AI-NLP/issues) with steps to reproduce.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License — see the [LICENSE](./LICENSE) file for details.
 
 ---
 
